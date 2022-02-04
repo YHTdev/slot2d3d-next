@@ -1,0 +1,12 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+
+// Additional styles
+// @import "additional-styles/utility-patterns.scss";
+// @import "additional-styles/theme.scss";
+
+@import "tailwindcss/utilities";
+
+body {
+  @apply antialiased bg-slate-100 text-slate-600;
+}
