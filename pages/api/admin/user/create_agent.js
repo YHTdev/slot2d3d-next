@@ -17,9 +17,10 @@ const validate = withValidation({
   mode: "body",
 });
 
-const handler = (req, res) => {
+const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = createUser(req, res);
+    const response = await createUser(req, res);
+
     res.json(response);
   }
 };

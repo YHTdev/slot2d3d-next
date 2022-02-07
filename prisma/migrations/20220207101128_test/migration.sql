@@ -15,7 +15,7 @@ CREATE TABLE `Profile` (
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `email` VARCHAR(191) NOT NULL,
-    `password` VARCHAR(10) NOT NULL,
+    `password` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NULL,
     `isAdmin` BOOLEAN NOT NULL DEFAULT false,
     `isAgent` BOOLEAN NOT NULL DEFAULT true,
