@@ -11,7 +11,11 @@
   "dependencies": {
     "@headlessui/react": "^1.4.3",
     "@heroicons/react": "^1.0.5",
+<<<<<<< HEAD
     "@prisma/client": "3.9.1",
+=======
+    "@prisma/client": "^3.9.1",
+>>>>>>> 9b259a8e3ab7af6f2e8e77399a0d0edb9fc1544c
     "@tailwindcss/forms": "^0.4.0",
     "add": "^2.0.6",
     "axios": "^0.25.0",
