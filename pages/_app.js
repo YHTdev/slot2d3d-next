@@ -1,11 +1,20 @@
 import Layout from "../components/layout";
+import { SessionProvider, signIn, useSession } from "next-auth/react";
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SessionProvider session={session}>
+      {Component.auth ? (
+        <Layout>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Layout>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </SessionProvider>
   );
 }
 
