@@ -1,16 +1,10 @@
-import { UpdateUser } from "../../../../lib/controllers/user";
 import { withValidation } from "next-validations";
 import * as yup from "yup";
+import { loginUser } from "../../../lib/controllers/user";
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
   email: yup.string().required().email(),
-  password: yup.string().required().min(8),
-  nrc: yup.string().required().min(12),
-  bio: yup.string().notRequired().max(200),
-  address: yup.string().notRequired(),
-  phone: yup.string().required(),
-  id: yup.string().required(),
+  password: yup.string().required(),
 });
 const validate = withValidation({
   schema,
@@ -20,7 +14,7 @@ const validate = withValidation({
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await UpdateUser(req, res);
+    const response = await loginUser(req, res);
 
     res.json(response);
   }
