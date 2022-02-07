@@ -4,12 +4,10 @@ import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider>
       {Component.auth ? (
         <Layout>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <Component {...pageProps} />
         </Layout>
       ) : (
         <Component {...pageProps} />

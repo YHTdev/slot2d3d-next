@@ -15,7 +15,7 @@ export const TableCell = ({ children, isHeader, className }) => {
   if (isHeader) {
     return (
       <th
-        className={`px-2 py-3 first:pl-5 last:pr-5 whitespace-nowrap ${
+        className={`px-2 py-3 text-left first:pl-5 last:pr-5 whitespace-nowrap ${
           className || ""
         }`}>
         {children}

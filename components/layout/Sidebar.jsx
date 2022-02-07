@@ -34,6 +34,11 @@ const Sidebar = () => {
                 linkIcon={<FolderAddIcon className={styles.menuIcon} />}
                 linkTitle={`Dashboardss`}
               />
+              <SidebarLink
+                pathName="/admin/agents"
+                linkIcon={<UsersIcon className={styles.menuIcon} />}
+                linkTitle={`Agents`}
+              />
 
               {/* E-Commerce */}
 
