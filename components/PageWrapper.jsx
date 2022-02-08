@@ -20,30 +20,24 @@ function PageWrapper({ children }) {
               height={40}
             />
             <div className="flex flex-row space-x-3 justify-start items-center content-center px-2 py-2">
-             <span className="text-slate-400">
-             <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="currentColor"
-                className="bi bi-facebook"
-                viewBox="0 0 16 16"
-              >
-                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
-              </svg>
-             </span>
+              <span className="text-slate-400">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  className="bi bi-facebook"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                </svg>
+              </span>
             </div>
           </div>
         </div>
         {children}
-        <section
-          className="bottom_navigation"
-          className="block fixed inset-x-0 bottom-0 z-10 bg-opacity-70 bg-slate-800 shadow"
-        >
-          <div
-            className="tabs"
-            className="flex justify-between max-w-screen-lg mx-auto"
-          >
+        <section className="block fixed inset-x-0 bottom-0 z-10 bg-opacity-70 bg-slate-800 shadow">
+          <div className="flex justify-between max-w-screen-lg mx-auto">
             <Link passHref href="/" className="w-full">
               <div className="flex w-full justify-center items-center flex-col px-2 py-2 border-r select-none text-slate-400 hover:text-slate-50 border-slate-700">
                 <svg
