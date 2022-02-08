@@ -1,7 +1,7 @@
 import { MenuIcon, SearchIcon } from "@heroicons/react/outline";
 import DropdownProfile from "../DropdownProfile";
 
-const Header = () => {
+const Header = ({ sideBarOpen, setSideBarOpen }) => {
   return (
     <header className="sticky top-0 z-30 bg-white border-b border-slate-200">
       <div className="px-4 sm:px-6 lg:px-8">
@@ -9,7 +9,10 @@ const Header = () => {
           {/* Header: Left side */}
           <div className="flex">
             {/* Hamburger button */}
-            <button className=" text-slate-500 hover:text-slate-600">
+            <button
+              aria-controls="sidebar"
+              onClick={() => setSideBarOpen(!sideBarOpen)}
+              className=" text-slate-500 hover:text-slate-600">
               <span className="sr-only ">Open Sidebar</span>
               <MenuIcon className="w-6 h-6 " />
             </button>

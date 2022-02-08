@@ -1,21 +1,32 @@
+import Link from "next/link";
 import styles from "../../styles/Sidebar.module.scss";
 
-import Link from "next/link";
-import { FolderAddIcon, UsersIcon } from "@heroicons/react/outline";
-import SidebarLinkGroup, { MenuButton, MenuItem } from "../SidebarLinkGroup";
-import SidebarLink from "../SidebarLink";
 import Logo from "../Icons/Logo";
+import SidebarLink from "../SidebarLink";
 
-const Sidebar = () => {
+import { FolderAddIcon, UsersIcon } from "@heroicons/react/outline";
+import { LogoutIcon } from "@heroicons/react/solid";
+
+const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
   return (
     <div className="">
       {/* Sidebar backdrop (mobile only) */}
-      {/* Sidebar backdrop (mobile only) */}
+      <div
+        className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
+          sideBarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
 
       {/* Sidebar */}
       <div
-        className={`${styles.sidebarWrapper} no-scrollbar lg:sidebar-expanded:!w-64 2xl:!w-64`}>
-        <div className="flex justify-between pr-3 mb-10 sm:px-2">
+        className={`flex flex-col absolute z-40 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 transform h-screen overflow-y-scroll lg:overflow-y-auto w-64 shrink-0  bg-slate-800 transition-all duration-200 ease-in-out ${
+          sideBarOpen
+            ? " w-64 lg:w-20 translate-x-0 transition duration-700"
+            : "-translate-x-64 transition duration-700"
+        }`}
+        aria-hidden="true">
+        {/* Sidebar Header */}
+        <div className="flex items-center h-16 px-2">
           {/* Logo */}
           <Link href="/">
             <a>
@@ -23,10 +34,11 @@ const Sidebar = () => {
             </a>
           </Link>
         </div>
+
         {/* Links */}
         <div className="space-y-8 ">
-          {/* Pages group */}
-          <div>
+          {/* Pages Groups */}
+          <div className="">
             <div className="mt-3">
               {/* Dashboard */}
               <SidebarLink
@@ -34,6 +46,7 @@ const Sidebar = () => {
                 linkIcon={<FolderAddIcon className={styles.menuIcon} />}
                 linkTitle={`Dashboardss`}
               />
+
               <SidebarLink
                 pathName="/admin/agents"
                 linkIcon={<UsersIcon className={styles.menuIcon} />}
@@ -44,40 +57,24 @@ const Sidebar = () => {
                 linkIcon={<UsersIcon className={styles.menuIcon} />}
                 linkTitle={`Admin Users`}
               />
-
-              {/* E-Commerce */}
-
-              {/* <SidebarLinkGroup>
-                <MenuButton
-                  rootTitle="Users"
-                  rootIcon={<UsersIcon className={styles.menuIcon} />}
-                />
-                <MenuItem linkHref={`/admin/admin-users`} menuTitle={`Admin အသုံးပြုသူများ`} />
-                <MenuItem linkHref={`/admin/admin-users`} menuTitle={`Admin အသုံးပြုသူများ`} />
-                <MenuItem linkHref={`/admin/agents`} menuTitle={`အေးဂျင့် အသုံးပြုသူများ`} />
-              </SidebarLinkGroup> */}
             </div>
           </div>
-          {/* Admin Users group */}
-          <div>
-            <h3 className="pl-3 text-xs font-semibold uppercase text-slate-500">
-              <span
-                className="hidden w-6 text-center lg:block lg:sidebar-expanded:hidden 2xl:hidden"
-                aria-hidden="true">
-                •••
-              </span>
-              <span className="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                More
-              </span>
-            </h3>
-            <div className="mt-3">
-              {/* Dashboard */}
-              <SidebarLink
-                pathName="/admin-users"
-                linkIcon={<UsersIcon className={styles.menuIcon} />}
-                linkTitle={`Admin Users`}
+        </div>
+
+        {/* Expand / collapse button */}
+        <div className="inline-flex justify-end pt-3 mt-auto border-t border-slate-600">
+          <div className="px-3 py-2">
+            <button onClick={() => setSideBarOpen(!sideBarOpen)}>
+              <span className="sr-only">Expand / collapse sidebar</span>
+
+              <LogoutIcon
+                className={`w-6 h-6 text-slate-200 ${
+                  !sideBarOpen
+                    ? "rotate-180 transition duration-700 "
+                    : "transition duration-700"
+                }`}
               />
-            </div>
+            </button>
           </div>
         </div>
       </div>
