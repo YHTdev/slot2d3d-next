@@ -26,3 +26,24 @@ body {
 .home_bg {
   background-image: url("/images/home/bg.png");
 }
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #e6b041 #2b3646;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #2b3646;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #2b3646;
+  border-radius: 10px;
+  border: 1px solid #2b3646;
+}

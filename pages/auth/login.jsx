@@ -7,7 +7,7 @@ function Login() {
     }
   return (
       <PageWrapper>
-          <div className='flex h-screen justify-center items-center content-center'>
+          <div className='flex h-screen overflow-y-scroll py-24 justify-center items-center content-center'>
              <div className='flex  px-2 py-2 w-full max-w-screen-xs bg-slate-900 bg-opacity-60 rounded-md' data-aos="zoom-in-up">
                   <form onSubmit={(e)=>{onSumbit(e)}} className='flex flex-col space-y-4 w-full px-4 py-4'>
                         <h6 className='text-sm tracking-widest text-yellow-400'>

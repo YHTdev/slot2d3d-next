@@ -7,7 +7,7 @@ function Home() {
   const [selected, setSelected] = useState('2d');
   return (
    <PageWrapper>
-      <div className="flex justify-center w-full items-center content-center min-h-screen" data-aos="zoom-in-up">
+      <div className="flex justify-center w-full  items-center content-center  h-screen overflow-y-scroll py-24" data-aos="zoom-in-up">
       <div className="block w-full bg-transparent  bg-opacity-25 px-2 py-2 shadow-md rounded-sm max-w-screen-xl">
           <div className="w-full py-4 flex flex-row max-w-screen-xs">
               <button onClick={()=>{setSelected('2d')}} className={`${selected==='2d'?'bg-yellow-400':'bg-slate-700'} text-white border-r hover:bg-yellow-400 border-slate-600 rounded-l-full focus:outline-none w-full flex justify-center items-center content-center bg-opacity-70 px-2 py-2`}>

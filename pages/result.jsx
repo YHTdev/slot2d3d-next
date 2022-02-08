@@ -5,7 +5,7 @@ function Result({}) {
   const [selected, setSelected] = useState('2d');
   return (
     <PageWrapper>
-      <div className="flex justify-center items-center content-center h-screen" data-aos="zoom-in-up">
+      <div className="flex justify-center items-center  content-center h-screen overflow-y-scroll py-32" data-aos="zoom-in-up">
         <div className="block w-full max-w-screen-lg bg-slate-900 px-2 py-2 bg-opacity-50">
          {/* title */}
         <div className="flex w-full justify-between items-center content-center px-2 py-2">
