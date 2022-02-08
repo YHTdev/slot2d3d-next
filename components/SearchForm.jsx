@@ -26,6 +26,6 @@ const SearchForm = ({ placeholder }) => {
   );
 };
 SearchForm.defaultProps = {
-  placeholder: "Search…",
+  placeholder: "ရှာရန် ...",
 };
 export default SearchForm;

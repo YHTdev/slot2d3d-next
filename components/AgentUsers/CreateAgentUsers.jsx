@@ -1,3 +1,4 @@
+import { UploadIcon } from "@heroicons/react/outline";
 import Card, { CardBody, CardHeader } from "../Card";
 
 const CreateAgentUsers = () => {
@@ -9,7 +10,7 @@ const CreateAgentUsers = () => {
             <label
               className="block mb-2 text-sm font-medium"
               htmlFor="userName">
-              Agent Name <span className="text-rose-500">*</span>
+              အမည်<span className="text-rose-500">*</span>
             </label>
             <input
               id="userName"
@@ -23,7 +24,7 @@ const CreateAgentUsers = () => {
               <label
                 className="block mb-2 text-sm font-medium"
                 htmlFor="phoneNumber">
-                Phone Number <span className="text-rose-500">*</span>
+                ဖုန်းနံပါတ် <span className="text-rose-500">*</span>
               </label>
               <input
                 id="phoneNumber"
@@ -35,7 +36,7 @@ const CreateAgentUsers = () => {
             </div>
             <div className="">
               <label className="block mb-2 text-sm font-medium" htmlFor="email">
-                Email <span className="text-slate-400">(Optional)</span>
+              အီးမေးလ် <span className="text-slate-400">(Optional)</span>
               </label>
               <input id="email" className="w-full form-input" type="email" />
             </div>
@@ -44,7 +45,7 @@ const CreateAgentUsers = () => {
             <label
               className="block mb-2 text-sm font-medium"
               htmlFor="password">
-              Password <span className="text-rose-500">*</span>
+              စကားဝှက် <span className="text-rose-500">*</span>
             </label>
             <input
               id="password"
@@ -59,7 +60,7 @@ const CreateAgentUsers = () => {
             <label
               className="block mb-2 text-sm font-medium"
               htmlFor="userName">
-              NRC <span className="text-rose-500">*</span>
+              မှတ်ပုံတင်အမှတ် <span className="text-rose-500">*</span>
             </label>
 
             <div className="flex space-x-4">
@@ -113,7 +114,7 @@ const CreateAgentUsers = () => {
             <label
               className="block mb-2 text-sm font-medium"
               htmlFor="AgentAddress">
-              Address <span className="text-rose-500">*</span>
+              လိပ်စာ <span className="text-rose-500">*</span>
             </label>
             <textarea
               name="AgentAddress"
@@ -125,8 +126,9 @@ const CreateAgentUsers = () => {
         </div>
       </div>
       <div className="flex items-center justify-end pt-5 space-x-5">
-        <button className="px-3 py-2 bg-blue-900 rounded-lg shadow-lg text-slate-200">
-          Save Changes
+        <button className="inline-flex items-center px-3 py-2 space-x-3 bg-blue-900 rounded-lg shadow-lg text-slate-200">
+          <UploadIcon className="w-4 h-4 " />
+          <span>ဖန်တီးမည်</span>
         </button>
       </div>
     </>
