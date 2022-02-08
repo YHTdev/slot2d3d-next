@@ -7,6 +7,22 @@
 
 @import "tailwindcss/utilities";
 
+@font-face {
+  font-family: 'Pyidaungsu';
+  src: local('Pyidaungsu'), url('./fonts/Pyidaungsu.woff2') format('woff2'),
+    url('./fonts/Pyidaungsu.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 body {
   @apply antialiased bg-slate-100 text-slate-600;
+}
+
+* {
+  font-family: 'Pyidaungsu' !important;
+}
+
+.home_bg{
+  background-image: url('/images/home/bg.jpg');
 }
