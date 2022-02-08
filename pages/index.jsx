@@ -7,7 +7,7 @@ function Home() {
   const [selected, setSelected] = useState('2d');
   return (
    <PageWrapper>
-      <div className="flex justify-center w-full items-center content-center h-screen">
+      <div className="flex justify-center w-full items-center content-center h-screen" data-aos="zoom-in-up">
       <div className="block w-full bg-transparent  bg-opacity-25 px-2 py-2 shadow-md rounded-sm max-w-screen-xl">
           <div className="w-full py-4 flex flex-row max-w-screen-xs">
               <button onClick={()=>{setSelected('2d')}} className={`${selected==='2d'?'bg-yellow-400':'bg-slate-700'} text-white border-r hover:bg-yellow-400 border-slate-600 rounded-l-full focus:outline-none w-full flex justify-center items-center content-center bg-opacity-70 px-2 py-2`}>
@@ -46,9 +46,9 @@ function Home() {
             <div className="flex w-full justify-between items-center content-center">
               <span className="text-xs text-red-500 font-thin w-full">Closed</span>
               <div className="text-xs font-thin w-full flex space-x-2">
-                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border"> {new Date().getHours()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
-                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border"> {new Date().getMinutes()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
-                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border"> {new Date().getUTCSeconds()} </span>
+                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border border-slate-800"> {new Date().getHours()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
+                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border border-slate-800"> {new Date().getMinutes()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
+                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border border-slate-800"> {new Date().getUTCSeconds()} </span>
                   <span className="px-2 py-1 rounded-md flex justify-center items-center content-center"> AM </span>
               </div>
             </div>
@@ -103,9 +103,9 @@ function Home() {
             <div className="flex w-full justify-between items-center content-center">
               <span className="text-xs text-red-500 font-thin w-full">Closed</span>
               <div className="text-xs font-thin w-full flex space-x-2">
-                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border"> {new Date().getHours()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
-                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border"> {new Date().getMinutes()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
-                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border"> {new Date().getUTCSeconds()} </span>
+                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border-slate-800 border"> {new Date().getHours()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
+                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border-slate-800  border"> {new Date().getMinutes()} </span> <span className="flex justify-center items-center content-center px-2 py-1">:</span>
+                  <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border-slate-800 border"> {new Date().getUTCSeconds()} </span>
                   <span className="px-2 py-1 rounded-md flex justify-center items-center content-center"> AM </span>
               </div>
             </div>

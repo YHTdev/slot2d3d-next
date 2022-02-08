@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import AuthDecoration from "../../public/images/login/auth-decoration.png";
 import AuthImage from "../../public/images/login/auth-image.jpg";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
 
 const SignIn = () => {
   return (
