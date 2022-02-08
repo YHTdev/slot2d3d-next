@@ -56,8 +56,8 @@ const AgentUserLists = () => {
           <h2 className="font-semibold text-slate-800">အေးဂျင့် စားရင်းများ</h2>
           <div className="flex items-center space-x-4">
             <SearchForm />
-            <button className="p-1 rounded-full text-slate-200 bg-slate-500">
-              <RefreshIcon className="w-5 h-5 " />
+            <button className="hidden p-1 rounded-full text-slate-200 bg-slate-500 lg:block">
+              <RefreshIcon className="w-5 h-5" />
             </button>
           </div>
         </CardHeader>

@@ -33,7 +33,7 @@ export default function MyModal({
       <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="absolute inset-0 z-10 overflow-y-auto "
+          className="absolute inset-0 z-40 lg:overflow-y-auto "
           open={isModalOpen}
           onClose={() => setIsModalOpen(true)}>
           <div className="min-h-screen px-4 text-center">
@@ -57,7 +57,7 @@ export default function MyModal({
 
             <Transition.Child
               as={Fragment}
-              enter="ease-out duration-300"
+              enter="ease-out duration-700"
               enterFrom="opacity-0 scale-95"
               enterTo="opacity-100 scale-100"
               leave="ease-in duration-200"
@@ -66,7 +66,7 @@ export default function MyModal({
               <div
                 className={`${
                   className || ""
-                } inline-block relative w-full max-w-5xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl`}>
+                } inline-block relative w-full max-w-5xl p-6 my-8 overflow-hidden text-left h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl`}>
                 {children}
 
                 <div className="absolute top-5 right-5">
