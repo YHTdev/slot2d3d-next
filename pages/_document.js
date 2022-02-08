@@ -7,6 +7,10 @@ const Document = () => {
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icons/icon-x96.png" />
         <meta name="theme-color" content="#1e3b8a" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="#1e3b8a"
+        ></meta>
       </Head>
       <body>
         <Main />
