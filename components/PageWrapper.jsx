@@ -44,7 +44,7 @@ function PageWrapper({ children }) {
             className="tabs"
             className="flex justify-between max-w-screen-lg mx-auto"
           >
-            <Link href="/" className="w-full">
+            <Link passHref href="/" className="w-full">
               <div className="flex w-full justify-center items-center flex-col px-2 py-2 border-r select-none text-slate-400 hover:text-slate-50 border-slate-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +62,7 @@ function PageWrapper({ children }) {
                 <span className="text-sm tracking-widest">မူလနေရာ</span>
               </div>
             </Link>
-            <Link href="/result" className="w-full">
+            <Link passHref href="/result" className="w-full">
               <div className="flex w-full justify-center items-center flex-col px-2 py-2 border-r select-none text-slate-400 hover:text-slate-50 border-slate-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ function PageWrapper({ children }) {
                 <span className="text-sm tracking-widest">ထွက်ဂဏန်းများ</span>
               </div>
             </Link>
-            <Link href="/auth/login" className="w-full">
+            <Link passHref href="/auth/login" className="w-full">
               <div className="flex w-full justify-center items-center flex-col px-2 py-2 border-r select-none text-slate-400 hover:text-slate-50 border-slate-700">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
