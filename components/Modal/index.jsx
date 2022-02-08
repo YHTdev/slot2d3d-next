@@ -1,33 +1,41 @@
 import { Dialog, Transition } from "@headlessui/react";
+import { XIcon } from "@heroicons/react/solid";
 import { Fragment, useState } from "react";
 
-export default function Modal() {
-  let [isOpen, setIsOpen] = useState(true);
+export const ModalTitle = ({ className, children }) => {
+  return (
+    <Dialog.Title
+      as="h3"
+      className={`${
+        className || ""
+      }  flex items-center px-5 py-4 border-b border-slate-100 font-semibold text-slate-800`}>
+      {children}
+    </Dialog.Title>
+  );
+};
 
-  function closeModal() {
-    setIsOpen(false);
-  }
+export const ModalBody = ({ className, children }) => {
+  return (
+    <Dialog.Description as="div" className={`${className || ""} px-5 py-4`}>
+      {children}
+    </Dialog.Description>
+  );
+};
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
+export default function MyModal({
+  className,
+  children,
+  isModalOpen,
+  setIsModalOpen,
+}) {
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-          Open dialog
-        </button>
-      </div>
-
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition appear show={isModalOpen} as={Fragment}>
         <Dialog
           as="div"
-          className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}>
+          className="absolute inset-0 z-10 overflow-y-auto "
+          open={isModalOpen}
+          onClose={() => setIsModalOpen(true)}>
           <div className="min-h-screen px-4 text-center">
             <Transition.Child
               as={Fragment}
@@ -37,7 +45,7 @@ export default function Modal() {
               leave="ease-in duration-200"
               leaveFrom="opacity-100"
               leaveTo="opacity-0">
-              <Dialog.Overlay className="fixed inset-0" />
+              <Dialog.Overlay className="fixed inset-0 bg-slate-900 opacity-30" />
             </Transition.Child>
 
             {/* This element is to trick the browser into centering the modal contents. */}
@@ -46,6 +54,7 @@ export default function Modal() {
               aria-hidden="true">
               &#8203;
             </span>
+
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -54,25 +63,15 @@ export default function Modal() {
               leave="ease-in duration-200"
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95">
-              <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 text-gray-900">
-                  Payment successful
-                </Dialog.Title>
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">
-                    Your payment has been successfully submitted. We’ve sent you
-                    an email with all of the details of your order.
-                  </p>
-                </div>
+              <div
+                className={`${
+                  className || ""
+                } inline-block relative w-full max-w-5xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl`}>
+                {children}
 
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    onClick={closeModal}>
-                    Got it, thanks!
+                <div className="absolute top-5 right-5">
+                  <button className="" onClick={() => setIsModalOpen(false)}>
+                    <XIcon className="w-5 h-5" />
                   </button>
                 </div>
               </div>

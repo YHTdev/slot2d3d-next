@@ -1,12 +1,15 @@
 import Layout from "../../../components/layout";
 import Breadcrumb from "../../../components/Breadcrumb";
-import SearchForm from "../../../components/SearchForm";
+
 import CreateAgentUsers from "../../../components/AgentUsers/CreateAgentUsers";
-import AdminSettings from "../../../components/AgentUsers/AdminSettings";
 import AgentUserLists from "../../../components/AgentUsers/AgentUserLists";
 import { PlusIcon } from "@heroicons/react/outline";
+import Modal, { ModalBody, ModalTitle } from "../../../components/Modal";
+import { useState } from "react";
 
 const Agents = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <Layout>
       <Breadcrumb />
@@ -20,19 +23,23 @@ const Agents = () => {
 
         {/* Right: Actions */}
         <div className="grid justify-start grid-flow-col gap-2 sm:auto-cols-max sm:justify-end">
-          {/* Datepicker built with flatpickr */}
-          {/* <Datepicker align="right" /> */}
-          {/* <SearchForm /> */}
-          <button className="inline-flex items-center px-3 py-2 space-x-2 bg-blue-900 rounded-md shadow-lg text-slate-200">
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="inline-flex items-center px-3 py-2 space-x-2 bg-blue-900 rounded-md shadow-lg text-slate-200">
             <PlusIcon className="w-4 h-4" />
             <span>Create Agent</span>
           </button>
+          <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
+            <ModalTitle> Create Agent User </ModalTitle>
+            <ModalBody>
+              <CreateAgentUsers />
+            </ModalBody>
+          </Modal>
         </div>
       </div>
 
       {/* Cards */}
       <div className="grid grid-cols-12 gap-6 space-y-12">
-        {/* <CreateAgentUsers /> */}
         <AgentUserLists />
       </div>
     </Layout>
