@@ -21,7 +21,7 @@ const AgentUserLists = () => {
     {
       id: "1",
       image: Image02,
-      name: "Kaung Myint Thu",
+      name: "ကောင်းမြင့်သူ",
       email: "",
       phoneNumber: "09123456789",
       nrc: "12/OUKAMA(N)123456",
@@ -53,7 +53,7 @@ const AgentUserLists = () => {
     <>
       <Card className={`col-span-full`}>
         <CardHeader className={`flex items-center justify-between`}>
-          <h2 className="font-semibold text-slate-800">Agent Users Lists</h2>
+          <h2 className="font-semibold text-slate-800">အေးဂျင့် စားရင်းများ</h2>
           <div className="flex items-center space-x-4">
             <SearchForm />
             <button className="p-1 rounded-full text-slate-200 bg-slate-500">
@@ -79,11 +79,11 @@ const AgentUserLists = () => {
                   </div>
                 </TableCell>
 
-                <TableCell isHeader={true}>Name</TableCell>
-                <TableCell isHeader={true}>Phone Number</TableCell>
-                <TableCell isHeader={true}>NRC</TableCell>
-                <TableCell isHeader={true}>Address</TableCell>
-                <TableCell isHeader={true}>Email</TableCell>
+                <TableCell isHeader={true}>အမည်</TableCell>
+                <TableCell isHeader={true}>ဖုန်းနံပါတ်</TableCell>
+                <TableCell isHeader={true}>မှတ်ပုံတင်အမှတ်</TableCell>
+                <TableCell isHeader={true}>လိပ်စာ</TableCell>
+                <TableCell isHeader={true}>အီးမေးလ်</TableCell>
                 <TableCell isHeader={true} className="sr-only">
                   Menu
                 </TableCell>

@@ -1,13 +1,11 @@
 import Layout from "../../../components/layout";
-import Breadcrumb from "../../../components/Breadcrumb";
-
-import CreateAgentUsers from "../../../components/AgentUsers/CreateAgentUsers";
 import AgentUserLists from "../../../components/AgentUsers/AgentUserLists";
 import { PlusIcon } from "@heroicons/react/outline";
 import Modal, { ModalBody, ModalTitle } from "../../../components/Modal";
 import { useState } from "react";
+import CreateAdminUsers from "../../../components/AdminUsers/CreateAdminUsers";
 
-const Agents = () => {
+const AdminUsers = ({}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -16,7 +14,7 @@ const Agents = () => {
         {/* Left: Title */}
         <div className="mb-4 sm:mb-0">
           <h1 className="text-2xl font-bold md:text-3xl text-slate-800">
-            အေးဂျင့်
+            Admin အသုံးပြုသူများ
           </h1>
         </div>
 
@@ -27,12 +25,12 @@ const Agents = () => {
             className="inline-flex items-center px-3 py-2 space-x-2 bg-blue-900 rounded-md shadow-lg text-slate-200"
           >
             <PlusIcon className="w-4 h-4" />
-            <span>အေးဂျင့်ဖန်တီးပါ</span>
+            <span>Admin ဖန်တီးပါ</span>
           </button>
           <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
-            <ModalTitle> အေးဂျင့်ဖန်တီးပါ</ModalTitle>
+            <ModalTitle> Admin ဖန်တီးပါ</ModalTitle>
             <ModalBody>
-              <CreateAgentUsers />
+              <CreateAdminUsers />
             </ModalBody>
           </Modal>
         </div>
@@ -46,4 +44,4 @@ const Agents = () => {
   );
 };
 
-export default Agents;
+export default AdminUsers;

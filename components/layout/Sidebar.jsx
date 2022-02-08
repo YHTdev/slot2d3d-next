@@ -39,16 +39,23 @@ const Sidebar = () => {
                 linkIcon={<UsersIcon className={styles.menuIcon} />}
                 linkTitle={`Agents`}
               />
+              <SidebarLink
+                pathName="/admin/admin-users"
+                linkIcon={<UsersIcon className={styles.menuIcon} />}
+                linkTitle={`Admin Users`}
+              />
 
               {/* E-Commerce */}
 
-              <SidebarLinkGroup>
+              {/* <SidebarLinkGroup>
                 <MenuButton
-                  rootTitle="Admin Users"
+                  rootTitle="Users"
                   rootIcon={<UsersIcon className={styles.menuIcon} />}
                 />
-                <MenuItem linkHref={`"/team/team-tabs"`} menuTitle={`Users`} />
-              </SidebarLinkGroup>
+                <MenuItem linkHref={`/admin/admin-users`} menuTitle={`Admin အသုံးပြုသူများ`} />
+                <MenuItem linkHref={`/admin/admin-users`} menuTitle={`Admin အသုံးပြုသူများ`} />
+                <MenuItem linkHref={`/admin/agents`} menuTitle={`အေးဂျင့် အသုံးပြုသူများ`} />
+              </SidebarLinkGroup> */}
             </div>
           </div>
           {/* Admin Users group */}

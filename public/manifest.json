@@ -2,9 +2,6 @@
   "name": "Slot2d3d",
   "short_name": "2d3d",
   "start_url": "/",
-  "scope": "/",
-  "theme_color": "#4338ca",
-  "background_color": "#1e3b8a",
   "display": "fullscreen",
   "icons": [
     {
