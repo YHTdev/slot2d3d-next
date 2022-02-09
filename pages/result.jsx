@@ -8,8 +8,8 @@ function Result({}) {
       <div className="flex justify-center items-center  content-center h-screen overflow-y-scroll py-32" data-aos="zoom-in-up">
         <div className="block w-full max-w-screen-lg bg-slate-900 px-2 py-2 bg-opacity-50">
          {/* title */}
-        <div className="flex w-full justify-between items-center content-center px-2 py-2">
-        <div className="w-full py-4 flex flex-row max-w-screen-xs">
+        <div className="flex w-full flex-col md:flex-row justify-center md:justify-between mb-3  items-center content-center ">
+        <div className="w-full py-4 flex flex-row  max-w-screen-xs">
               <button onClick={()=>{setSelected('2d')}} className={`${selected==='2d'?'bg-yellow-400':'bg-slate-700'} text-white border-r hover:bg-yellow-400 border-slate-600 rounded-l-full focus:outline-none w-full flex justify-center items-center content-center bg-opacity-70 px-2 py-2`}>
                     <span className='tracking-widest text-sm uppercase'>
                         2D ပေါက်ဂဏန်းများ
@@ -21,12 +21,14 @@ function Result({}) {
                     </span>
               </button>
           </div>
-         <input type="month" className='bg-slate-800 text-white rounded-md px-2 py-1' />
+         <div className="w-full px-4">
+         <input type="datetime-local" className='bg-slate-800 tracking-widest w-full text-white rounded-md px-2 py-1' />
+         </div>
         </div>
          {/* end title */}
           {/* header */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 text-yellow-400 border border-slate-600 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 text-yellow-400 border border-slate-600 px-2 py-1">
               <span className="text-center flex w-full justify-start items-center content-center space-x-2 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -41,46 +43,9 @@ function Result({}) {
                 <span>အချိန်</span>
               </span>
             </div>
-            <div className="col-span-3 text-yellow-400 md:col-span-3 border border-slate-600 px-2 py-1">
-              <span className="text-center flex w-full justify-start items-center content-center space-x-2  text-yellow-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-sort-numeric-down-alt"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M11.36 7.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.836 1.973-1.836 1.09 0 2.063.637 2.063 2.688 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z"
-                  />
-                  <path d="M12.438 8.668V14H11.39V9.684h-.051l-1.211.859v-.969l1.262-.906h1.046zM4.5 2.5a.5.5 0 0 0-1 0v9.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L4.5 12.293V2.5z" />
-                </svg>
-                <span>SET</span>
-              </span>
-            </div>
-            <div className="col-span-3 text-yellow-400 md:col-span-3 border border-slate-600 px-2 py-1">
-              <span className="text-center flex w-full justify-start items-center content-center space-x-2  text-yellow-400">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-sort-numeric-up"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M12.438 1.668V7H11.39V2.684h-.051l-1.211.859v-.969l1.262-.906h1.046z" />
-                  <path
-                    fillRule="evenodd"
-                    d="M11.36 14.098c-1.137 0-1.708-.657-1.762-1.278h1.004c.058.223.343.45.773.45.824 0 1.164-.829 1.133-1.856h-.059c-.148.39-.57.742-1.261.742-.91 0-1.72-.613-1.72-1.758 0-1.148.848-1.835 1.973-1.835 1.09 0 2.063.636 2.063 2.687 0 1.867-.723 2.848-2.145 2.848zm.062-2.735c.504 0 .933-.336.933-.972 0-.633-.398-1.008-.94-1.008-.52 0-.927.375-.927 1 0 .64.418.98.934.98z"
-                  />
-                  <path d="M4.5 13.5a.5.5 0 0 1-1 0V3.707L2.354 4.854a.5.5 0 1 1-.708-.708l2-1.999.007-.007a.498.498 0 0 1 .7.006l2 2a.5.5 0 1 1-.707.708L4.5 3.707V13.5z" />
-                </svg>
-                <span>VALUE</span>
-              </span>
-            </div>
-            <div className="col-span-3 text-yellow-400 md:col-span-3 border border-slate-600 px-2 py-1">
+           
+            
+            <div className="col-span-6 text-yellow-400 md:col-span-6 border border-slate-600 px-2 py-1">
               <span className="text-center flex w-full justify-start items-center content-center space-x-2  text-yellow-400">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -101,163 +66,119 @@ function Result({}) {
           {/* header */}
           {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
-              <span className="text-center w-full text-yellow-400 font-bold text-sm animate-ping">48</span>
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
+              <span className="text-center w-full text-yellow-400 font-bold text-sm">
+              <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     width="16"
+                     height="16"
+                     fill="currentColor"
+                     className="bi bi-boxes animate-spin"
+                     viewBox="0 0 16 16"
+                   >
+                     <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z" />
+                   </svg>
+              </span>
             </div>
           </div>
           {/* end body */}
           {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
               <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
             </div>
           </div>
           {/* end body */}
           {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
-              <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
+              <span className="text-center w-full text-yellow-400 font-bold text-sm ">48</span>
             </div>
           </div>
           {/* end body */}
           {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
               <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
             </div>
           </div>
           {/* end body */}
           {/* body */}
+          
+          {/* end body */}
+          {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
-              <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
+              <span className="text-center w-full text-yellow-400 font-bold text-sm ">48</span>
             </div>
           </div>
           {/* end body */}
           {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
-              <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
+              <span className="text-center w-full text-yellow-400 font-bold text-sm ">48</span>
             </div>
           </div>
           {/* end body */}
           {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
-              <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
+              <span className="text-center w-full text-yellow-400 font-bold text-sm ">48</span>
             </div>
           </div>
           {/* end body */}
           {/* body */}
           <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
+            <div className="col-span-6 md:col-span-6 border border-slate-800 px-2 py-1">
               <span className="text-center text-xs text-slate-400">
                  {new Date().toLocaleTimeString()}
               </span>
             </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
-              <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
-            </div>
-          </div>
-          {/* end body */}
-          {/* body */}
-          <div className="grid grid-cols-12 text-xs md:text-sm">
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-xs text-slate-400">
-                 {new Date().toLocaleTimeString()}
-              </span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-red-400"> {new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3 border border-slate-800 px-2 py-1">
-              <span className="text-center text-green-400">{new Date().getTime().toString()}</span>
-            </div>
-            <div className="col-span-3 md:col-span-3  border border-slate-800 px-2 py-1">
-              <span className="text-center w-full text-yellow-400 font-bold text-sm">48</span>
+            
+            <div className="col-span-6 md:col-span-6  border border-slate-800 px-2 py-1">
+              <span className="text-center w-full text-yellow-400 font-bold text-sm ">48</span>
             </div>
           </div>
           {/* end body */}
