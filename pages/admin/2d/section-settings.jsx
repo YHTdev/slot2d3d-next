@@ -2,12 +2,14 @@ import ManagementLayout, {
   ManagementHeader,
 } from "../../../components/layout/ManagementLayout";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const SectionSettings = ({ children }) => {
   const [messages, setMessages] = useState(true);
   const [messagestwo, setMessagestwo] = useState(true);
+  const {routes} = useSelector(state=>state.management)
   return (
-    <ManagementLayout>
+    <ManagementLayout routes={routes.twoDManagementRoutes} title="2D Manament">
       <ManagementHeader className={`text-indigo-500`}>
         အချိန်ပိုင်းသတ်မှန်ရန်
       </ManagementHeader>

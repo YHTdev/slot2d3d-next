@@ -3,9 +3,13 @@ import styles from "../../styles/Sidebar.module.scss";
 
 import Logo from "../Icons/Logo";
 import SidebarLink from "../SidebarLink";
-
-import { FolderAddIcon, UsersIcon,CubeIcon } from "@heroicons/react/outline";
 import { LogoutIcon } from "@heroicons/react/solid";
+import DashbaordIcon from "../Icons/dashbaordIcon";
+import AwardIcon from "../Icons/awardIcon";
+import Slot2DIcon from "../Icons/2dIcon";
+import Slot3DIcon from "../Icons/3dicon";
+import AgentIcon from "../Icons/agentIcon";
+import AdminIcon from "../Icons/AdminIcon";
 const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
   return (
     <div className="">
@@ -42,24 +46,34 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
               {/* Dashboard */}
               <SidebarLink
                 pathName="/admin/"
-                linkIcon={<FolderAddIcon className={styles.menuIcon} />}
+                linkIcon={<DashbaordIcon className={styles.menuIcon} />}
                 linkTitle={`Dashboardss`}
               />
 
               <SidebarLink
                 pathName="/admin/agents"
-                linkIcon={<UsersIcon className={styles.menuIcon} />}
+                linkIcon={<AgentIcon className={styles.menuIcon} />}
                 linkTitle={`Agents`}
               />
               <SidebarLink
                 pathName="/admin/admin-users"
-                linkIcon={<UsersIcon className={styles.menuIcon} />}
+                linkIcon={<AdminIcon className={styles.menuIcon} />}
                 linkTitle={`Admin Users`}
               />
               <SidebarLink
                 pathName="/admin/2d"
-                linkIcon={<UsersIcon className={styles.menuIcon} />}
+                linkIcon={<AwardIcon className={styles.menuIcon} />}
                 linkTitle={`2D Management`}
+              />
+               <SidebarLink
+                pathName="/admin/slots/2d"
+                linkIcon={<Slot2DIcon className={styles.menuIcon} />}
+                linkTitle={`2D`}
+              />
+              <SidebarLink
+                pathName="/admin/slots/3d"
+                linkIcon={<Slot3DIcon className={styles.menuIcon} />}
+                linkTitle={`3D`}
               />
             </div>
           </div>
