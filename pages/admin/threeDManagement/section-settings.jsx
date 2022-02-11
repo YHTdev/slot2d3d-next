@@ -9,9 +9,9 @@ const SectionSettings = ({ children }) => {
   const [messagestwo, setMessagestwo] = useState(true);
   const {routes} = useSelector(state=>state.management)
   return (
-    <ManagementLayout routes={routes.twoDManagementRoutes} title="2D management">
+    <ManagementLayout routes={routes.threeDManamentRoutes} title="3D Manament">
       <ManagementHeader className={`text-indigo-500`}>
-        အကန့်အသတ် သတ်မှတ်ရန်
+        အချိန်ပိုင်းသတ်မှန်ရန်
       </ManagementHeader>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-1 ">

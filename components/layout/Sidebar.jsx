@@ -61,9 +61,14 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
                 linkTitle={`Admin Users`}
               />
               <SidebarLink
-                pathName="/admin/2d"
+                pathName="/admin/twoDManagement"
                 linkIcon={<AwardIcon className={styles.menuIcon} />}
                 linkTitle={`2D Management`}
+              />
+              <SidebarLink
+                pathName="/admin/threeDManagement"
+                linkIcon={<AwardIcon className={styles.menuIcon} />}
+                linkTitle={`3D Management`}
               />
                <SidebarLink
                 pathName="/admin/slots/2d"
