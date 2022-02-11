@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import ManagementLayout, {
   ManagementHeader,
 } from "../../../components/layout/ManagementLayout";
@@ -17,26 +18,10 @@ const numbers = [
 ];
 
 const TwoDManagement = ({ children }) => {
-  const [formInput, setFormInput] = useState({
-    section: "",
-    firstNumber: "",
-    secondNumber: "",
-    show: false,
-  });
-
-  const updateFormInput = (event) => {
-    event.persist();
-    setFormInput((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-  };
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-  };
+  const {routes} = useSelector(state=>state.management)
+  console.log()
   return (
-    <ManagementLayout>
+    <ManagementLayout routes={routes.twoDManagementRoutes} title="2D management">
       <ManagementHeader className={`text-indigo-500`}>
         ပေါက်ကဏန်း ကြေညာရန်
       </ManagementHeader>
