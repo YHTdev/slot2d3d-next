@@ -41,7 +41,7 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
             <div className="mt-3">
               {/* Dashboard */}
               <SidebarLink
-                pathName="/"
+                pathName="/admin/"
                 linkIcon={<FolderAddIcon className={styles.menuIcon} />}
                 linkTitle={`Dashboardss`}
               />
@@ -57,14 +57,9 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
                 linkTitle={`Admin Users`}
               />
               <SidebarLink
-                pathName="/admin/slots/2d"
-                linkIcon={<CubeIcon className={styles.menuIcon} />}
-                linkTitle={`2D`}
-              />
-               <SidebarLink
-                pathName="/admin/slots/3d"
-                linkIcon={<CubeIcon className={styles.menuIcon} />}
-                linkTitle={`3D`}
+                pathName="/admin/2d"
+                linkIcon={<UsersIcon className={styles.menuIcon} />}
+                linkTitle={`2D Management`}
               />
             </div>
           </div>
