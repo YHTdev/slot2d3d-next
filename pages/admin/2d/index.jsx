@@ -18,6 +18,24 @@ const numbers = [
 ];
 
 const TwoDManagement = ({ children }) => {
+  const [formInput, setFormInput] = useState({
+    section: "",
+    firstNumber: "",
+    secondNumber: "",
+    show: false,
+  });
+
+  const updateFormInput = (event) => {
+    event.persist();
+    setFormInput((prevState) => ({
+      ...prevState,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+  };
   const {routes} = useSelector(state=>state.management)
   console.log()
   return (
