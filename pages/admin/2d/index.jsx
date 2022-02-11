@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import ManagementLayout, {
   ManagementHeader,
 } from "../../../components/layout/ManagementLayout";
@@ -16,8 +17,10 @@ const numbers = [
 ];
 
 const TwoDManagement = ({ children }) => {
+  const {routes} = useSelector(state=>state.management)
+  console.log()
   return (
-    <ManagementLayout>
+    <ManagementLayout routes={routes.twoDManagementRoutes} title="2D management">
       <ManagementHeader className={`text-indigo-500`}>
         ပေါက်ကဏန်း ကြေညာရန်
       </ManagementHeader>

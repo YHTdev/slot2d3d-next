@@ -10,12 +10,12 @@ export const ManagementHeader = ({ children, className }) => {
   );
 };
 
-const ManagementLayout = ({ children }) => {
+const ManagementLayout = ({ children,routes=[],title }) => {
   return (
     <Layout>
       <div className="h-full mb-8 bg-white rounded-md shadow-lg">
         <div className="flex flex-col md:flex-row md:-mr-px">
-          <TwoDManagementSetting />
+          <TwoDManagementSetting routes={routes} title={title} />
           <div className="p-6 space-y-10 grow">{children}</div>
         </div>
       </div>
