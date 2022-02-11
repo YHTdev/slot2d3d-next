@@ -4,9 +4,8 @@ import styles from "../../styles/Sidebar.module.scss";
 import Logo from "../Icons/Logo";
 import SidebarLink from "../SidebarLink";
 
-import { FolderAddIcon, UsersIcon } from "@heroicons/react/outline";
+import { FolderAddIcon, UsersIcon,CubeIcon } from "@heroicons/react/outline";
 import { LogoutIcon } from "@heroicons/react/solid";
-
 const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
   return (
     <div className="">
@@ -56,6 +55,16 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
                 pathName="/admin/admin-users"
                 linkIcon={<UsersIcon className={styles.menuIcon} />}
                 linkTitle={`Admin Users`}
+              />
+              <SidebarLink
+                pathName="/admin/slots/2d"
+                linkIcon={<CubeIcon className={styles.menuIcon} />}
+                linkTitle={`2D`}
+              />
+               <SidebarLink
+                pathName="/admin/slots/3d"
+                linkIcon={<CubeIcon className={styles.menuIcon} />}
+                linkTitle={`3D`}
               />
             </div>
           </div>
