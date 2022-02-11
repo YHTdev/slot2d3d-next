@@ -6,6 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useCallback, useEffect } from "react";
 import { store } from "../store/store";
+import { ToastProvider } from "react-toast-notifications";
 function MyApp({ Component, pageProps }) {
   const cbInit = useCallback(() => {
     AOS.init({
@@ -22,13 +23,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <StoreProvider store={store}>
       <SessionProvider>
-        {Component.auth ? (
-          <Layout>
+        <ToastProvider placement="top-center">
+          {Component.auth ? (
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          ) : (
             <Component {...pageProps} />
-          </Layout>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </ToastProvider>
       </SessionProvider>
     </StoreProvider>
   );

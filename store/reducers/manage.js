@@ -43,8 +43,13 @@ const initialState = {
         isAllow: true,
       },
       {
-        src: "/admin/slots/2d",
+        src: "/admin/slots/2d/limitations",
         title: "ကန့်သတ်ချက်များ",
+        isAllow: true,
+      },
+      {
+        src: "/admin/slots/2d/leger",
+        title: "စာရင်း",
         isAllow: true,
       },
     ],
