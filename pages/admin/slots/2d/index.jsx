@@ -223,12 +223,15 @@ function Slot2D() {
             </h4>
           )}
           <SelectTable>
+          <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
             <TableRow className="bg-slate-100">
               <TableCell isHeader={true}>စဉ်</TableCell>
               <TableCell isHeader={true}>ရွေးချယ်ထားသောဂဏန်း</TableCell>
               <TableCell isHeader={true}>ငွေပမာဏ(ကျပ်)</TableCell>
               <TableCell isHeader={true}>ပြင်/ဖျက်</TableCell>
             </TableRow>
+            </thead>
+            <tbody className="text-sm divide-y divide-slate-200">
             {formData.selectedFormData.map((s, i) => (
               <TableRow key={i}>
                 <TableCell isHeader={false}>{i + 1}</TableCell>
@@ -245,6 +248,7 @@ function Slot2D() {
                 </TableCell>
               </TableRow>
             ))}
+            </tbody>
           </SelectTable>
           <div className="flex justify-start w-full space-x-2 border-t border-slate-300 py-4 my-2">
             <span className="text-sm text-slate-500">စုစုပေါင်း</span>{" "}
