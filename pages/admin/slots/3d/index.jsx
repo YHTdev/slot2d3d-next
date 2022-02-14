@@ -137,7 +137,7 @@ function Slot3D() {
         </div>
       </div>
       <div className="grid grid-cols-12 gap-8">
-        <div className="col-sapn-12 md:col-span-6">
+        <div className="col-span-12 md:col-span-6">
           <form className="flex w-full flex-col justify-start space-y-5">
             <UiSelect
               name="sessionId"
