@@ -1,21 +1,30 @@
 import React, { useState } from "react";
-import Layout from "../../../../components/layout";
-import ReactSelect from "react-select";
-
 import Timer from "../../../../components/CountDown";
 import { each, find } from "lodash";
+import ManagementLayout from "../../../../components/layout/ManagementLayout";
+import { useSelector } from "react-redux";
+import UiSelect from "../../../../components/forms/UiSelect";
+import UiInput from "../../../../components/forms/UiInput";
+import UiButton from "../../../../components/forms/UiButton";
+import SelectTable, {
+  TableCell,
+  TableRow,
+} from "../../../../components/SelectTable";
+import TrashIcon from "../../../../components/Icons/TrashIcon";
+import Card, { CardBody, CardHeader } from "../../../../components/Card";
 function Slot3D() {
+  const { routes } = useSelector((state) => state.management);
   const [formData, setFormData] = useState({
     selectedFormData: [],
     amount: "",
     sessionId: "",
     firstNum: "",
     secondNum: "",
-    thirdNum:"",
+    thirdNum: "",
     totalAmount: 0,
-    name:''
+    name: "",
   });
- 
+
   const Sessions = [
     {
       label: "ပထမအပတ်",
@@ -25,7 +34,6 @@ function Slot3D() {
       label: "ဒုတိယအပတ်",
       value: "2",
     },
-    
   ];
   const SlotOptions = [
     {
@@ -101,7 +109,7 @@ function Slot3D() {
 
       const params = {
         amount: formData.amount,
-        num: formData.firstNum + formData.secondNum +formData.thirdNum,
+        num: formData.firstNum + formData.secondNum + formData.thirdNum,
       };
 
       if (inValidData) {
@@ -120,173 +128,144 @@ function Slot3D() {
     }
   };
   return (
-    <Layout>
+    <ManagementLayout routes={routes.threeDBetRoutes} title="3D ထိုးမည်">
       <div className="flex flex-row items-center justify-between mb-8">
-        {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
-        {/* Left: Title */}
-        <div className="flex w-full justify-between items-center content-center">
-          <h1 className="text-lg font-bold tracking-wider md:text-3xl text-slate-800">
-            3D ဂဏန်းများရွေးရန်
-          </h1>
-        </div>
-        <div className="flex justify-end flex-col md:flex-row space-x-0 md:space-x-2 space-y-2 md:space-y-0 text-sm tracking-widest">
+        <div className="flex w-full justify-end items-center content-center"></div>
+        <div className="flex justify-end w-full items-center content-center flex-col md:flex-row space-x-0 md:space-x-2 space-y-2 md:space-y-0 text-sm tracking-widest">
           <span>ပိတ်ရန်ကျန်ချိန်</span>
           <Timer hour={1} minute={30} />
         </div>
       </div>
-      <div className="grid grid-cols-12 gap-3">
-        <form className="col-span-12 md:col-span-6 px-4 py-4 bg-white rounded-md">
-          <div className="flex w-full flex-col justify-start space-y-5">
-            <ReactSelect
-              id="sessionId"
+      <div className="grid grid-cols-12 gap-8">
+        <div className="col-sapn-12 md:col-span-6">
+          <form className="flex w-full flex-col justify-start space-y-5">
+            <UiSelect
               name="sessionId"
+              id="sessionId"
+              formData={formData}
+              setFromData={setFormData}
               options={Sessions}
-              onChange={(option) => {
-                setFormData({ ...formData, sessionId: option });
-              }}
-              placeholder="အချိန်ရွေးချယ်ပေးပါ"
+              optionLabel="label"
+              optionValue="value"
+              placeHolder="အချိန်ရွေးချယ်ပါ"
             />
-            <input type="text"  name="name"
-              id="name"   className="px-2 py-1 focus:outline-none rounded-sm border border-slate-400 hover:border-l-slate-900 w-full"
-              required placeholder="အမည်" value={formData.name}
-              onChange={(e) => {
-                setFormData({ ...formData, [e.target.name]: e.target.value });
-              }} />
-            <input
-              type="number"
-              placeholder="ငွေပမာဏ(အနည်းဆုံး 1000 ကျပ်)"
-              className="px-2 py-1 focus:outline-none rounded-sm border border-slate-400 hover:border-l-slate-900 w-full"
-              required
+            <UiInput
+              name="name"
+              id="name"
+              formData={formData}
+              setFromData={setFormData}
+              placeHolder="အမည်ထည့်ပါ"
+              required={true}
+              type="text"
+            />
+            <UiInput
               name="amount"
               id="amount"
-              value={formData.amount}
-              onChange={(e) => {
-                setFormData({ ...formData, amount: e.target.value });
-              }}
+              formData={formData}
+              setFromData={setFormData}
+              placeHolder="ငွေပမာဏ(အနည်းဆုံး1000) ကျပ်ထည့်သွင်းပါ"
+              required={true}
+              type="number"
             />
-            <div className="w-full flex flex-row justify-start space-x-2 ">
-            <label htmlFor="" className="text-sm text-slate-600">ဂဏန်းရွေးရန်</label>
-              <ReactSelect
-                id="slotOption1"
-                name="slotOption2"
-                onChange={(value) => {
-                  setFormData({ ...formData, firstNum: value.value });
-                }}
-                getOptionValue={(option) => option.value}
-                getOptionLabel={(option) => option.label}
-                options={SlotOptions}
-                placeholder="ပ"
-              />
-              <ReactSelect
-                onChange={(value) => {
-                  setFormData({ ...formData, secondNum: value.value });
-                }}
-                getOptionValue={(option) => option.value}
-                getOptionLabel={(option) => option.label}
-                options={SlotOptions}
-                placeholder="ဒု"
-              />
-               <ReactSelect
-                onChange={(value) => {
-                  setFormData({ ...formData, thirdNum: value.value });
-                }}
-                getOptionValue={(option) => option.value}
-                getOptionLabel={(option) => option.label}
-                options={SlotOptions}
-                placeholder="တ"
-              />
-              <button
-                onClick={() => onSumEvent()}
-                type="button"
-                className="px-2 py-1 border border-slate-400 text-slate-400 hover:text-slate-900 hover:border-slate-900 rounded-sm"
+            <div className="flex items-center content-center flex-row space-x-3 justify-start">
+              <label
+                className="tex-sm text-slate-600 tracking-widest"
+                htmlFor=""
               >
-                {" "}
-                ပေါင်းထည့်ရန်{" "}
-              </button>
+                ထိုးမည့်ဂဏန်း
+              </label>
+              <UiSelect
+                name="firstNum"
+                id="firstNum"
+                formData={formData}
+                setFromData={setFormData}
+                options={SlotOptions}
+                optionLabel="label"
+                optionValue="value"
+                placeHolder="ပ"
+              />
+              <UiSelect
+                name="secondNum"
+                id="secondNum"
+                formData={formData}
+                setFromData={setFormData}
+                options={SlotOptions}
+                optionLabel="label"
+                optionValue="value"
+                placeHolder="ဒု"
+              />
+              <UiSelect
+                name="thirdNum"
+                id="thirdNum"
+                formData={formData}
+                setFromData={setFormData}
+                options={SlotOptions}
+                optionLabel="label"
+                optionValue="value"
+                placeHolder="တ"
+              />
+              <UiButton
+                type="button"
+                actionButton={true}
+                NextFun={() => {
+                  onSumEvent();
+                }}
+                title="ပေါင်းထည့်မည်"
+              />
             </div>
-          </div>
-        </form>
-        <div className="col-span-12 md:col-span-6 bg-white rounded-md px-4 py-4">
-        {
-            formData.name &&
-            <h4 className="text-lg text-slate-600 my-3 tracking-widest">{formData.name} ၏စာရင်း </h4>
-          }
-          <div className="grid grid-flow-row grid-cols-12">
-            <div className="col-span-1 border border-slate-600 px-1 py-1">
-              <span className="text-center flex w-full justify-center">
-                စဉ်
-              </span>
-            </div>
-            <div className="col-span-4 border border-slate-600 px-1 py-1">
-              <span className=" text-center flex w-full justify-center">
-                ဂဏန်း
-              </span>
-            </div>
-            <div className="col-span-4 border border-slate-600 px-1 py-1">
-              <span className="text-center flex w-full justify-center">
-                ငွေပမာဏ
-              </span>
-            </div>
-            <div className="col-span-3 border border-slate-600 px-1 py-1">
-              <span className="text-center flex w-full justify-center">
-                {" "}
-                ပြင်/ဖျက်
-              </span>
-            </div>
-          </div>
-          {/* body */}
-          {formData.selectedFormData.map((s, i) => (
-            <div className="grid grid-flow-row grid-cols-12" key={i}>
-              <div className="col-span-1 border border-slate-400 px-1 py-1">
-                <span>{i + 1} </span>
-              </div>
-              <div className="col-span-4 border border-slate-400 px-1 py-1">
-                <span>{s.num}</span>
-              </div>
-              <div className="col-span-4 border border-slate-400 px-1 py-1">
-                <span>{s.amount} ကျပ်</span>
-              </div>
-              <div className="col-span-3 border border-slate-400 px-1 py-1">
-                <div className="flex w-full justify-evenly items-center content-center">
-                  <button
-                    onClick={() => {
-                      filterFormData(s);
-                    }}
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      className="bi bi-archive"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M0 2a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a2.5 2.5 0 0 1-2.5 2.5h-9A2.5 2.5 0 0 1 1 12.5V5a1 1 0 0 1-1-1V2zm2 3v7.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V5H2zm13-3H1v2h14V2zM5 7.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-          {/* body */}
-          {/* footer */}
-          <div className="grid grid-flow-row grid-cols-12">
-            <div className="col-span-6 border border-slate-400 px-1 py-1">
-              <span>စုစုပေါင်း</span>
-            </div>
-            <div className="col-span-6 border border-slate-400 px-1 py-1">
-              <span className="text-red-400 text-sm">{formData.totalAmount} ကျပ်</span>
-            </div>
-          </div>
-          {/* tfooter */}
-           <button className="bg-slate-600 hover:bg-slate-800 px-2 py-2 my-4 text-white rounded-md">
-                  <span className="text-sm tracking-widest">ထိုးမည်</span>
-           </button>
+          </form>
         </div>
-        
+        <div className="col-span-12">
+          <Card>
+            <CardHeader>
+              {formData.name && (
+                <h4 className="text-lg text-slate-600 my-3 tracking-widest">
+                  {formData.name} ၏စာရင်း{" "}
+                </h4>
+              )}
+            </CardHeader>
+            <CardBody>
+              <SelectTable>
+              <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
+                <TableRow className="bg-slate-100">
+                  <TableCell isHeader={true}>စဉ်</TableCell>
+                  <TableCell isHeader={true}>ရွေးချယ်ထားသောဂဏန်း</TableCell>
+                  <TableCell isHeader={true}>ငွေပမာဏ(ကျပ်)</TableCell>
+                  <TableCell isHeader={true}>ပြင်/ဖျက်</TableCell>
+                </TableRow>
+                </thead>
+                <tbody className="text-sm divide-y divide-slate-200">
+                {formData.selectedFormData.map((s, i) => (
+                  i<10 &&
+                  <TableRow key={i}>
+                    <TableCell isHeader={false}>{i + 1}</TableCell>
+                    <TableCell isHeader={false}>{s.num}</TableCell>
+                    <TableCell isHeader={false}>{s.amount}</TableCell>
+                    <TableCell isHeader={false}>
+                      <button
+                        onClick={() => {
+                          filterFormData(s);
+                        }}
+                      >
+                        <TrashIcon />
+                      </button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+                </tbody>
+              </SelectTable>
+              <div className="flex justify-start w-full space-x-2 border-t border-slate-300 py-4 my-2">
+                <span className="text-sm text-slate-500">စုစုပေါင်း</span>{" "}
+                <span className="text-sm font-bold text-red-700">
+                  {" "}
+                  {formData.totalAmount} ကျပ်{" "}
+                </span>
+              </div>
+            </CardBody>
+          </Card>
+        </div>
       </div>
-      {/* Cards */}
-    </Layout>
+    </ManagementLayout>
   );
 }
 
