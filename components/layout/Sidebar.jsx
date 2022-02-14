@@ -10,6 +10,7 @@ import Slot2DIcon from "../Icons/2dIcon";
 import Slot3DIcon from "../Icons/3dicon";
 import AgentIcon from "../Icons/agentIcon";
 import AdminIcon from "../Icons/AdminIcon";
+import Divider from "./Divider";
 const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
   return (
     <div className="">
@@ -49,7 +50,7 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
                 linkIcon={<DashbaordIcon className={styles.menuIcon} />}
                 linkTitle={`Dashboardss`}
               />
-
+               <Divider title="For Admin" />
               <SidebarLink
                 pathName="/admin/agents"
                 linkIcon={<AgentIcon className={styles.menuIcon} />}
@@ -70,6 +71,7 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
                 linkIcon={<AwardIcon className={styles.menuIcon} />}
                 linkTitle={`3D Management`}
               />
+               <Divider title="For Agent" />
                <SidebarLink
                 pathName="/admin/slots/2d"
                 linkIcon={<Slot2DIcon className={styles.menuIcon} />}
