@@ -42,6 +42,7 @@ function AgentLeger() {
           <CardHeader>
           <div className="flex w-full justify-start space-x-0 md:space-x-2 space-y-2 md:space-y-0 flex-col md:flex-row items-center content-center my-4">
         <UiSelect
+          className='w-full'
           options={Users}
           name="userId"
           id="userId"
@@ -53,7 +54,8 @@ function AgentLeger() {
         />
         <label className="text-sm text-slate-600" htmlFor="">နေ့ရက်အပိုင်းအခြား</label>
        <UiRangePicker
-       className='rounded-md'
+
+       className='rounded-md w-full'
         name="range"
         id="range"
         formData={formData}

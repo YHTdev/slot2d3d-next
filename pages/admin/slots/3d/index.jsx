@@ -261,6 +261,9 @@ function Slot3D() {
                   {formData.totalAmount} ကျပ်{" "}
                 </span>
               </div>
+              <div>
+                <UiButton title="အတည်ပြုမည်" actionButton={true} NextFun={()=>console.log('ok')}  />
+              </div>
             </CardBody>
           </Card>
         </div>

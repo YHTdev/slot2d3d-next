@@ -223,31 +223,31 @@ function Slot2D() {
             </h4>
           )}
           <SelectTable>
-          <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
-            <TableRow className="bg-slate-100">
-              <TableCell isHeader={true}>စဉ်</TableCell>
-              <TableCell isHeader={true}>ရွေးချယ်ထားသောဂဏန်း</TableCell>
-              <TableCell isHeader={true}>ငွေပမာဏ(ကျပ်)</TableCell>
-              <TableCell isHeader={true}>ပြင်/ဖျက်</TableCell>
-            </TableRow>
+            <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
+              <TableRow className="bg-slate-100">
+                <TableCell isHeader={true}>စဉ်</TableCell>
+                <TableCell isHeader={true}>ရွေးချယ်ထားသောဂဏန်း</TableCell>
+                <TableCell isHeader={true}>ငွေပမာဏ(ကျပ်)</TableCell>
+                <TableCell isHeader={true}>ပြင်/ဖျက်</TableCell>
+              </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-            {formData.selectedFormData.map((s, i) => (
-              <TableRow key={i}>
-                <TableCell isHeader={false}>{i + 1}</TableCell>
-                <TableCell isHeader={false}>{s.num}</TableCell>
-                <TableCell isHeader={false}>{s.amount}</TableCell>
-                <TableCell isHeader={false}>
-                  <button
-                    onClick={() => {
-                      filterFormData(s);
-                    }}
-                  >
-                    <TrashIcon />
-                  </button>
-                </TableCell>
-              </TableRow>
-            ))}
+              {formData.selectedFormData.map((s, i) => (
+                <TableRow key={i}>
+                  <TableCell isHeader={false}>{i + 1}</TableCell>
+                  <TableCell isHeader={false}>{s.num}</TableCell>
+                  <TableCell isHeader={false}>{s.amount}</TableCell>
+                  <TableCell isHeader={false}>
+                    <button
+                      onClick={() => {
+                        filterFormData(s);
+                      }}
+                    >
+                      <TrashIcon />
+                    </button>
+                  </TableCell>
+                </TableRow>
+              ))}
             </tbody>
           </SelectTable>
           <div className="flex justify-start w-full space-x-2 border-t border-slate-300 py-4 my-2">
@@ -256,6 +256,13 @@ function Slot2D() {
               {" "}
               {formData.totalAmount} ကျပ်{" "}
             </span>
+          </div>
+          <div>
+            <UiButton
+              title="အတည်ပြုမည်"
+              actionButton={true}
+              NextFun={() => console.log("ok")}
+            />
           </div>
         </div>
       </div>
