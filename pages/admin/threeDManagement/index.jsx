@@ -17,11 +17,12 @@ const numbers = [
   { num: 9 },
 ];
 
-const TwoDManagement = ({ children }) => {
+const ThreeDManament = ({ children }) => {
   const [formInput, setFormInput] = useState({
     section: "",
     firstNumber: "",
     secondNumber: "",
+    thirdNumber: "",
     show: false,
   });
 
@@ -36,12 +37,15 @@ const TwoDManagement = ({ children }) => {
   const submitHandler = (event) => {
     event.preventDefault();
   };
-  const {routes} = useSelector(state=>state.management)
-  console.log()
+  const { routes } = useSelector((state) => state.management);
+  console.log();
   return (
-    <ManagementLayout routes={routes.twoDManagementRoutes} title="2D management">
+    <ManagementLayout
+      routes={routes.threeDManamentRoutes}
+      title="3D management"
+    >
       <ManagementHeader className={`text-indigo-500`}>
-        ပေါက်ကဏန်း ကြေညာရန်
+        3D ပေါက်ကဏန်း ကြေညာရန်
       </ManagementHeader>
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
@@ -59,7 +63,7 @@ const TwoDManagement = ({ children }) => {
             </select>
           </div>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-3 gap-6">
             <div className="">
               <select
                 onChange={updateFormInput}
@@ -90,8 +94,23 @@ const TwoDManagement = ({ children }) => {
                 ))}
               </select>
             </div>
+            <div className="">
+              <select
+                onChange={updateFormInput}
+                name="thirdNumber"
+                id="thirdNumber"
+                className="w-full form-select"
+              >
+                <option>ရွေးပါ</option>
+                {numbers.map((number, i) => (
+                  <option key={i} value={number.num}>
+                    {number.num}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col items-center justify-between lg:flex-row">
             <div className="space-y-2 ">
               <p className="text-xs text-red-500">
                 အတည်ပြုမည် နှိပ်ပြီးပါက ထပ်မှန်ပြင်ဆင်ခွင့်မရှိတော့ပါ။
@@ -111,13 +130,16 @@ const TwoDManagement = ({ children }) => {
 
         <div className="space-y-10">
           <div className="flex h-16 overflow-hidden rounded-lg shadow-lg lg:h-20 space-x-7 bg-slate-200">
-            <div className="flex items-center justify-center w-16 text-2xl font-bold bg-indigo-500 lg:w-20 text-slate-200">
-              {formInput.firstNumber}
-              {formInput.secondNumber}
+            <div className="flex items-center justify-center w-16 space-x-1 text-2xl font-bold bg-indigo-500 lg:w-20 text-slate-200">
+              <span>{formInput.firstNumber}</span>
+              <span> {formInput.secondNumber}</span>
+              <span> {formInput.thirdNumber}</span>
             </div>
             <div className="inline-flex items-center ">
               <h1>
-                <span className="mr-2 text-indigo-500">{formInput.section}</span>
+                <span className="mr-2 text-indigo-500">
+                  {formInput.section}
+                </span>
                 ပေါက်ကဏန်း
               </h1>
             </div>
@@ -128,4 +150,4 @@ const TwoDManagement = ({ children }) => {
   );
 };
 
-export default TwoDManagement;
+export default ThreeDManament;

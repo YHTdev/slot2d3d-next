@@ -4,34 +4,39 @@ const initialState = {
   routes: {
     twoDManagementRoutes: [
       {
-        src: "/admin/2d",
+        src: "/admin/twoDManagement/",
         title: "ပေါက်ကဏန်း ကြေညာချက်",
         isAllow: true,
       },
       {
-        src: "/admin/2d/section-settings",
+        src: "/admin/twoDManagement/section-settings",
         title: " အချိန်ပိုင်း သတ်မှတ်ချက်",
         isAllow: true,
       },
       {
-        src: "/admin/2d/limitation-settings",
+        src: "/admin/twoDManagement/limitation-settings",
         title: "ကန့်သတ်ချက်",
+        isAllow: true,
+      },
+      {
+        src: "/admin/twoDManagement/commission-settings",
+        title: "ကော်မရှင် သတ်မှတ်ချက်",
         isAllow: true,
       },
     ],
     threeDManamentRoutes: [
       {
-        src: "/admin/3d",
+        src: "/admin/threeDManagement",
         title: "ပေါက်ကဏန်း ကြေညာချက်",
         isAllow: true,
       },
       {
-        src: "/admin/3d/section-settings",
+        src: "/admin/threeDManagement/section-settings",
         title: " အချိန်ပိုင်း သတ်မှတ်ချက်",
         isAllow: true,
       },
       {
-        src: "/admin/3d/limitation-settings",
+        src: "/admin/threeDManagement/limitation-settings",
         title: "ကန့်သတ်ချက်",
         isAllow: true,
       },

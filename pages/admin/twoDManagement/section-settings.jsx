@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 const SectionSettings = ({ children }) => {
   const [messages, setMessages] = useState(true);
   const [messagestwo, setMessagestwo] = useState(true);
-  const {routes} = useSelector(state=>state.management)
+  const { routes } = useSelector((state) => state.management);
   return (
     <ManagementLayout routes={routes.twoDManagementRoutes} title="2D Manament">
       <ManagementHeader className={`text-indigo-500`}>
@@ -39,7 +39,7 @@ const SectionSettings = ({ children }) => {
                 စတင်မည့်အချိန်<span className="text-rose-500">*</span>
               </label>
               <input
-                type="datetime-local"
+                type="time"
                 name="toDate"
                 id="toDate"
                 className="w-full form-select"
@@ -52,7 +52,7 @@ const SectionSettings = ({ children }) => {
                 ပြီးဆုံးမည့်အချိန်<span className="text-rose-500">*</span>
               </label>
               <input
-                type="datetime-local"
+                type="time"
                 name="toDate"
                 id="toDate"
                 className="w-full form-select"

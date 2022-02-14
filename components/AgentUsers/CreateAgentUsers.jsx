@@ -6,20 +6,20 @@ const CreateAgentUsers = () => {
     <>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         <div className="space-y-4 ">
-          <div className="">
-            <label
-              className="block mb-2 text-sm font-medium"
-              htmlFor="userName">
-              အမည်<span className="text-rose-500">*</span>
-            </label>
-            <input
-              id="userName"
-              className="w-full form-input"
-              type="text"
-              required
-            />
-          </div>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 ">
+            <div className="">
+              <label
+                className="block mb-2 text-sm font-medium"
+                htmlFor="userName">
+                အမည်<span className="text-rose-500">*</span>
+              </label>
+              <input
+                id="userName"
+                className="w-full form-input"
+                type="text"
+                required
+              />
+            </div>
             <div className="">
               <label
                 className="block mb-2 text-sm font-medium"
@@ -31,6 +31,23 @@ const CreateAgentUsers = () => {
                 className="w-full form-input"
                 type="tel"
                 placeholder="09"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 ">
+            <div className="">
+              <label
+                className="block mb-2 text-sm font-medium"
+                htmlFor="commission">
+                ကော်မရှင်နှန်းထား <span className="text-rose-500">*</span>
+              </label>
+              <input
+                id="commission"
+                className="w-full form-input"
+                type="number"
+                placeholder="%"
                 required
               />
             </div>
