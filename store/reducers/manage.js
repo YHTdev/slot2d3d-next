@@ -18,6 +18,11 @@ const initialState = {
         title: "ကန့်သတ်ချက်",
         isAllow: true,
       },
+      {
+        src: "/admin/twoDManagement/commission-settings",
+        title: "ကော်မရှင် သတ်မှတ်ချက်",
+        isAllow: true,
+      },
     ],
     threeDManamentRoutes: [
       {
