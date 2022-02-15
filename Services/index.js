@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { PrismaClient } from "@prisma/client";
 export const Instance = Axios.create({
   baseURL: process.env.SLOT_SERVER_URL,
   headers: {

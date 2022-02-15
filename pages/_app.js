@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import { useCallback, useEffect } from "react";
 import { store } from "../store/store";
 import { ToastProvider } from "react-toast-notifications";
+import { SetupInspector } from "../Services";
 function MyApp({ Component, pageProps }) {
   const cbInit = useCallback(() => {
     AOS.init({
@@ -37,4 +38,5 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
+SetupInspector(store);
 export default MyApp;

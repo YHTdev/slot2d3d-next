@@ -8,22 +8,105 @@ datasource db {
 }
 
 model Profile {
-  id      Int     @id @default(autoincrement())
-  bio     String?
-  userId  Int     @unique
-  phone   String?
-  address String?
-  nrc     String
-  user    User    @relation(fields: [userId], references: [id])
+  id        String   @id @default(uuid())
+  bio       String?
+  userId    String   @unique
+  address   String?
+  email     String?  @unique
+  nrc       String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique
-  password     String
-  name         String?
-  isAdmin      Boolean  @default(false)
-  isAgent      Boolean  @default(true)
-  isSuperAdmin Boolean  @default(false)
-  profile      Profile?
+  id        String   @id @default(uuid())
+  password  String
+  phone     String   @unique
+  name      String?
+  profile   Profile?
+  role      Role     @default(AGENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model TwoDLimit {
+  id     String      @id @default(uuid())
+  amount Int
+  nums   TwoDNumer[]
+}
+
+model ThreeDLimit {
+  id     String        @id @default(uuid())
+  amount Int
+  nums   ThreeDNumer[]
+
+}
+
+model TwoDNumer {
+  id        String               @id @default(uuid())
+  num       String               @db.Char(2)
+  createdAt DateTime             @default(now())
+  updatedAt DateTime             @default(now())
+  limitId   String?
+  limit     TwoDLimit?           @relation(fields: [limitId], references: [id], onDelete: Cascade)
+  TowDBets  TwoDBetTransaction[]
+}
+
+model ThreeDNumer {
+  id        String                 @id @default(uuid())
+  num       String                 @db.Char(3)
+  limitId   String?
+  limit     ThreeDLimit?           @relation(fields: [limitId], references: [id], onDelete: Cascade)
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @default(now())
+  ThreeDBet ThreeDBetTransaction[]
+}
+
+model Session {
+  id        String                 @id @default(uuid())
+  type      SessionType
+  name      String                 @unique
+  fromDt    DateTime
+  toDt      DateTime
+  createdAt DateTime               @default(now())
+  updatedAt DateTime               @default(now())
+  TowDBets  TwoDBetTransaction[]
+  ThreeDBet ThreeDBetTransaction[]
+}
+
+enum SessionType {
+  TwoDSession
+  ThreeDSession
+}
+
+enum Role {
+  AGENT
+  SYS_ADMIN
+  ADMIN
+}
+
+model TwoDBetTransaction {
+  id        String    @id @default(uuid())
+  numId     String
+  num       TwoDNumer @relation(fields: [numId], references: [id], onDelete: Cascade)
+  sessionId String
+  session   Session   @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  amount    Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now())
+
+
+}
+
+model ThreeDBetTransaction {
+  id        String      @id @default(uuid())
+  numId     String
+  num       ThreeDNumer @relation(fields: [numId], references: [id], onDelete: Cascade)
+  sessionId String
+  amount    Int
+  session   Session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now())
+
 }
