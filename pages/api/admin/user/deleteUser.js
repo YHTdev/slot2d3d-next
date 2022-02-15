@@ -1,10 +1,9 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { loginUser } from "../../../Controllers/Users";
+import { deleteUser } from "../../../../Controllers/Users";
 
 const schema = yup.object().shape({
-  phone: yup.string().required(),
-  password: yup.string().required(),
+  id: yup.string().required(),
 });
 const validate = withValidation({
   schema,
@@ -13,8 +12,8 @@ const validate = withValidation({
 });
 
 const handler = async (req, res) => {
-  if (req.method === "POST") {
-    const response = await loginUser(req);
+  if (req.method === "DELETE") {
+    const response = await deleteUser(req);
     res.status(response.statusCode).json(response);
   } else {
     res.status(405).json({

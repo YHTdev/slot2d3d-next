@@ -9,7 +9,7 @@ const TwoDManagementSetting = ({ routes = [], title }) => {
       {/* <div className="flex px-3 py-6 overflow-x-scroll border-b flex-nowrap no-scrollbar md:block md:overflow-auto md:border-b-0 md:border-r border-slate-200 min-w-60 md:space-y-3"> */}
       {/* Group 1 */}
       <div className="flex space-x-4 md:space-x-0 md:justify-between">
-        <div className="mb-3 text-xs font-semibold uppercase text-slate-400">
+        <div className="mb-3 text-lg text-center font-semibold uppercase text-slate-400">
           {title}
         </div>
         {/* <div className="mb-3 text-xs font-semibold uppercase text-slate-400">

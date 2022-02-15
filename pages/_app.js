@@ -1,5 +1,5 @@
 import Layout from "../components/layout";
-import { SessionProvider, signIn, useSession } from "next-auth/react";
+import { SessionProvider } from "next-auth/react";
 import "../styles/globals.scss";
 import { Provider as StoreProvider } from "react-redux";
 import AOS from "aos";

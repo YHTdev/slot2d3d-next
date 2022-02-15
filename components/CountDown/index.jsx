@@ -14,19 +14,19 @@ function Timer({ hour, minute }) {
       // Render a countdown
       return (
         <div className="flex flex-row justify-between items-center content-center">
-          <span className="px-2 py-1 rounded-md text-sm flex justify-center items-center content-center border border-slate-800">
+          <span className="px-3 text-yellow-400 py-2 rounded-md text-sm flex justify-center items-center content-center border border-slate-800">
             {hours}
           </span>{" "}
           <span className="flex justify-center items-center content-center px-2 py-1">
             :
           </span>
-          <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border border-slate-800">
+          <span className="px-3 py-2 text-yellow-400 rounded-md flex text-sm justify-center items-center content-center border border-slate-800">
             {minutes}
           </span>
           <span className="flex justify-center items-center content-center px-2 py-1">
             :
           </span>
-          <span className="px-2 py-1 rounded-md flex justify-center items-center content-center border border-slate-800">
+          <span className="px-3 py-2 text-yellow-400 rounded-md flex text-sm justify-center items-center content-center border border-slate-800">
             {seconds}
           </span>
         </div>
