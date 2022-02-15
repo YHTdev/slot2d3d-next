@@ -1,4 +1,4 @@
-import { UploadIcon } from "@heroicons/react/outline";
+import { IdentificationIcon, UploadIcon } from "@heroicons/react/outline";
 import Card, { CardBody, CardHeader } from "../Card";
 
 const CreateAgentUsers = () => {
@@ -127,6 +127,16 @@ const CreateAgentUsers = () => {
                 />
               </div>
             </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3 ">
+            <button className="flex flex-col items-center justify-center p-2 space-y-2 border rounded-md border-slate-200">
+              <IdentificationIcon className="w-5 h-5 " />
+              <p className="text-xs ">ရှေ့ မှတ်ပုံတင်</p>
+            </button>
+            <button className="flex flex-col items-center justify-center p-2 space-y-2 border rounded-md border-slate-200">
+              <IdentificationIcon className="w-5 h-5 " />
+              <p className="text-xs ">နောက် မှတ်ပုံတင် </p>
+            </button>
           </div>
           <div className="">
             <label
