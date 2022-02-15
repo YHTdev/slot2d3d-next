@@ -16,6 +16,27 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Sega";
+  src: local("Sega"),url("./fonts/SEGA.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+
+}
+@font-face {
+  font-family: "Monoton";
+  src: local("Monoton"),url("./fonts/Monoton-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+
+}
+.hero_logo{
+  font-family: "Monoton" !important;
+  
+}
 body {
   @apply antialiased bg-slate-100 text-slate-600;
 }

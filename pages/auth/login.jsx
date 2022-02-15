@@ -1,4 +1,6 @@
 import React from 'react';
+import FrontLogo from '../../components/Front/FrontLogo';
+import PageInnerWrapper from '../../components/Front/PageInnerWrapper';
 import PageWrapper from '../../components/PageWrapper';
 
 function Login() {
@@ -7,7 +9,9 @@ function Login() {
     }
   return (
       <PageWrapper>
-          <div className='flex h-screen overflow-y-scroll py-24 justify-center items-center content-center'>
+          <PageInnerWrapper>
+            <FrontLogo />
+          <div className='flex  my-40 overflow-y-scroll  justify-center items-center content-center'>
              <div className='flex  px-2 py-2 w-full max-w-screen-xs bg-slate-900 bg-opacity-60 rounded-md' data-aos="zoom-in-up">
                   <form onSubmit={(e)=>{onSumbit(e)}} className='flex flex-col space-y-4 w-full px-4 py-4'>
                         <h6 className='text-sm tracking-widest text-yellow-400'>
@@ -21,6 +25,7 @@ function Login() {
                   </form>
              </div>
           </div>
+          </PageInnerWrapper>
       </PageWrapper>
   );
 }
