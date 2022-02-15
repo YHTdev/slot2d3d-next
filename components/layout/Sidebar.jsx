@@ -13,6 +13,10 @@ import Divider from "./Divider";
 import LegerIcon from "../Icons/LegerIcon";
 import TwoDIcon from "../Icons/TwoDIcon";
 import ThreeDIcon from "../Icons/ThreeDIcon";
+
+import Golden21Flower from "../../public/images/adminUsers/golden-21-flower.png";
+import Image from "next/image";
+
 const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
   return (
     <div className="">
@@ -30,14 +34,18 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
             ? " w-64 lg:w-20 translate-x-0 transition duration-700"
             : "-translate-x-64 transition duration-700"
         }`}
-        aria-hidden="true"
-      >
+        aria-hidden="true">
         {/* Sidebar Header */}
         <div className="flex items-center h-16 px-2">
           {/* Logo */}
           <Link href="/">
             <a>
-              <Logo />
+              <Image
+                src={Golden21Flower}
+                width={32}
+                height={32}
+                alt="Golden 21"
+              />
             </a>
           </Link>
         </div>
