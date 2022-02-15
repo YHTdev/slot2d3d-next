@@ -216,15 +216,13 @@ function Slot3D() {
           </form>
         </div>
         <div className="col-span-12">
-          <Card>
-            <CardHeader>
+         
               {formData.name && (
                 <h4 className="text-lg text-slate-600 my-3 tracking-widest">
                   {formData.name} ၏စာရင်း{" "}
                 </h4>
               )}
-            </CardHeader>
-            <CardBody>
+            
               <SelectTable>
               <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
                 <TableRow className="bg-slate-100">
@@ -264,8 +262,7 @@ function Slot3D() {
               <div>
                 <UiButton title="အတည်ပြုမည်" actionButton={true} NextFun={()=>console.log('ok')}  />
               </div>
-            </CardBody>
-          </Card>
+           
         </div>
       </div>
     </ManagementLayout>

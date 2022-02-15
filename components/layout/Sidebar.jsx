@@ -5,12 +5,14 @@ import Logo from "../Icons/Logo";
 import SidebarLink from "../SidebarLink";
 import { LogoutIcon } from "@heroicons/react/solid";
 import DashbaordIcon from "../Icons/dashbaordIcon";
-import AwardIcon from "../Icons/awardIcon";
 import Slot2DIcon from "../Icons/2dIcon";
 import Slot3DIcon from "../Icons/3dicon";
 import AgentIcon from "../Icons/agentIcon";
 import AdminIcon from "../Icons/AdminIcon";
 import Divider from "./Divider";
+import LegerIcon from "../Icons/LegerIcon";
+import TwoDIcon from "../Icons/TwoDIcon";
+import ThreeDIcon from "../Icons/ThreeDIcon";
 const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
   return (
     <div className="">
@@ -65,19 +67,19 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
               <Divider title="Settings" />
               <SidebarLink
                 pathName="/admin/twoDManagement"
-                linkIcon={<AwardIcon className={styles.menuIcon} />}
+                linkIcon={<TwoDIcon className={styles.menuIcon} />}
                 linkTitle={`2D Management`}
               />
               <SidebarLink
                 pathName="/admin/threeDManagement"
-                linkIcon={<AwardIcon className={styles.menuIcon} />}
+                linkIcon={<ThreeDIcon className={styles.menuIcon} />}
                 linkTitle={`3D Management`}
               />
 
               <Divider title="Leger" />
               <SidebarLink
                 pathName="/admin/transactions"
-                linkIcon={<AwardIcon className={styles.menuIcon} />}
+                linkIcon={<LegerIcon className={styles.menuIcon} />}
                 linkTitle={`Leger`}
               />
 
