@@ -39,11 +39,11 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
         <div className="flex items-center h-16 px-2">
           {/* Logo */}
           <Link href="/">
-            <a>
+            <a className="p-4">
               <Image
                 src={Golden21Flower}
-                width={32}
-                height={32}
+                width={38}
+                height={38}
                 alt="Golden 21"
               />
             </a>
@@ -104,6 +104,15 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
               />
             </div>
           </div>
+        </div>
+
+        <div className="inline-flex items-center justify-center h-full ">
+          <Image
+            src={Golden21Flower}
+            width={128}
+            height={128}
+            alt="Golden 21"
+          />
         </div>
 
         {/* Expand / collapse button */}
