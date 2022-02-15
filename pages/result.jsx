@@ -22,7 +22,7 @@ function Result({}) {
               </button>
           </div>
          <div className="w-full px-4">
-         <input type="datetime-local" className='bg-slate-800 tracking-widest w-full text-white rounded-md px-2 py-1' />
+         <input type="date" className='bg-slate-800 tracking-widest w-full text-white rounded-md px-2 py-1' />
          </div>
         </div>
          {/* end title */}

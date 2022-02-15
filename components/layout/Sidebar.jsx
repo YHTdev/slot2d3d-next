@@ -28,7 +28,8 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
             ? " w-64 lg:w-20 translate-x-0 transition duration-700"
             : "-translate-x-64 transition duration-700"
         }`}
-        aria-hidden="true">
+        aria-hidden="true"
+      >
         {/* Sidebar Header */}
         <div className="flex items-center h-16 px-2">
           {/* Logo */}
@@ -50,17 +51,18 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
                 linkIcon={<DashbaordIcon className={styles.menuIcon} />}
                 linkTitle={`Dashboardss`}
               />
-               <Divider title="For Admin" />
+              <Divider title="User Management" />
               <SidebarLink
                 pathName="/admin/agents"
                 linkIcon={<AgentIcon className={styles.menuIcon} />}
-                linkTitle={`Agents`}
+                linkTitle={`Agent Users`}
               />
               <SidebarLink
                 pathName="/admin/admin-users"
                 linkIcon={<AdminIcon className={styles.menuIcon} />}
                 linkTitle={`Admin Users`}
               />
+              <Divider title="Settings" />
               <SidebarLink
                 pathName="/admin/twoDManagement"
                 linkIcon={<AwardIcon className={styles.menuIcon} />}
@@ -71,16 +73,24 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
                 linkIcon={<AwardIcon className={styles.menuIcon} />}
                 linkTitle={`3D Management`}
               />
-               <Divider title="For Agent" />
-               <SidebarLink
+
+              <Divider title="Leger" />
+              <SidebarLink
+                pathName="/admin/transactions"
+                linkIcon={<AwardIcon className={styles.menuIcon} />}
+                linkTitle={`Leger`}
+              />
+
+              <Divider title="For Agent" />
+              <SidebarLink
                 pathName="/admin/slots/2d"
                 linkIcon={<Slot2DIcon className={styles.menuIcon} />}
-                linkTitle={`2D`}
+                linkTitle={`2D Bet`}
               />
               <SidebarLink
                 pathName="/admin/slots/3d"
                 linkIcon={<Slot3DIcon className={styles.menuIcon} />}
-                linkTitle={`3D`}
+                linkTitle={`3D Bet`}
               />
             </div>
           </div>
