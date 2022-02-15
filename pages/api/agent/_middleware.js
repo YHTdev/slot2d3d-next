@@ -6,7 +6,7 @@ export default async function middleware(req) {
     if (authHeader) {
       const user = verifyToken(accessToken);
       if (user) {
-        if (user.role === "SYS_ADMIN" || user.role === "ADMIN") {
+        if (user.role === "SYS_ADMIN" || user.role === "AGENT") {
           req.user = user;
         } else {
           return new Response(`You're not Admin`);
