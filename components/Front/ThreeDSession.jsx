@@ -19,17 +19,17 @@ function ThreeDSession() {
   const sessions = [
     {
       session: "ပထမပတ်",
-      dt: `${format(new Date("2022/02/01"), "yyyy-MM-dd")} မှ ${format(
+      dt: `${format(new Date("2022/02/01"), "yyyy-MM-dd")} ~ ${format(
         new Date("2022/02/15"),
         "yyyy-MM-dd"
-      )} အထိ `,
+      )}`,
     },
     {
       session: "ဒုတိယပတ်",
-      dt: `${format(new Date("2022/02/15"), "yyyy-MM-dd")} မှ ${format(
+      dt: `${format(new Date("2022/02/15"), "yyyy-MM-dd")} ~ ${format(
         new Date("2022/02/30"),
         "yyyy-MM-dd"
-      )} အထိ `,
+      )}`,
     },
   ];
   return (

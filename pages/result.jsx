@@ -60,7 +60,7 @@ function Result({}) {
         <h4 className="text-center text-sm py-2 font-bold flex justify-center items-center content-center space-x-2 my-5">
           <TopyIcon />
           <span className="tracking-widest text-lg">
-          ထွက်ဂဏန်းများ  ({selected==='2d'? format(formData.selectedDate,'yyyy-MM-dd'):format(formData.selectedDate,'yyyy-MM')}) 
+          ထွက်ဂဏန်းများ  <span className="result_font">({selected==='2d'? format(formData.selectedDate,'yyyy-MM-dd'):format(formData.selectedDate,'yyyy-MM')}) </span>
           </span>
         </h4>
         <ResultLst results={selected==='2d'?twoDresults:threeDresults} />

@@ -10,11 +10,11 @@ function ResultLst({results}) {
             <div className="col-span-6">
               <div className="flex flex-row space-x-8 justify-start items-center content-center">
                 <TopyIcon />
-                <span className="text-yellow-400 text-base">{result.session}</span>
+                <span className="text-slate-50 text-base">{result.session}</span>
               </div>
             </div>
             <div className="col-span-6">
-              <span className="text-lg tracking-widest text-yellow-400">{result.resultNum}</span>
+              <span className="text-lg result_font font-bold tracking-widest text-yellow-400">{result.resultNum}</span>
             </div>
           </div>
           ))
