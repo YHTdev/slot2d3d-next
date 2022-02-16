@@ -14,7 +14,7 @@ function PageWrapper({ children }) {
         </Head>
         
         {children}
-        <section className="fixed inset-x-0 bottom-0 z-10 block shadow bg-opacity-70 bg-slate-800">
+        <section className="fixed inset-x-0 bottom-0 z-10 block shadow-lg bg-slate-800">
           <div className="flex justify-between max-w-screen-lg mx-auto">
             <Link passHref href="/" className="w-full">
               <div className="flex flex-col items-center justify-center w-full px-2 py-2 border-r select-none text-slate-400 hover:text-slate-50 border-slate-700">
@@ -62,7 +62,7 @@ function PageWrapper({ children }) {
                   <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                 </svg>
-                <span className="text-sm tracking-widest">Agent</span>
+                <span className="text-sm tracking-widest result_font">Agent</span>
               </div>
             </Link>
             <Link passHref href="/admin" className="w-full">
@@ -77,7 +77,7 @@ function PageWrapper({ children }) {
                   <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
                   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                 </svg>
-                <span className="text-sm tracking-widest">Admin</span>
+                <span className="text-sm tracking-widest result_font">Admin</span>
               </div>
             </Link>
           </div>

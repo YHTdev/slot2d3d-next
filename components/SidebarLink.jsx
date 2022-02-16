@@ -16,7 +16,7 @@ const SidebarLink = ({ pathName, linkIcon, linkTitle }) => {
           }`}>
           <div className="flex items-center">
             {linkIcon}
-            <span className="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+            <span className="ml-3 result_font text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
               {linkTitle}
             </span>
           </div>
