@@ -33,7 +33,7 @@ function ThreeDSession() {
     },
   ];
   return (
-    <div className="flex flex-col space-y-6 w-full max-w-screen-md mx-auto">
+    <div className="flex flex-col space-y-6 w-full max-w-screen-md mx-auto" data-aos="zoom-in-up">
       <div className="flex space-x-2 justify-end items-center content-center w-full">
         <span>ဂဏန်းထွက်ရန်</span>
         <Timer hour={5} minute={30} />

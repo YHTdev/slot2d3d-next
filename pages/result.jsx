@@ -63,7 +63,12 @@ function Result({}) {
           ထွက်ဂဏန်းများ  <span className="result_font">({selected==='2d'? format(formData.selectedDate,'yyyy-MM-dd'):format(formData.selectedDate,'yyyy-MM')}) </span>
           </span>
         </h4>
-        <ResultLst results={selected==='2d'?twoDresults:threeDresults} />
+        {
+          selected==='2d' &&  <ResultLst  results={twoDresults} />
+        }
+        {
+          selected==='3d' && <ResultLst  results={threeDresults} />
+        }
         </div>
       </PageInnerWrapper>
     </PageWrapper>

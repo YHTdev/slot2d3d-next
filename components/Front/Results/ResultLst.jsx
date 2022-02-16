@@ -3,7 +3,7 @@ import TopyIcon from '../../Icons/TopyIcon'
 
 function ResultLst({results}) {
   return (
-    <div className=" w-full block">
+    <div className=" w-full block" data-aos="zoom-in-up">
       {
           results.map((result,i)=>(
             <div className="grid grid-cols-12 gap-4 mb-4 px-2 py-2 rounded-md bg-slate-900 bg-opacity-50" key={i}>
