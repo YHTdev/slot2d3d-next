@@ -14,7 +14,7 @@ function Home() {
     <PageWrapper>
       <div
         className="flex justify-center w-full  items-center content-center  h-screen overflow-y-scroll py-24"
-        data-aos="zoom-in-up"
+        
       >
       <PageInnerWrapper>
         <FrontLogo />
