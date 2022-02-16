@@ -15,7 +15,7 @@ const validate = withValidation({
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const response = await loginUser(req);
-    res.status(response.statusCode).json(response);
+    res.status(200).json(response);
   } else {
     res.status(405).json({
       message: "Method is not allowed",

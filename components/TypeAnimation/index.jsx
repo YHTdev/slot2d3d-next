@@ -22,7 +22,7 @@ function AnimateText({ text }) {
             onTypingDone={() => setCount(0)}
             avgTypingDelay={500}
           >
-            <p>{text}</p>
+            <p className="text-xs text-yellow-400">{text}</p>
           </Typist>
         )}
       </div>
