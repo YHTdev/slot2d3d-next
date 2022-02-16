@@ -7,7 +7,7 @@ import PageSwitcher from "../components/Front/PageSwitcher";
 import TwoDSession from "../components/Front/TwoDSession";
 import ThreeDSession from "../components/Front/ThreeDSession";
 import ResultWrapper from "../components/Front/ResultWrapper";
-
+import AnimateText from "../components/TypeAnimation";
 function Home() {
   const [selected, setSelected] = useState('2d')
   return (
@@ -18,7 +18,11 @@ function Home() {
       >
       <PageInnerWrapper>
         <FrontLogo />
+       
+         <AnimateText text={`ဖုန်း ၀၉-၁၂၃၄၅၆၇၈ သို့ဆက်သွယ်မေးမြန်းနိုင်ပါသည်`} />
+         
         <PageSwitcher selected={selected} setselected={setSelected} />
+         
         <ResultWrapper>
         {
           selected === '2d' && 

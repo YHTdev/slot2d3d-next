@@ -7,6 +7,7 @@ import TopyIcon from "../components/Icons/TopyIcon";
 import {format} from 'date-fns'
 import PageWrapper from "../components/PageWrapper";
 import ResultLst from "../components/Front/Results/ResultLst";
+import AnimateText from "../components/TypeAnimation";
 function Result({}) {
   const [selected, setSelected] = useState("2d");
   const [formData, setFormData] = useState({
@@ -51,6 +52,7 @@ function Result({}) {
     <PageWrapper>
       <PageInnerWrapper>
         <FrontLogo />
+        <AnimateText text={`ဖုန်း ၀၉-၁၂၃၄၅၆၇၈၉ သို့ဆက်သွယ်မေးမြန်းနိုင်ပါသည်`} />
         <PageSwitcher selected={selected} setselected={setSelected}  />
         <div className="flex px-2 py-2 flex-col space-y-4 w-full max-w-screen-md mx-auto my-7">
         
