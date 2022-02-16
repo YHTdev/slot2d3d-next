@@ -39,6 +39,7 @@
     "react-redux": "^7.2.6",
     "react-select": "^5.2.2",
     "react-toast-notifications": "^2.5.1",
+    "react-typist": "^2.0.5",
     "redux": "^4.1.2",
     "sass": "^1.49.7",
     "serverless-mysql": "^1.5.4",
