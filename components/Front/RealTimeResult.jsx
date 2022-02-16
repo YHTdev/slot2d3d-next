@@ -6,8 +6,8 @@ import TimeIcon from "../Icons/TimeIcon";
 function RealTimeResult({ result }) {
   return (
     <div>
-      <h4 className="text-center text-sm py-2 font-bold flex justify-center items-center content-center space-x-2">
-        <TimeIcon /> <span>{format(new Date(),"yyyy-MM-dd")} (ညနေပိုင်း)</span>
+      <h4 className="text-center  py-2 font-bold flex justify-center items-center content-center space-x-2">
+        <TimeIcon /> <span className="text-base tracking-widest">{format(new Date(),"yyyy-MM-dd")} (ညနေပိုင်း)</span>
       </h4>
       <div className="grid grid-cols-12 rounded-md">
         <div className="col-span-9 rounded-l-lg bg-slate-900 bg-opacity-50 px-2 py-2">
