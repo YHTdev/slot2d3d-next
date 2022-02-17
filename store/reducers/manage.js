@@ -76,6 +76,7 @@ const initialState = {
       },
     ],
   },
+  quickNums: {},
 };
 
 export const manageSlice = createSlice({

@@ -36,7 +36,7 @@ export default async function middleware(req) {
     }
   } catch (error) {
     return NextResponse({
-      message: "System error",
+      message: JSON.stringify(error),
       statusCode: 500,
     });
   }

@@ -51,22 +51,37 @@ model ThreeDLimit {
 
 model TwoDNumer {
   id        String               @id @default(uuid())
-  num       String               @db.Char(2)
+  num       String               @unique @db.Char(2)
   createdAt DateTime             @default(now())
   updatedAt DateTime             @default(now())
   limitId   String?
   limit     TwoDLimit?           @relation(fields: [limitId], references: [id], onDelete: Cascade)
   TowDBets  TwoDBetTransaction[]
+
+
+  Keywork   Keywork? @relation(fields: [keyworkId], references: [id], onDelete: Cascade)
+  keyworkId String?
+}
+
+model Keywork {
+  id        String        @id @default(uuid())
+  name      String
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @default(now())
+  twoD      TwoDNumer[]
+  threeD    ThreeDNumer[]
 }
 
 model ThreeDNumer {
   id        String                 @id @default(uuid())
-  num       String                 @db.Char(3)
+  num       String                 @unique @db.Char(3)
   limitId   String?
   limit     ThreeDLimit?           @relation(fields: [limitId], references: [id], onDelete: Cascade)
   createdAt DateTime               @default(now())
   updatedAt DateTime               @default(now())
   ThreeDBet ThreeDBetTransaction[]
+  Keywork   Keywork?               @relation(fields: [keyworkId], references: [id], onDelete: Cascade)
+  keyworkId String?
 }
 
 model Session {
