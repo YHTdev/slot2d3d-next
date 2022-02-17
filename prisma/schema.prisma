@@ -36,64 +36,49 @@ enum Status {
   Suspense
 }
 
-model TwoDLimit {
-  id     String      @id @default(uuid())
-  amount Int
-  nums   TwoDNumer[]
-}
-
-model ThreeDLimit {
-  id     String        @id @default(uuid())
-  amount Int
-  nums   ThreeDNumer[]
-
-}
-
 model TwoDNumer {
   id        String               @id @default(uuid())
   num       String               @unique @db.Char(2)
   createdAt DateTime             @default(now())
   updatedAt DateTime             @default(now())
-  limitId   String?
-  limit     TwoDLimit?           @relation(fields: [limitId], references: [id], onDelete: Cascade)
-  TowDBets  TwoDBetTransaction[]
-
-
-  Keywork   Keywork? @relation(fields: [keyworkId], references: [id], onDelete: Cascade)
-  keyworkId String?
+  keyWord   TwoDNumerOnKeyword[]
 }
 
-model Keywork {
-  id        String        @id @default(uuid())
-  name      String
-  createdAt DateTime      @default(now())
-  updatedAt DateTime      @default(now())
-  twoD      TwoDNumer[]
-  threeD    ThreeDNumer[]
+model Keyword {
+  id           String                  @id @default(uuid())
+  name         String                  @unique
+  createdAt    DateTime                @default(now())
+  updatedAt    DateTime                @default(now())
+  twoDNumber   TwoDNumerOnKeyword[]
+  threeDNumber ThreeDNumberOnKeyword[]
 }
 
 model ThreeDNumer {
-  id        String                 @id @default(uuid())
-  num       String                 @unique @db.Char(3)
-  limitId   String?
-  limit     ThreeDLimit?           @relation(fields: [limitId], references: [id], onDelete: Cascade)
-  createdAt DateTime               @default(now())
-  updatedAt DateTime               @default(now())
-  ThreeDBet ThreeDBetTransaction[]
-  Keywork   Keywork?               @relation(fields: [keyworkId], references: [id], onDelete: Cascade)
-  keyworkId String?
+  id        String                  @id @default(uuid())
+  num       String                  @unique @db.Char(3)
+  keyword   ThreeDNumberOnKeyword[]
+  createdAt DateTime                @default(now())
+  updatedAt DateTime                @default(now())
+
+
 }
 
-model Session {
-  id        String                 @id @default(uuid())
-  type      SessionType
-  name      String                 @unique
-  fromDt    DateTime
-  toDt      DateTime
-  createdAt DateTime               @default(now())
-  updatedAt DateTime               @default(now())
-  TowDBets  TwoDBetTransaction[]
-  ThreeDBet ThreeDBetTransaction[]
+model TwoDNumerOnKeyword {
+  Keyword     Keyword   @relation(fields: [keywordId], references: [id])
+  keywordId   String
+  TwoDNumer   TwoDNumer @relation(fields: [twoDNumerId], references: [id])
+  twoDNumerId String
+
+  @@id([keywordId, twoDNumerId])
+}
+
+model ThreeDNumberOnKeyword {
+
+  ThreeDNumer   ThreeDNumer @relation(fields: [threeDNumerId], references: [id])
+  threeDNumerId String
+  Keyword       Keyword     @relation(fields: [keywordId], references: [id])
+  keywordId     String
+  @@id([keywordId, threeDNumerId])
 }
 
 enum SessionType {
@@ -105,29 +90,4 @@ enum Role {
   AGENT
   SYS_ADMIN
   ADMIN
-}
-
-model TwoDBetTransaction {
-  id        String    @id @default(uuid())
-  numId     String
-  num       TwoDNumer @relation(fields: [numId], references: [id], onDelete: Cascade)
-  sessionId String
-  session   Session   @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  amount    Int
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @default(now())
-
-
-}
-
-model ThreeDBetTransaction {
-  id        String      @id @default(uuid())
-  numId     String
-  num       ThreeDNumer @relation(fields: [numId], references: [id], onDelete: Cascade)
-  sessionId String
-  amount    Int
-  session   Session     @relation(fields: [sessionId], references: [id], onDelete: Cascade)
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @default(now())
-
 }

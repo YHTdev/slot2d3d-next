@@ -1,2215 +1,3309 @@
 const twoDNums = [
   {
-    num: "00",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isTenB: true,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: true,
+    num: '00'
   },
   {
-    num: "01",
-    isOneB: true,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isTenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '01'
   },
   {
-    num: "02",
-    isOneB: false,
-    isTwoB: true,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isTenB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '02'
   },
   {
-    num: "03",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: true,
-    isFourB: false,
-    isFiveB: false,
-    isTenB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '03'
   },
   {
-    num: "04",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: true,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '04'
   },
   {
-    num: "05",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: true,
-    isSixB: false,
-    isTenB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: true,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '05'
   },
   {
-    num: "06",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: true,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '06'
   },
   {
-    num: "07",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isTenB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: true,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: true,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '07'
   },
   {
-    num: "08",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isTenB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: true,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '08'
   },
   {
-    num: "09",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isTenB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: true,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '09'
   },
   {
-    num: "10",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '10'
   },
   {
-    num: "11",
-    isOneB: false,
-    isTwoB: true,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '11'
   },
   {
-    num: "12",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: true,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '12'
   },
   {
-    num: "13",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: true,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: true,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '13'
   },
   {
-    num: "14",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: false,
-    isFourB: false,
-    isFiveB: true,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: true,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '14'
   },
   {
-    num: "15",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: true,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '15'
   },
   {
-    num: "16",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: true,
-    isEightB: false,
-    isNineB: false,
-    isPower: true,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '16'
   },
   {
-    num: "17",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: true,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '17'
   },
   {
-    num: "18",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: true,
-    isPower: false,
-    isNatKhat: true,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '18'
   },
 
   {
-    num: "19",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: true,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: true,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '19'
   },
   {
-    num: "20",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '20'
   },
   {
-    num: "21",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '21'
   },
   {
-    num: "22",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: true,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '22'
   },
   {
-    num: "23",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: true,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '23'
   },
   {
-    num: "24",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: true,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: true,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '24'
   },
   {
-    num: "25",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: true,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '25'
   },
   {
-    num: "26",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: true,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '26'
   },
   {
-    num: "27",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: true,
-    isPower: true,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '27'
   },
   {
-    num: "28",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: true,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: true,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '28'
   },
   {
-    num: "29",
-    isOneB: true,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: true,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '29'
   },
   {
-    num: "30",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '30'
   },
   {
-    num: "31",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '31'
   },
   {
-    num: "32",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '32'
   },
   {
-    num: "33",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: true,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '33'
   },
   {
-    num: "34",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: true,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '34'
   },
   {
-    num: "35",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: true,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: true,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '35'
   },
   {
-    num: "36",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: true,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: true,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '36'
   },
   {
-    num: "37",
-    isOneB: false,
-    isTenB: true,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: true,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '37'
   },
   {
-    num: "38",
-    isTenB: false,
-    isOneB: true,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: true,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '38'
   },
   {
-    num: "39",
-    isTenB: false,
-    isOneB: false,
-    isTwoB: true,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '39'
   },
   {
-    num: "40",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: true,
+    num: '40'
   },
   {
-    num: "41",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '41'
   },
   {
-    num: "42",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '42'
   },
   {
-    num: "43",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '43'
   },
   {
-    num: "44",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: true,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '44'
   },
   {
-    num: "45",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: true,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '45'
   },
   {
-    num: "46",
-    isOneB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isTenB: true,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: true,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '46'
   },
   {
-    num: "47",
-    isOneB: true,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: true,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '47'
   },
   {
-    num: "48",
-    isOneB: false,
-    isTwoB: true,
-    isThreeB: false,
-    isFourB: false,
-    isTenB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '48'
   },
   {
-    num: "49",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: true,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: true,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '49'
   },
   {
-    num: "50",
-    isOneB: false,
-    isTenB: false,
-    isTwoB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '50'
   },
   {
-    num: "51",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '51'
   },
   {
-    num: "52",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '52'
   },
   {
-    num: "53",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '53'
   },
   {
-    num: "54",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '54'
   },
   {
-    num: "55",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: true,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '55'
   },
   {
-    num: "56",
-    isOneB: true,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '56'
   },
   {
-    num: "57",
-    isOneB: false,
-    isTwoB: true,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '57'
   },
   {
-    num: "58",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: true,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '58'
   },
   {
-    num: "59",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: true,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: true,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '59'
   },
   {
-    num: "60",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '60'
   },
   {
-    num: "61",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '61'
   },
   {
-    num: "62",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '62'
   },
   {
-    num: "63",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '63'
   },
   {
-    num: "64",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '64'
   },
   {
-    num: "65",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '65'
   },
   {
-    num: "66",
-    isOneB: false,
-    isTwoB: true,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '66'
   },
   {
-    num: "67",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: true,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '67'
   },
   {
-    num: "68",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: true,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: true,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '68'
   },
   {
-    num: "69",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: true,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: true,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '69'
   },
   {
-    num: "70",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '70'
   },
   {
-    num: "71",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '71'
   },
   {
-    num: "72",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '72'
   },
   {
-    num: "73",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '73'
   },
   {
-    num: "74",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '74'
   },
   {
-    num: "75",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '75'
   },
   {
-    num: "76",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '76'
   },
 
   {
-    num: "77",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: true,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '77'
   },
   {
-    num: "78",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: true,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '78'
   },
   {
-    num: "79",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: true,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: true,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '79'
   },
   {
-    num: "80",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '80'
   },
   {
-    num: "81",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '81'
   },
   {
-    num: "82",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '82'
   },
   {
-    num: "83",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '83'
   },
   {
-    num: "84",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '84'
   },
   {
-    num: "85",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '85'
   },
   {
-    num: "86",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '86'
   },
   {
-    num: "87",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '87'
   },
   {
-    num: "88",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: true,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
+    num: '88'
   },
   {
-    num: "89",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: true,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '89'
   },
   {
-    num: "90",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: true,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: true,
+    num: '90'
   },
   {
-    num: "91",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '91'
   },
   {
-    num: "92",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '92'
   },
   {
-    num: "93",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '93'
   },
   {
-    num: "94",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '94'
   },
   {
-    num: "95",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: true,
-    isTwin: false,
-    isZeroFull: false,
+    num: '95'
   },
   {
-    num: "96",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '96'
   },
   {
-    num: "97",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '97'
   },
   {
-    num: "98",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: false,
-    isZeroFull: false,
+    num: '98'
   },
   {
-    num: "99",
-    isOneB: false,
-    isTwoB: false,
-    isTenB: false,
-    isThreeB: false,
-    isFourB: false,
-    isFiveB: false,
-    isSixB: false,
-    isSevenB: false,
-    isEightB: false,
-    isNineB: false,
-    isPower: false,
-    isNatKhat: false,
-    isPadaThar: false,
-    isFiveFull: false,
-    isTenFull: false,
-    isVro: false,
-    isPowerVro: false,
-    isTwin: true,
-    isZeroFull: false,
-  },
-];
+    num: '99'
+  }
+]
 
-module.exports = { twoDNums };
+const threeDNums = [
+  {
+    num: '000'
+  },
+  {
+    num: '001'
+  },
+  {
+    num: '002'
+  },
+  {
+    num: '003'
+  },
+  {
+    num: '004'
+  },
+  {
+    num: '005'
+  },
+  {
+    num: '006'
+  },
+  {
+    num: '007'
+  },
+  {
+    num: '008'
+  },
+  {
+    num: '009'
+  },
+  {
+    num: '010'
+  },
+  {
+    num: '011'
+  },
+  {
+    num: '012'
+  },
+  {
+    num: '013'
+  },
+  {
+    num: '014'
+  },
+  {
+    num: '015'
+  },
+  {
+    num: '016'
+  },
+  {
+    num: '017'
+  },
+  {
+    num: '018'
+  },
+  {
+    num: '019'
+  },
+  {
+    num: '020'
+  },
+  {
+    num: '021'
+  },
+  {
+    num: '022'
+  },
+  {
+    num: '023'
+  },
+  {
+    num: '024'
+  },
+  {
+    num: '025'
+  },
+  {
+    num: '026'
+  },
+  {
+    num: '027'
+  },
+  {
+    num: '028'
+  },
+  {
+    num: '029'
+  },
+  {
+    num: '030'
+  },
+  {
+    num: '031'
+  },
+  {
+    num: '032'
+  },
+  {
+    num: '033'
+  },
+  {
+    num: '034'
+  },
+  {
+    num: '035'
+  },
+  {
+    num: '036'
+  },
+  {
+    num: '037'
+  },
+  {
+    num: '038'
+  },
+  {
+    num: '039'
+  },
+  {
+    num: '040'
+  },
+  {
+    num: '041'
+  },
+  {
+    num: '042'
+  },
+  {
+    num: '043'
+  },
+  {
+    num: '044'
+  },
+  {
+    num: '045'
+  },
+  {
+    num: '046'
+  },
+  {
+    num: '047'
+  },
+  {
+    num: '048'
+  },
+  {
+    num: '049'
+  },
+  {
+    num: '050'
+  },
+  {
+    num: '051'
+  },
+  {
+    num: '052'
+  },
+  {
+    num: '053'
+  },
+  {
+    num: '054'
+  },
+  {
+    num: '055'
+  },
+  {
+    num: '056'
+  },
+  {
+    num: '057'
+  },
+  {
+    num: '058'
+  },
+  {
+    num: '059'
+  },
+  {
+    num: '060'
+  },
+  {
+    num: '061'
+  },
+  {
+    num: '062'
+  },
+  {
+    num: '063'
+  },
+  {
+    num: '064'
+  },
+  {
+    num: '065'
+  },
+  {
+    num: '066'
+  },
+  {
+    num: '067'
+  },
+  {
+    num: '068'
+  },
+  {
+    num: '069'
+  },
+  {
+    num: '070'
+  },
+  {
+    num: '071'
+  },
+  {
+    num: '072'
+  },
+  {
+    num: '073'
+  },
+  {
+    num: '074'
+  },
+  {
+    num: '075'
+  },
+  {
+    num: '076'
+  },
+  {
+    num: '077'
+  },
+  {
+    num: '078'
+  },
+  {
+    num: '079'
+  },
+  {
+    num: '080'
+  },
+  {
+    num: '081'
+  },
+  {
+    num: '082'
+  },
+  {
+    num: '083'
+  },
+  {
+    num: '084'
+  },
+  {
+    num: '085'
+  },
+  {
+    num: '086'
+  },
+  {
+    num: '087'
+  },
+  {
+    num: '088'
+  },
+  {
+    num: '089'
+  },
+  {
+    num: '090'
+  },
+  {
+    num: '091'
+  },
+  {
+    num: '092'
+  },
+  {
+    num: '093'
+  },
+  {
+    num: '094'
+  },
+  {
+    num: '095'
+  },
+  {
+    num: '096'
+  },
+  {
+    num: '097'
+  },
+  {
+    num: '098'
+  },
+  {
+    num: '099'
+  },
+  {
+    num: '100'
+  },
+  {
+    num: '101'
+  },
+  {
+    num: '102'
+  },
+  {
+    num: '103'
+  },
+  {
+    num: '104'
+  },
+  {
+    num: '105'
+  },
+  {
+    num: '106'
+  },
+  {
+    num: '107'
+  },
+  {
+    num: '108'
+  },
+  {
+    num: '109'
+  },
+  {
+    num: '110'
+  },
+  {
+    num: '111'
+  },
+  {
+    num: '112'
+  },
+  {
+    num: '113'
+  },
+  {
+    num: '114'
+  },
+  {
+    num: '115'
+  },
+  {
+    num: '116'
+  },
+  {
+    num: '117'
+  },
+  {
+    num: '118'
+  },
+  {
+    num: '119'
+  },
+  {
+    num: '120'
+  },
+  {
+    num: '121'
+  },
+  {
+    num: '122'
+  },
+  {
+    num: '123'
+  },
+  {
+    num: '124'
+  },
+  {
+    num: '125'
+  },
+  {
+    num: '126'
+  },
+  {
+    num: '127'
+  },
+  {
+    num: '128'
+  },
+  {
+    num: '129'
+  },
+  {
+    num: '130'
+  },
+  {
+    num: '131'
+  },
+  {
+    num: '132'
+  },
+  {
+    num: '133'
+  },
+  {
+    num: '134'
+  },
+  {
+    num: '135'
+  },
+  {
+    num: '136'
+  },
+  {
+    num: '137'
+  },
+  {
+    num: '138'
+  },
+  {
+    num: '139'
+  },
+  {
+    num: '140'
+  },
+  {
+    num: '141'
+  },
+  {
+    num: '142'
+  },
+  {
+    num: '143'
+  },
+  {
+    num: '144'
+  },
+  {
+    num: '145'
+  },
+  {
+    num: '146'
+  },
+  {
+    num: '147'
+  },
+  {
+    num: '148'
+  },
+  {
+    num: '149'
+  },
+  {
+    num: '150'
+  },
+  {
+    num: '151'
+  },
+  {
+    num: '152'
+  },
+  {
+    num: '153'
+  },
+  {
+    num: '154'
+  },
+  {
+    num: '155'
+  },
+  {
+    num: '156'
+  },
+  {
+    num: '157'
+  },
+  {
+    num: '158'
+  },
+  {
+    num: '159'
+  },
+  {
+    num: '160'
+  },
+  {
+    num: '161'
+  },
+  {
+    num: '162'
+  },
+  {
+    num: '163'
+  },
+  {
+    num: '164'
+  },
+  {
+    num: '165'
+  },
+  {
+    num: '166'
+  },
+  {
+    num: '167'
+  },
+  {
+    num: '168'
+  },
+  {
+    num: '169'
+  },
+  {
+    num: '170'
+  },
+  {
+    num: '171'
+  },
+  {
+    num: '172'
+  },
+  {
+    num: '173'
+  },
+  {
+    num: '174'
+  },
+  {
+    num: '175'
+  },
+  {
+    num: '176'
+  },
+  {
+    num: '177'
+  },
+  {
+    num: '178'
+  },
+  {
+    num: '179'
+  },
+  {
+    num: '180'
+  },
+  {
+    num: '181'
+  },
+  {
+    num: '182'
+  },
+  {
+    num: '183'
+  },
+  {
+    num: '184'
+  },
+  {
+    num: '185'
+  },
+  {
+    num: '186'
+  },
+  {
+    num: '187'
+  },
+  {
+    num: '188'
+  },
+  {
+    num: '189'
+  },
+  {
+    num: '190'
+  },
+  {
+    num: '191'
+  },
+  {
+    num: '192'
+  },
+  {
+    num: '193'
+  },
+  {
+    num: '194'
+  },
+  {
+    num: '195'
+  },
+  {
+    num: '196'
+  },
+  {
+    num: '197'
+  },
+  {
+    num: '198'
+  },
+  {
+    num: '199'
+  },
+  {
+    num: '200'
+  },
+  {
+    num: '201'
+  },
+  {
+    num: '202'
+  },
+  {
+    num: '203'
+  },
+  {
+    num: '204'
+  },
+  {
+    num: '205'
+  },
+  {
+    num: '206'
+  },
+  {
+    num: '207'
+  },
+  {
+    num: '208'
+  },
+  {
+    num: '209'
+  },
+  {
+    num: '210'
+  },
+  {
+    num: '211'
+  },
+  {
+    num: '212'
+  },
+  {
+    num: '213'
+  },
+  {
+    num: '214'
+  },
+  {
+    num: '215'
+  },
+  {
+    num: '216'
+  },
+  {
+    num: '217'
+  },
+  {
+    num: '218'
+  },
+  {
+    num: '219'
+  },
+  {
+    num: '220'
+  },
+  {
+    num: '221'
+  },
+  {
+    num: '222'
+  },
+  {
+    num: '223'
+  },
+  {
+    num: '224'
+  },
+  {
+    num: '225'
+  },
+  {
+    num: '226'
+  },
+  {
+    num: '227'
+  },
+  {
+    num: '228'
+  },
+  {
+    num: '229'
+  },
+  {
+    num: '230'
+  },
+  {
+    num: '231'
+  },
+  {
+    num: '232'
+  },
+  {
+    num: '233'
+  },
+  {
+    num: '234'
+  },
+  {
+    num: '235'
+  },
+  {
+    num: '236'
+  },
+  {
+    num: '237'
+  },
+  {
+    num: '238'
+  },
+  {
+    num: '239'
+  },
+  {
+    num: '240'
+  },
+  {
+    num: '241'
+  },
+  {
+    num: '242'
+  },
+  {
+    num: '243'
+  },
+  {
+    num: '244'
+  },
+  {
+    num: '245'
+  },
+  {
+    num: '246'
+  },
+  {
+    num: '247'
+  },
+  {
+    num: '248'
+  },
+  {
+    num: '249'
+  },
+  {
+    num: '250'
+  },
+  {
+    num: '251'
+  },
+  {
+    num: '252'
+  },
+  {
+    num: '253'
+  },
+  {
+    num: '254'
+  },
+  {
+    num: '255'
+  },
+  {
+    num: '256'
+  },
+  {
+    num: '257'
+  },
+  {
+    num: '258'
+  },
+  {
+    num: '259'
+  },
+  {
+    num: '260'
+  },
+  {
+    num: '261'
+  },
+  {
+    num: '262'
+  },
+  {
+    num: '263'
+  },
+  {
+    num: '264'
+  },
+  {
+    num: '265'
+  },
+  {
+    num: '266'
+  },
+  {
+    num: '267'
+  },
+  {
+    num: '268'
+  },
+  {
+    num: '269'
+  },
+  {
+    num: '270'
+  },
+  {
+    num: '271'
+  },
+  {
+    num: '272'
+  },
+  {
+    num: '273'
+  },
+  {
+    num: '274'
+  },
+  {
+    num: '275'
+  },
+  {
+    num: '276'
+  },
+  {
+    num: '277'
+  },
+  {
+    num: '278'
+  },
+  {
+    num: '279'
+  },
+  {
+    num: '280'
+  },
+  {
+    num: '281'
+  },
+  {
+    num: '282'
+  },
+  {
+    num: '283'
+  },
+  {
+    num: '284'
+  },
+  {
+    num: '285'
+  },
+  {
+    num: '286'
+  },
+  {
+    num: '287'
+  },
+  {
+    num: '288'
+  },
+  {
+    num: '289'
+  },
+  {
+    num: '290'
+  },
+  {
+    num: '291'
+  },
+  {
+    num: '292'
+  },
+  {
+    num: '293'
+  },
+  {
+    num: '294'
+  },
+  {
+    num: '295'
+  },
+  {
+    num: '296'
+  },
+  {
+    num: '297'
+  },
+  {
+    num: '298'
+  },
+  {
+    num: '299'
+  },
+  {
+    num: '300'
+  },
+  {
+    num: '301'
+  },
+  {
+    num: '302'
+  },
+  {
+    num: '303'
+  },
+  {
+    num: '304'
+  },
+  {
+    num: '305'
+  },
+  {
+    num: '306'
+  },
+  {
+    num: '307'
+  },
+  {
+    num: '308'
+  },
+  {
+    num: '309'
+  },
+  {
+    num: '310'
+  },
+  {
+    num: '311'
+  },
+  {
+    num: '312'
+  },
+  {
+    num: '313'
+  },
+  {
+    num: '314'
+  },
+  {
+    num: '315'
+  },
+  {
+    num: '316'
+  },
+  {
+    num: '317'
+  },
+  {
+    num: '318'
+  },
+  {
+    num: '319'
+  },
+  {
+    num: '320'
+  },
+  {
+    num: '321'
+  },
+  {
+    num: '322'
+  },
+  {
+    num: '323'
+  },
+  {
+    num: '324'
+  },
+  {
+    num: '325'
+  },
+  {
+    num: '326'
+  },
+  {
+    num: '327'
+  },
+  {
+    num: '328'
+  },
+  {
+    num: '329'
+  },
+  {
+    num: '330'
+  },
+  {
+    num: '331'
+  },
+  {
+    num: '332'
+  },
+  {
+    num: '333'
+  },
+  {
+    num: '334'
+  },
+  {
+    num: '335'
+  },
+  {
+    num: '336'
+  },
+  {
+    num: '337'
+  },
+  {
+    num: '338'
+  },
+  {
+    num: '339'
+  },
+  {
+    num: '340'
+  },
+  {
+    num: '341'
+  },
+  {
+    num: '342'
+  },
+  {
+    num: '343'
+  },
+  {
+    num: '344'
+  },
+  {
+    num: '345'
+  },
+  {
+    num: '346'
+  },
+  {
+    num: '347'
+  },
+  {
+    num: '348'
+  },
+  {
+    num: '349'
+  },
+  {
+    num: '350'
+  },
+  {
+    num: '351'
+  },
+  {
+    num: '352'
+  },
+  {
+    num: '353'
+  },
+  {
+    num: '354'
+  },
+  {
+    num: '355'
+  },
+  {
+    num: '356'
+  },
+  {
+    num: '357'
+  },
+  {
+    num: '358'
+  },
+  {
+    num: '359'
+  },
+  {
+    num: '360'
+  },
+  {
+    num: '361'
+  },
+  {
+    num: '362'
+  },
+  {
+    num: '363'
+  },
+  {
+    num: '364'
+  },
+  {
+    num: '365'
+  },
+  {
+    num: '366'
+  },
+  {
+    num: '367'
+  },
+  {
+    num: '368'
+  },
+  {
+    num: '369'
+  },
+  {
+    num: '370'
+  },
+  {
+    num: '371'
+  },
+  {
+    num: '372'
+  },
+  {
+    num: '373'
+  },
+  {
+    num: '374'
+  },
+  {
+    num: '375'
+  },
+  {
+    num: '376'
+  },
+  {
+    num: '377'
+  },
+  {
+    num: '378'
+  },
+  {
+    num: '379'
+  },
+  {
+    num: '380'
+  },
+  {
+    num: '381'
+  },
+  {
+    num: '382'
+  },
+  {
+    num: '383'
+  },
+  {
+    num: '384'
+  },
+  {
+    num: '385'
+  },
+  {
+    num: '386'
+  },
+  {
+    num: '387'
+  },
+  {
+    num: '388'
+  },
+  {
+    num: '389'
+  },
+  {
+    num: '390'
+  },
+  {
+    num: '391'
+  },
+  {
+    num: '392'
+  },
+  {
+    num: '393'
+  },
+  {
+    num: '394'
+  },
+  {
+    num: '395'
+  },
+  {
+    num: '396'
+  },
+  {
+    num: '397'
+  },
+  {
+    num: '398'
+  },
+  {
+    num: '399'
+  },
+  {
+    num: '400'
+  },
+  {
+    num: '401'
+  },
+  {
+    num: '402'
+  },
+  {
+    num: '403'
+  },
+  {
+    num: '404'
+  },
+  {
+    num: '405'
+  },
+  {
+    num: '406'
+  },
+  {
+    num: '407'
+  },
+  {
+    num: '408'
+  },
+  {
+    num: '409'
+  },
+  {
+    num: '410'
+  },
+  {
+    num: '411'
+  },
+  {
+    num: '412'
+  },
+  {
+    num: '413'
+  },
+  {
+    num: '414'
+  },
+  {
+    num: '415'
+  },
+  {
+    num: '416'
+  },
+  {
+    num: '417'
+  },
+  {
+    num: '418'
+  },
+  {
+    num: '419'
+  },
+  {
+    num: '420'
+  },
+  {
+    num: '421'
+  },
+  {
+    num: '422'
+  },
+  {
+    num: '423'
+  },
+  {
+    num: '424'
+  },
+  {
+    num: '425'
+  },
+  {
+    num: '426'
+  },
+  {
+    num: '427'
+  },
+  {
+    num: '428'
+  },
+  {
+    num: '429'
+  },
+  {
+    num: '430'
+  },
+  {
+    num: '431'
+  },
+  {
+    num: '432'
+  },
+  {
+    num: '433'
+  },
+  {
+    num: '434'
+  },
+  {
+    num: '435'
+  },
+  {
+    num: '436'
+  },
+  {
+    num: '437'
+  },
+  {
+    num: '438'
+  },
+  {
+    num: '439'
+  },
+  {
+    num: '440'
+  },
+  {
+    num: '441'
+  },
+  {
+    num: '442'
+  },
+  {
+    num: '443'
+  },
+  {
+    num: '444'
+  },
+  {
+    num: '445'
+  },
+  {
+    num: '446'
+  },
+  {
+    num: '447'
+  },
+  {
+    num: '448'
+  },
+  {
+    num: '449'
+  },
+  {
+    num: '450'
+  },
+  {
+    num: '451'
+  },
+  {
+    num: '452'
+  },
+  {
+    num: '453'
+  },
+  {
+    num: '454'
+  },
+  {
+    num: '455'
+  },
+  {
+    num: '456'
+  },
+  {
+    num: '457'
+  },
+  {
+    num: '458'
+  },
+  {
+    num: '459'
+  },
+  {
+    num: '460'
+  },
+  {
+    num: '461'
+  },
+  {
+    num: '462'
+  },
+  {
+    num: '463'
+  },
+  {
+    num: '464'
+  },
+  {
+    num: '465'
+  },
+  {
+    num: '466'
+  },
+  {
+    num: '467'
+  },
+  {
+    num: '468'
+  },
+  {
+    num: '469'
+  },
+  {
+    num: '470'
+  },
+  {
+    num: '471'
+  },
+  {
+    num: '472'
+  },
+  {
+    num: '473'
+  },
+  {
+    num: '474'
+  },
+  {
+    num: '475'
+  },
+  {
+    num: '476'
+  },
+  {
+    num: '477'
+  },
+  {
+    num: '478'
+  },
+  {
+    num: '479'
+  },
+  {
+    num: '480'
+  },
+  {
+    num: '481'
+  },
+  {
+    num: '482'
+  },
+  {
+    num: '483'
+  },
+  {
+    num: '484'
+  },
+  {
+    num: '485'
+  },
+  {
+    num: '486'
+  },
+  {
+    num: '487'
+  },
+  {
+    num: '488'
+  },
+  {
+    num: '489'
+  },
+  {
+    num: '490'
+  },
+  {
+    num: '491'
+  },
+  {
+    num: '492'
+  },
+  {
+    num: '493'
+  },
+  {
+    num: '494'
+  },
+  {
+    num: '495'
+  },
+  {
+    num: '496'
+  },
+  {
+    num: '497'
+  },
+  {
+    num: '498'
+  },
+  {
+    num: '499'
+  },
+  {
+    num: '500'
+  },
+  {
+    num: '501'
+  },
+  {
+    num: '502'
+  },
+  {
+    num: '503'
+  },
+  {
+    num: '504'
+  },
+  {
+    num: '505'
+  },
+  {
+    num: '506'
+  },
+  {
+    num: '507'
+  },
+  {
+    num: '508'
+  },
+  {
+    num: '509'
+  },
+  {
+    num: '510'
+  },
+  {
+    num: '511'
+  },
+  {
+    num: '512'
+  },
+  {
+    num: '513'
+  },
+  {
+    num: '514'
+  },
+  {
+    num: '515'
+  },
+  {
+    num: '516'
+  },
+  {
+    num: '517'
+  },
+  {
+    num: '518'
+  },
+  {
+    num: '519'
+  },
+  {
+    num: '520'
+  },
+  {
+    num: '521'
+  },
+  {
+    num: '522'
+  },
+  {
+    num: '523'
+  },
+  {
+    num: '524'
+  },
+  {
+    num: '525'
+  },
+  {
+    num: '526'
+  },
+  {
+    num: '527'
+  },
+  {
+    num: '528'
+  },
+  {
+    num: '529'
+  },
+  {
+    num: '530'
+  },
+  {
+    num: '531'
+  },
+  {
+    num: '532'
+  },
+  {
+    num: '533'
+  },
+  {
+    num: '534'
+  },
+  {
+    num: '535'
+  },
+  {
+    num: '536'
+  },
+  {
+    num: '537'
+  },
+  {
+    num: '538'
+  },
+  {
+    num: '539'
+  },
+  {
+    num: '540'
+  },
+  {
+    num: '541'
+  },
+  {
+    num: '542'
+  },
+  {
+    num: '543'
+  },
+  {
+    num: '544'
+  },
+  {
+    num: '545'
+  },
+  {
+    num: '546'
+  },
+  {
+    num: '547'
+  },
+  {
+    num: '548'
+  },
+  {
+    num: '549'
+  },
+  {
+    num: '550'
+  },
+  {
+    num: '551'
+  },
+  {
+    num: '552'
+  },
+  {
+    num: '553'
+  },
+  {
+    num: '554'
+  },
+  {
+    num: '555'
+  },
+  {
+    num: '556'
+  },
+  {
+    num: '557'
+  },
+  {
+    num: '558'
+  },
+  {
+    num: '559'
+  },
+  {
+    num: '560'
+  },
+  {
+    num: '561'
+  },
+  {
+    num: '562'
+  },
+  {
+    num: '563'
+  },
+  {
+    num: '564'
+  },
+  {
+    num: '565'
+  },
+  {
+    num: '566'
+  },
+  {
+    num: '567'
+  },
+  {
+    num: '568'
+  },
+  {
+    num: '569'
+  },
+  {
+    num: '570'
+  },
+  {
+    num: '571'
+  },
+  {
+    num: '572'
+  },
+  {
+    num: '573'
+  },
+  {
+    num: '574'
+  },
+  {
+    num: '575'
+  },
+  {
+    num: '576'
+  },
+  {
+    num: '577'
+  },
+  {
+    num: '578'
+  },
+  {
+    num: '579'
+  },
+  {
+    num: '580'
+  },
+  {
+    num: '581'
+  },
+  {
+    num: '582'
+  },
+  {
+    num: '583'
+  },
+  {
+    num: '584'
+  },
+  {
+    num: '585'
+  },
+  {
+    num: '586'
+  },
+  {
+    num: '587'
+  },
+  {
+    num: '588'
+  },
+  {
+    num: '589'
+  },
+  {
+    num: '590'
+  },
+  {
+    num: '591'
+  },
+  {
+    num: '592'
+  },
+  {
+    num: '593'
+  },
+  {
+    num: '594'
+  },
+  {
+    num: '595'
+  },
+  {
+    num: '596'
+  },
+  {
+    num: '597'
+  },
+  {
+    num: '598'
+  },
+  {
+    num: '599'
+  },
+  {
+    num: '600'
+  },
+  {
+    num: '601'
+  },
+  {
+    num: '602'
+  },
+  {
+    num: '603'
+  },
+  {
+    num: '604'
+  },
+  {
+    num: '605'
+  },
+  {
+    num: '606'
+  },
+  {
+    num: '607'
+  },
+  {
+    num: '608'
+  },
+  {
+    num: '609'
+  },
+  {
+    num: '610'
+  },
+  {
+    num: '611'
+  },
+  {
+    num: '612'
+  },
+  {
+    num: '613'
+  },
+  {
+    num: '614'
+  },
+  {
+    num: '615'
+  },
+  {
+    num: '616'
+  },
+  {
+    num: '617'
+  },
+  {
+    num: '618'
+  },
+  {
+    num: '619'
+  },
+  {
+    num: '620'
+  },
+  {
+    num: '621'
+  },
+  {
+    num: '622'
+  },
+  {
+    num: '623'
+  },
+  {
+    num: '624'
+  },
+  {
+    num: '625'
+  },
+  {
+    num: '626'
+  },
+  {
+    num: '627'
+  },
+  {
+    num: '628'
+  },
+  {
+    num: '629'
+  },
+  {
+    num: '630'
+  },
+  {
+    num: '631'
+  },
+  {
+    num: '632'
+  },
+  {
+    num: '633'
+  },
+  {
+    num: '634'
+  },
+  {
+    num: '635'
+  },
+  {
+    num: '636'
+  },
+  {
+    num: '637'
+  },
+  {
+    num: '638'
+  },
+  {
+    num: '639'
+  },
+  {
+    num: '640'
+  },
+  {
+    num: '641'
+  },
+  {
+    num: '642'
+  },
+  {
+    num: '643'
+  },
+  {
+    num: '644'
+  },
+  {
+    num: '645'
+  },
+  {
+    num: '646'
+  },
+  {
+    num: '647'
+  },
+  {
+    num: '648'
+  },
+  {
+    num: '649'
+  },
+  {
+    num: '650'
+  },
+  {
+    num: '651'
+  },
+  {
+    num: '652'
+  },
+  {
+    num: '653'
+  },
+  {
+    num: '654'
+  },
+  {
+    num: '655'
+  },
+  {
+    num: '656'
+  },
+  {
+    num: '657'
+  },
+  {
+    num: '658'
+  },
+  {
+    num: '659'
+  },
+  {
+    num: '660'
+  },
+  {
+    num: '661'
+  },
+  {
+    num: '662'
+  },
+  {
+    num: '663'
+  },
+  {
+    num: '664'
+  },
+  {
+    num: '665'
+  },
+  {
+    num: '666'
+  },
+  {
+    num: '667'
+  },
+  {
+    num: '668'
+  },
+  {
+    num: '669'
+  },
+  {
+    num: '670'
+  },
+  {
+    num: '671'
+  },
+  {
+    num: '672'
+  },
+  {
+    num: '673'
+  },
+  {
+    num: '674'
+  },
+  {
+    num: '675'
+  },
+  {
+    num: '676'
+  },
+  {
+    num: '677'
+  },
+  {
+    num: '678'
+  },
+  {
+    num: '679'
+  },
+  {
+    num: '680'
+  },
+  {
+    num: '681'
+  },
+  {
+    num: '682'
+  },
+  {
+    num: '683'
+  },
+  {
+    num: '684'
+  },
+  {
+    num: '685'
+  },
+  {
+    num: '686'
+  },
+  {
+    num: '687'
+  },
+  {
+    num: '688'
+  },
+  {
+    num: '689'
+  },
+  {
+    num: '690'
+  },
+  {
+    num: '691'
+  },
+  {
+    num: '692'
+  },
+  {
+    num: '693'
+  },
+  {
+    num: '694'
+  },
+  {
+    num: '695'
+  },
+  {
+    num: '696'
+  },
+  {
+    num: '697'
+  },
+  {
+    num: '698'
+  },
+  {
+    num: '699'
+  },
+  {
+    num: '700'
+  },
+  {
+    num: '701'
+  },
+  {
+    num: '702'
+  },
+  {
+    num: '703'
+  },
+  {
+    num: '704'
+  },
+  {
+    num: '705'
+  },
+  {
+    num: '706'
+  },
+  {
+    num: '707'
+  },
+  {
+    num: '708'
+  },
+  {
+    num: '709'
+  },
+  {
+    num: '710'
+  },
+  {
+    num: '711'
+  },
+  {
+    num: '712'
+  },
+  {
+    num: '713'
+  },
+  {
+    num: '714'
+  },
+  {
+    num: '715'
+  },
+  {
+    num: '716'
+  },
+  {
+    num: '717'
+  },
+  {
+    num: '718'
+  },
+  {
+    num: '719'
+  },
+  {
+    num: '720'
+  },
+  {
+    num: '721'
+  },
+  {
+    num: '722'
+  },
+  {
+    num: '723'
+  },
+  {
+    num: '724'
+  },
+  {
+    num: '725'
+  },
+  {
+    num: '726'
+  },
+  {
+    num: '727'
+  },
+  {
+    num: '728'
+  },
+  {
+    num: '729'
+  },
+  {
+    num: '730'
+  },
+  {
+    num: '731'
+  },
+  {
+    num: '732'
+  },
+  {
+    num: '733'
+  },
+  {
+    num: '734'
+  },
+  {
+    num: '735'
+  },
+  {
+    num: '736'
+  },
+  {
+    num: '737'
+  },
+  {
+    num: '738'
+  },
+  {
+    num: '739'
+  },
+  {
+    num: '740'
+  },
+  {
+    num: '741'
+  },
+  {
+    num: '742'
+  },
+  {
+    num: '743'
+  },
+  {
+    num: '744'
+  },
+  {
+    num: '745'
+  },
+  {
+    num: '746'
+  },
+  {
+    num: '747'
+  },
+  {
+    num: '748'
+  },
+  {
+    num: '749'
+  },
+  {
+    num: '750'
+  },
+  {
+    num: '751'
+  },
+  {
+    num: '752'
+  },
+  {
+    num: '753'
+  },
+  {
+    num: '754'
+  },
+  {
+    num: '755'
+  },
+  {
+    num: '756'
+  },
+  {
+    num: '757'
+  },
+  {
+    num: '758'
+  },
+  {
+    num: '759'
+  },
+  {
+    num: '760'
+  },
+  {
+    num: '761'
+  },
+  {
+    num: '762'
+  },
+  {
+    num: '763'
+  },
+  {
+    num: '764'
+  },
+  {
+    num: '765'
+  },
+  {
+    num: '766'
+  },
+  {
+    num: '767'
+  },
+  {
+    num: '768'
+  },
+  {
+    num: '769'
+  },
+  {
+    num: '770'
+  },
+  {
+    num: '771'
+  },
+  {
+    num: '772'
+  },
+  {
+    num: '773'
+  },
+  {
+    num: '774'
+  },
+  {
+    num: '775'
+  },
+  {
+    num: '776'
+  },
+  {
+    num: '777'
+  },
+  {
+    num: '778'
+  },
+  {
+    num: '779'
+  },
+  {
+    num: '780'
+  },
+  {
+    num: '781'
+  },
+  {
+    num: '782'
+  },
+  {
+    num: '783'
+  },
+  {
+    num: '784'
+  },
+  {
+    num: '785'
+  },
+  {
+    num: '786'
+  },
+  {
+    num: '787'
+  },
+  {
+    num: '788'
+  },
+  {
+    num: '789'
+  },
+  {
+    num: '790'
+  },
+  {
+    num: '791'
+  },
+  {
+    num: '792'
+  },
+  {
+    num: '793'
+  },
+  {
+    num: '794'
+  },
+  {
+    num: '795'
+  },
+  {
+    num: '796'
+  },
+  {
+    num: '797'
+  },
+  {
+    num: '798'
+  },
+  {
+    num: '799'
+  },
+  {
+    num: '800'
+  },
+  {
+    num: '801'
+  },
+  {
+    num: '802'
+  },
+  {
+    num: '803'
+  },
+  {
+    num: '804'
+  },
+  {
+    num: '805'
+  },
+  {
+    num: '806'
+  },
+  {
+    num: '807'
+  },
+  {
+    num: '808'
+  },
+  {
+    num: '809'
+  },
+  {
+    num: '810'
+  },
+  {
+    num: '811'
+  },
+  {
+    num: '812'
+  },
+  {
+    num: '813'
+  },
+  {
+    num: '814'
+  },
+  {
+    num: '815'
+  },
+  {
+    num: '816'
+  },
+  {
+    num: '817'
+  },
+  {
+    num: '818'
+  },
+  {
+    num: '819'
+  },
+  {
+    num: '820'
+  },
+  {
+    num: '821'
+  },
+  {
+    num: '822'
+  },
+  {
+    num: '823'
+  },
+  {
+    num: '824'
+  },
+  {
+    num: '825'
+  },
+  {
+    num: '826'
+  },
+  {
+    num: '827'
+  },
+  {
+    num: '828'
+  },
+  {
+    num: '829'
+  },
+  {
+    num: '830'
+  },
+  {
+    num: '831'
+  },
+  {
+    num: '832'
+  },
+  {
+    num: '833'
+  },
+  {
+    num: '834'
+  },
+  {
+    num: '835'
+  },
+  {
+    num: '836'
+  },
+  {
+    num: '837'
+  },
+  {
+    num: '838'
+  },
+  {
+    num: '839'
+  },
+  {
+    num: '840'
+  },
+  {
+    num: '841'
+  },
+  {
+    num: '842'
+  },
+  {
+    num: '843'
+  },
+  {
+    num: '844'
+  },
+  {
+    num: '845'
+  },
+  {
+    num: '846'
+  },
+  {
+    num: '847'
+  },
+  {
+    num: '848'
+  },
+  {
+    num: '849'
+  },
+  {
+    num: '850'
+  },
+  {
+    num: '851'
+  },
+  {
+    num: '852'
+  },
+  {
+    num: '853'
+  },
+  {
+    num: '854'
+  },
+  {
+    num: '855'
+  },
+  {
+    num: '856'
+  },
+  {
+    num: '857'
+  },
+  {
+    num: '858'
+  },
+  {
+    num: '859'
+  },
+  {
+    num: '860'
+  },
+  {
+    num: '861'
+  },
+  {
+    num: '862'
+  },
+  {
+    num: '863'
+  },
+  {
+    num: '864'
+  },
+  {
+    num: '865'
+  },
+  {
+    num: '866'
+  },
+  {
+    num: '867'
+  },
+  {
+    num: '868'
+  },
+  {
+    num: '869'
+  },
+  {
+    num: '870'
+  },
+  {
+    num: '871'
+  },
+  {
+    num: '872'
+  },
+  {
+    num: '873'
+  },
+  {
+    num: '874'
+  },
+  {
+    num: '875'
+  },
+  {
+    num: '876'
+  },
+  {
+    num: '877'
+  },
+  {
+    num: '878'
+  },
+  {
+    num: '879'
+  },
+  {
+    num: '880'
+  },
+  {
+    num: '881'
+  },
+  {
+    num: '882'
+  },
+  {
+    num: '883'
+  },
+  {
+    num: '884'
+  },
+  {
+    num: '885'
+  },
+  {
+    num: '886'
+  },
+  {
+    num: '887'
+  },
+  {
+    num: '888'
+  },
+  {
+    num: '889'
+  },
+  {
+    num: '890'
+  },
+  {
+    num: '891'
+  },
+  {
+    num: '892'
+  },
+  {
+    num: '893'
+  },
+  {
+    num: '894'
+  },
+  {
+    num: '895'
+  },
+  {
+    num: '896'
+  },
+  {
+    num: '897'
+  },
+  {
+    num: '898'
+  },
+  {
+    num: '899'
+  },
+  {
+    num: '900'
+  },
+  {
+    num: '901'
+  },
+  {
+    num: '902'
+  },
+  {
+    num: '903'
+  },
+  {
+    num: '904'
+  },
+  {
+    num: '905'
+  },
+  {
+    num: '906'
+  },
+  {
+    num: '907'
+  },
+  {
+    num: '908'
+  },
+  {
+    num: '909'
+  },
+  {
+    num: '910'
+  },
+  {
+    num: '911'
+  },
+  {
+    num: '912'
+  },
+  {
+    num: '913'
+  },
+  {
+    num: '914'
+  },
+  {
+    num: '915'
+  },
+  {
+    num: '916'
+  },
+  {
+    num: '917'
+  },
+  {
+    num: '918'
+  },
+  {
+    num: '919'
+  },
+  {
+    num: '920'
+  },
+  {
+    num: '921'
+  },
+  {
+    num: '922'
+  },
+  {
+    num: '923'
+  },
+  {
+    num: '924'
+  },
+  {
+    num: '925'
+  },
+  {
+    num: '926'
+  },
+  {
+    num: '927'
+  },
+  {
+    num: '928'
+  },
+  {
+    num: '929'
+  },
+  {
+    num: '930'
+  },
+  {
+    num: '931'
+  },
+  {
+    num: '932'
+  },
+  {
+    num: '933'
+  },
+  {
+    num: '934'
+  },
+  {
+    num: '935'
+  },
+  {
+    num: '936'
+  },
+  {
+    num: '937'
+  },
+  {
+    num: '938'
+  },
+  {
+    num: '939'
+  },
+  {
+    num: '940'
+  },
+  {
+    num: '941'
+  },
+  {
+    num: '942'
+  },
+  {
+    num: '943'
+  },
+  {
+    num: '944'
+  },
+  {
+    num: '945'
+  },
+  {
+    num: '946'
+  },
+  {
+    num: '947'
+  },
+  {
+    num: '948'
+  },
+  {
+    num: '949'
+  },
+  {
+    num: '950'
+  },
+  {
+    num: '951'
+  },
+  {
+    num: '952'
+  },
+  {
+    num: '953'
+  },
+  {
+    num: '954'
+  },
+  {
+    num: '955'
+  },
+  {
+    num: '956'
+  },
+  {
+    num: '957'
+  },
+  {
+    num: '958'
+  },
+  {
+    num: '959'
+  },
+  {
+    num: '960'
+  },
+  {
+    num: '961'
+  },
+  {
+    num: '962'
+  },
+  {
+    num: '963'
+  },
+  {
+    num: '964'
+  },
+  {
+    num: '965'
+  },
+  {
+    num: '966'
+  },
+  {
+    num: '967'
+  },
+  {
+    num: '968'
+  },
+  {
+    num: '969'
+  },
+  {
+    num: '970'
+  },
+  {
+    num: '971'
+  },
+  {
+    num: '972'
+  },
+  {
+    num: '973'
+  },
+  {
+    num: '974'
+  },
+  {
+    num: '975'
+  },
+  {
+    num: '976'
+  },
+  {
+    num: '977'
+  },
+  {
+    num: '978'
+  },
+  {
+    num: '979'
+  },
+  {
+    num: '980'
+  },
+  {
+    num: '981'
+  },
+  {
+    num: '982'
+  },
+  {
+    num: '983'
+  },
+  {
+    num: '984'
+  },
+  {
+    num: '985'
+  },
+  {
+    num: '986'
+  },
+  {
+    num: '987'
+  },
+  {
+    num: '988'
+  },
+  {
+    num: '989'
+  },
+  {
+    num: '990'
+  },
+  {
+    num: '991'
+  },
+  {
+    num: '992'
+  },
+  {
+    num: '993'
+  },
+  {
+    num: '994'
+  },
+  {
+    num: '995'
+  },
+  {
+    num: '996'
+  },
+  {
+    num: '997'
+  },
+  {
+    num: '998'
+  },
+  {
+    num: '999'
+  }
+]
+
+module.exports = { twoDNums, threeDNums }

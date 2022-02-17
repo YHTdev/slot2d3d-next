@@ -28,14 +28,14 @@ export const loginUser = async (req) => {
   const returnObj = ResponseObj;
   try {
     const { phone, password } = req.body;
-    const hashPassword = hashSync(password, 12);
+    
     const user = await prisma.user.findFirst({
       where: {
         phone: phone,
       },
     });
     if (user) {
-      const comparePasswrod = compareSync(hashPassword, user.password);
+      const comparePasswrod = compareSync(password, user.password);
       if (comparePasswrod) {
         const accessToken = generateToken(user);
         returnObj.accessToken = accessToken;

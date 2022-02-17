@@ -4,6 +4,7 @@ import { verifyToken } from "../../../lib/JWT";
 export default async function middleware(req) {
   try {
     const accessToken = req.cookies["USER_TOKEN"];
+    console.log(req.cookies)
     if (accessToken) {
       const user = verifyToken(accessToken);
 
