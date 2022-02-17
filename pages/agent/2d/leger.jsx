@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import ThreeDAgentLeger from "../../../../components/3D/leger";
-import Card, { CardBody, CardHeader } from "../../../../components/Card";
+import TwoDLeger from "../../../components/2D/Leger";
 
-import UiRangePicker from "../../../../components/forms/UiRangePicker";
+import Card, { CardBody, CardHeader } from "../../../components/Card";
 
-import UiSelect from "../../../../components/forms/UiSelect";
+import UiRangePicker from "../../../components/forms/UiRangePicker";
 
-import ManagementLayout from "../../../../components/layout/ManagementLayout";
+import UiSelect from "../../../components/forms/UiSelect";
+
+import ManagementLayout from "../../../components/layout/ManagementLayout";
 
 function AgentLeger() {
   const { routes } = useSelector((state) => state.management);
@@ -37,10 +38,10 @@ function AgentLeger() {
 
   
   return (
-    <ManagementLayout routes={routes.threeDBetRoutes} title="3D limitations">
+    <ManagementLayout routes={routes.threeDBetRoutes} title="2D Leger">
       <Card>
           <CardHeader>
-          <div className="flex w-full justify-start space-x-0 md:space-x-2 space-y-2 md:space-y-0 flex-col md:flex-row items-center content-center my-4">
+          <div className="flex flex-col items-center content-center justify-start w-full my-4 space-x-0 space-y-2 md:space-x-2 md:space-y-0 md:flex-row">
         <UiSelect
           className='w-full'
           options={Users}
@@ -54,8 +55,7 @@ function AgentLeger() {
         />
         <label className="text-sm text-slate-600" htmlFor="">နေ့ရက်အပိုင်းအခြား</label>
        <UiRangePicker
-
-       className='rounded-md w-full'
+       className='w-full rounded-md '
         name="range"
         id="range"
         formData={formData}
@@ -66,7 +66,7 @@ function AgentLeger() {
       </div>
         </CardHeader>
         <CardBody>
-        < ThreeDAgentLeger />
+        < TwoDLeger />
         </CardBody>
       </Card>
     

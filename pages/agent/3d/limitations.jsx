@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import LimitationList from "../../../../components/3D/limitationList";
+import LimitationList from "../../../components/3D/limitationList";
 
-import UiSelect from "../../../../components/forms/UiSelect";
+import UiSelect from "../../../components/forms/UiSelect";
 
-import ManagementLayout from "../../../../components/layout/ManagementLayout";
-import ThreeDLimitations from '../../../../data/3dnumber.json'
+import ManagementLayout from "../../../components/layout/ManagementLayout";
+import ThreeDLimitations from '../../../data/3dnumber.json'
 function Limitations() {
   const { routes } = useSelector((state) => state.management);
 
@@ -28,7 +28,7 @@ function Limitations() {
   ];
   return (
     <ManagementLayout routes={routes.threeDBetRoutes} title="3D limitations">
-      <div className="flex w-full justify-between items-center content-center my-4">
+      <div className="flex items-center content-center justify-between w-full my-4">
         <UiSelect
           options={Sessions}
           name="session"

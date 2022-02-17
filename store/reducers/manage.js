@@ -43,34 +43,34 @@ const initialState = {
     ],
     twoDBetRoutes: [
       {
-        src: "/admin/slots/2d",
+        src: "/agent/2d",
         title: "ဂဏန်းရွေးချယ်ခြင်း",
         isAllow: true,
       },
       {
-        src: "/admin/slots/2d/limitations",
+        src: "/agent/2d/limitations",
         title: "ကန့်သတ်ချက်များ",
         isAllow: true,
       },
       {
-        src: "/admin/slots/2d/leger",
+        src: "/agent/2d/leger",
         title: "စာရင်း",
         isAllow: true,
       },
     ],
     threeDBetRoutes: [
       {
-        src: "/admin/slots/3d",
+        src: "/agent/3d",
         title: "ဂဏန်းရွေးချယ်ခြင်း",
         isAllow: true,
       },
       {
-        src: "/admin/slots/3d/limitations",
+        src: "/agent/3d/limitations",
         title: "ကန့်သတ်ချက်များ",
         isAllow: true,
       },
       {
-        src: "/admin/slots/3d/leger",
+        src: "/agent/3d/leger",
         title: "စာရင်း",
         isAllow: true,
       },
