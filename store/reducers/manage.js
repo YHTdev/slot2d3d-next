@@ -23,6 +23,11 @@ const initialState = {
         title: "ကော်မရှင် သတ်မှတ်ချက်",
         isAllow: true,
       },
+      {
+        src: "/admin/twoDManagement/keywords-settings",
+        title: "အသုံးအနှုန်း",
+        isAllow: true,
+      },
     ],
     threeDManamentRoutes: [
       {

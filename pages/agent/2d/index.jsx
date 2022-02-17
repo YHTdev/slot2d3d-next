@@ -19,8 +19,7 @@ function Slot2D() {
     selectedFormData: [],
     amount: "",
     sessionId: "",
-    firstNum: "",
-    secondNum: "",
+    quickPick: "",
     totalAmount: 0,
     name: "",
   });
