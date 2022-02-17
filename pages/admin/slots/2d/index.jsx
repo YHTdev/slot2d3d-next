@@ -85,6 +85,85 @@ function Slot2D() {
     },
   ];
 
+  const quickPicks = [
+    {
+      label: "ပါဝါ",
+      value: "power",
+    },
+    {
+      label: "နက္ခတ်",
+      value: "natKhat",
+    },
+    {
+      label: "ဆယ်ပြည့်",
+      value: "tenFull",
+    },
+    {
+      label: "5 ပြည့်",
+      value: "fiveFull",
+    },
+    {
+      label: "0 ပြည့်",
+      value: "zeroFull",
+    },
+    {
+      label: "ပဒေသာ",
+      value: "paDayThar",
+    },
+    {
+      label: "ညီကို",
+      value: "vro",
+    },
+    {
+      label: "ပါဝါညီကို",
+      value: "powerVro",
+    },
+    {
+      label: "အပူး",
+      value: "twin",
+    },
+    {
+      label: "0/10 ဘရိတ်",
+      value: "zeroBreak",
+    },
+    {
+      label: "1/11 ဘရိတ်",
+      value: "oneBreak",
+    },
+    {
+      label: "2/12 ဘရိတ်",
+      value: "twoBreak",
+    },
+    {
+      label: "3/13 ဘရိတ်",
+      value: "threeBreak",
+    },
+    {
+      label: "4/14 ဘရိတ်",
+      value: "fourBreak",
+    },
+    {
+      label: "5/15 ဘရိတ်",
+      value: "fiveBreak",
+    },
+    {
+      label: "6/16 ဘရိတ်",
+      value: "sixBreak",
+    },
+    {
+      label: "7/17 ဘရိတ်",
+      value: "sevenBreak",
+    },
+    {
+      label: "8/18 ဘရိတ်",
+      value: "eightBreak",
+    },
+    {
+      label: "9/19 ဘရိတ်",
+      value: "nineBreak",
+    },
+  ];
+
   const filterFormData = (obj) => {
     const filteredFormData = formData.selectedFormData.filter(
       (value) => value.num !== obj.num
@@ -141,15 +220,15 @@ function Slot2D() {
       <div className="flex flex-row items-center justify-between mb-8">
         {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
         {/* Left: Title */}
-        <div className="flex w-full justify-end items-center content-center"></div>
-        <div className="flex justify-end w-full items-center content-center flex-col md:flex-row space-x-0 md:space-x-2 space-y-2 md:space-y-0 text-sm tracking-widest">
+        <div className="flex items-center content-center justify-end w-full"></div>
+        <div className="flex flex-col items-center content-center justify-end w-full space-x-0 space-y-2 text-sm tracking-widest md:flex-row md:space-x-2 md:space-y-0">
           <span>ပိတ်ရန်ကျန်ချိန်</span>
           <Timer hour={1} minute={30} />
         </div>
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-6">
-          <form className="flex w-full flex-col justify-start space-y-5">
+          <form className="flex flex-col justify-start w-full space-y-5">
             <UiSelect
               name="sessionId"
               id="sessionId"
@@ -169,42 +248,45 @@ function Slot2D() {
               required={true}
               type="text"
             />
-            <UiInput
-              name="amount"
-              id="amount"
-              formData={formData}
-              setFromData={setFormData}
-              placeHolder="ငွေပမာဏ(အနည်းဆုံး1000) ကျပ်ထည့်သွင်းပါ"
-              required={true}
-              type="number"
-            />
-            <div className="flex items-center content-center flex-row space-x-3 justify-start">
-              <label
-                className="tex-sm text-slate-600 tracking-widest"
-                htmlFor=""
-              >
-                ထိုးမည့်ဂဏန်း
-              </label>
-              <UiSelect
-                name="firstNum"
-                id="firstNum"
-                formData={formData}
-                setFromData={setFormData}
-                options={SlotOptions}
-                optionLabel="label"
-                optionValue="value"
-                placeHolder="ပ"
-              />
-              <UiSelect
-                name="secondNum"
-                id="secondNum"
-                formData={formData}
-                setFromData={setFormData}
-                options={SlotOptions}
-                optionLabel="label"
-                optionValue="value"
-                placeHolder="ဒု"
-              />
+
+            <div className="grid grid-cols-2 gap-4">
+              <div className="">
+                <UiInput
+                  name="number"
+                  id="number"
+                  formData={formData}
+                  setFromData={setFormData}
+                  placeHolder="ထိုးကဏန်း"
+                  required={true}
+                  type="number"
+                />
+              </div>
+              <div className="">
+                <UiInput
+                  name="amount"
+                  id="amount"
+                  formData={formData}
+                  setFromData={setFormData}
+                  placeHolder="ငွေပမာဏ"
+                  required={true}
+                  type="number"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between">
+              <div className="w-1/2 ">
+                <UiSelect
+                  name="quickPick"
+                  id="quickPick"
+                  formData={formData}
+                  setFromData={setFormData}
+                  options={quickPicks}
+                  optionLabel="label"
+                  optionValue="value"
+                  placeHolder="အမြန်ရွေးပါ"
+                />
+              </div>
               <UiButton
                 type="button"
                 actionButton={true}
@@ -218,7 +300,7 @@ function Slot2D() {
         </div>
         <div className="col-span-12 md:col-span-12">
           {formData.name && (
-            <h4 className="text-lg text-slate-600 my-3 tracking-widest">
+            <h4 className="my-3 text-lg tracking-widest text-slate-600">
               {formData.name} ၏စာရင်း{" "}
             </h4>
           )}
@@ -250,7 +332,7 @@ function Slot2D() {
               ))}
             </tbody>
           </SelectTable>
-          <div className="flex justify-start w-full space-x-2 border-t border-slate-300 py-4 my-2">
+          <div className="flex justify-start w-full py-4 my-2 space-x-2 border-t border-slate-300">
             <span className="text-sm text-slate-500">စုစုပေါင်း</span>{" "}
             <span className="text-sm font-bold text-red-700">
               {" "}
