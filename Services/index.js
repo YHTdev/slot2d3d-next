@@ -1,7 +1,7 @@
 import Axios from "axios";
-import { PrismaClient } from "@prisma/client";
+
 export const Instance = Axios.create({
-  baseURL: process.env.SLOT_SERVER_URL,
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
     accept: "application/json",

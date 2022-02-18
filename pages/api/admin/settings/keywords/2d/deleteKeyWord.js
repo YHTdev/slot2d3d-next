@@ -1,10 +1,9 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { loginUser } from "../../../Controllers/Users";
+import { deleteKeyword } from "../../../../../../Controllers/Settings/keywords";
 
 const schema = yup.object().shape({
-  phone: yup.string().required(),
-  password: yup.string().required(),
+  id: yup.string().required(),
 });
 const validate = withValidation({
   schema,
@@ -14,8 +13,8 @@ const validate = withValidation({
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await loginUser(req);
-    res.status(200).json(response);
+    const response = await deleteKeyword(req);
+    res.status(response.statusCode).json(response);
   } else {
     res.status(405).json({
       message: "Method is not allowed",

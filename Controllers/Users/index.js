@@ -7,9 +7,68 @@ const prisma = new PrismaClient();
 export const getUsers = async (req) => {
   const returnObj = ResponseObj;
   try {
-    const { take, skip } = req.body;
+    const { take, skip } = req.query;
     const users = await prisma.user.findMany({
-      include: {
+      select: {
+        name: true,
+        role: true,
+        phone: true,
+        id: true,
+        status: true,
+        profile: true,
+      },
+      take: take ? take : 20,
+      skip: skip ? skip : 0,
+    });
+    returnObj.statusCode = 200;
+    returnObj.Data = users;
+  } catch (error) {
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
+  }
+  return returnObj;
+};
+
+export const getAllAgents = async () => {
+  const returnObj = ResponseObj;
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        role: "AGENT",
+      },
+      select: {
+        name: true,
+        role: true,
+        phone: true,
+        id: true,
+        status: true,
+        profile: true,
+      },
+      take: take ? take : 20,
+      skip: skip ? skip : 0,
+    });
+    returnObj.statusCode = 200;
+    returnObj.Data = users;
+  } catch (error) {
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
+  }
+  return returnObj;
+};
+
+export const getAdminUsers = async () => {
+  const returnObj = ResponseObj;
+  try {
+    const users = await prisma.user.findMany({
+      where: {
+        role: "ADMIN",
+      },
+      select: {
+        name: true,
+        role: true,
+        phone: true,
+        id: true,
+        status: true,
         profile: true,
       },
       take: take ? take : 20,
@@ -28,14 +87,14 @@ export const loginUser = async (req) => {
   const returnObj = ResponseObj;
   try {
     const { phone, password } = req.body;
-    const hashPassword = hashSync(password, 12);
+
     const user = await prisma.user.findFirst({
       where: {
         phone: phone,
       },
     });
     if (user) {
-      const comparePasswrod = compareSync(hashPassword, user.password);
+      const comparePasswrod = compareSync(password, user.password);
       if (comparePasswrod) {
         const accessToken = generateToken(user);
         returnObj.accessToken = accessToken;

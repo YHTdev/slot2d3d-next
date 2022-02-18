@@ -1,3 +1,4 @@
+import { NextResponse } from "next/server";
 import { verifyToken } from "../../../lib/JWT";
 
 export default async function middleware(req) {
@@ -9,17 +10,34 @@ export default async function middleware(req) {
         if (user.role === "SYS_ADMIN" || user.role === "AGENT") {
           req.user = user;
         } else {
-          return new Response(`You're not Admin`);
+          return NextResponse.json({
+            message: `You're not agent.`,
+            statusCode: 401,
+          });
         }
       } else {
-        return new Response("Unauthenticated");
+        return NextResponse.json({
+          message: "Unauthenticated",
+          statusCode: 401,
+        });
       }
       if (user) {
       } else {
-        return new Response("Unauthenticated");
+        return NextResponse.json({
+          message: "Unauthenticated",
+          statusCode: 401,
+        });
       }
+    } else {
+      return NextResponse.json({
+        message: "Unauthenticated",
+        statusCode: 401,
+      });
     }
   } catch (error) {
-    return new Response("SystemError");
+    return NextResponse.json({
+      message: "System error",
+      statusCode: 500,
+    });
   }
 }
