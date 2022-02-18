@@ -2,11 +2,10 @@ import { withValidation } from "next-validations";
 import * as yup from "yup";
 import { updateKeyword } from "../../../../../../Controllers/Settings/keywords";
 
-
 const schema = yup.object().shape({
   name: yup.string().required(),
   nums: yup.array().required(),
-  id:yup.string().required()
+  id: yup.string().required(),
 });
 const validate = withValidation({
   schema,

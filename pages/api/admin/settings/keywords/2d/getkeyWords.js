@@ -1,4 +1,4 @@
-import { getKeywords } from "../../../../../Controllers/Settings/keywords";
+import { getKeywords } from "../../../../../../Controllers/Settings/keywords";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
