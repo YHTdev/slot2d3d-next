@@ -1,25 +1,24 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { update2DKeyword } from "../../../../../../Controllers/Settings/keywords";
+import { create3DKeyword } from "../../../../../../Controllers/Settings/keywords";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  nums: yup.array().required(),
-  id: yup.string().required(),
+  nums: yup.array().required()
 });
 const validate = withValidation({
   schema,
   type: "Yup",
-  mode: "body",
+  mode: "body"
 });
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await update2DKeyword(req);
+    const response = await create3DKeyword(req);
     res.status(response.statusCode).json(response);
   } else {
     res.status(405).json({
-      message: "Method is not allowed",
+      message: "Method is not allowed"
     });
   }
 };
