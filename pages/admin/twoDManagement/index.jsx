@@ -42,7 +42,7 @@ const TwoDManagement = ({ children }) => {
     event.preventDefault();
   };
   const { routes } = useSelector((state) => state.management);
-  console.log();
+
   return (
     <ManagementLayout
       routes={routes.twoDManagementRoutes}

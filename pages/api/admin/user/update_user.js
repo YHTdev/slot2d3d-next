@@ -16,7 +16,7 @@ const validate = withValidation({
 });
 
 const handler = async (req, res) => {
-  if (req.method === "PUT") {
+  if (req.method === "POST") {
     const response = await updateUser(req);
     res.status(response.statusCode).json(response);
   } else {
