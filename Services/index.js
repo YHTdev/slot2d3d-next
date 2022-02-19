@@ -5,6 +5,7 @@ export const Instance = Axios.create({
   headers: {
     "Content-Type": "application/json",
     accept: "application/json",
+    
   },
   withCredentials: true,
 });
@@ -12,6 +13,7 @@ export const Instance = Axios.create({
 export const SetupInspector = (store) => {
   Instance.interceptors.request.use(
     (config) => {
+     
       document.body.classList.add("loading-indicator");
       return config;
     },

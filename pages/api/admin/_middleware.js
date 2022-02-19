@@ -10,11 +10,13 @@ export default async function middleware(req) {
 
       if (user) {
         if (user.role === "SYS_ADMIN" || user.role === "ADMIN") {
+          
         } else {
           return NextResponse.json({
             message: `You're not Admin`,
             statusCode: 401,
           });
+          
         }
       } else {
         return NextResponse.json({

@@ -12,7 +12,7 @@ const validate = withValidation({
 });
 
 const handler = async (req, res) => {
-  if (req.method === "DELETE") {
+  if (req.method === "POST") {
     const response = await deleteUser(req);
     res.status(response.statusCode).json(response);
   } else {

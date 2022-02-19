@@ -20,14 +20,14 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     cbInit();
   }, [cbInit]);
-
+  
   return (
     <StoreProvider store={store}>
       <SessionProvider>
         <ToastProvider placement="top-center">
           {Component.auth ? (
             <Layout>
-              <Component {...pageProps} />
+              <Component {...pageProps}  />
             </Layout>
           ) : (
             <Component {...pageProps} />
