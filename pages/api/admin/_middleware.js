@@ -1,46 +1,26 @@
-import { NextResponse } from "next/server";
-import { verifyToken } from "../../../lib/JWT";
+import { NextResponse } from 'next/server'
+import { verifyToken } from '../../../lib/JWT'
+import { jsonResponse } from '../../../lib/responseHelper'
 
-export default async function middleware(req) {
+export default async function middleware (req) {
   try {
-    const accessToken = req.cookies["USER_TOKEN"];
+    const accessToken = req.cookies['USER_TOKEN']
 
     if (accessToken) {
-      const user = verifyToken(accessToken);
+      const user = verifyToken(accessToken)
 
       if (user) {
-        if (user.role === "SYS_ADMIN" || user.role === "ADMIN") {
-          
+        if (user.role === 'SYS_ADMIN' || user.role === 'ADMIN') {
         } else {
-          return NextResponse.json({
-            message: `You're not Admin`,
-            statusCode: 401,
-          });
-          
+          return jsonResponse(401, { message: 'Unauthenticated' })
         }
       } else {
-        return NextResponse.json({
-          message: "Unauthenticated",
-          statusCode: 401,
-        });
-      }
-      if (user) {
-      } else {
-        return NextResponse.json({
-          message: "Unauthenticated",
-          statusCode: 401,
-        });
+        return jsonResponse(401, { message: 'Unauthenticated' })
       }
     } else {
-      return NextResponse.json({
-        message: "Unauthenticated",
-        statusCode: 401,
-      });
+      return jsonResponse(401, { message: 'Unauthenticated' })
     }
   } catch (error) {
-    return NextResponse({
-      message: JSON.stringify(error),
-      statusCode: 500,
-    });
+    return jsonResponse(500, { message: 'System Error' })
   }
 }

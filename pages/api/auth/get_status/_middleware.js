@@ -1,4 +1,4 @@
-import { NextResponse } from "next/server";
+
 import { verifyToken } from "../../../../lib/JWT";
 import { jsonResponse } from "../../../../lib/responseHelper";
 
