@@ -1,4 +1,4 @@
-import { get2DKeywords } from "../../../../../Controllers/Settings/keywords";
+import { get2DKeywords } from "../../../../Controllers/Settings/keywords";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {

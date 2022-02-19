@@ -92,6 +92,17 @@ enum SessionType {
   ThreeDSession
 }
 
+model Session {
+  id        String      @id @default(uuid())
+  name      String      @unique
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now())
+  type      SessionType @default(TwoDSession)
+  fromDt    DateTime
+  toDt      DateTime
+  status    Boolean     @default(true)
+}
+
 enum Role {
   AGENT
   SYS_ADMIN
