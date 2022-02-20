@@ -25,7 +25,7 @@ const initialState = {
       },
       {
         src: "/admin/twoDManagement/keywords-settings",
-        title: "အသုံးအနှုန်း",
+        title: "အသုံးနှုတ်း သတ်မှတ်ချက်",
         isAllow: true,
       },
     ],
@@ -48,38 +48,42 @@ const initialState = {
     ],
     twoDBetRoutes: [
       {
-        src: "/agent/2d",
+        src: "/admin/slots/2d",
         title: "ဂဏန်းရွေးချယ်ခြင်း",
         isAllow: true,
       },
       {
-        src: "/agent/2d/limitations",
+        src: "/admin/slots/2d/limitations",
         title: "ကန့်သတ်ချက်များ",
         isAllow: true,
       },
       {
-        src: "/agent/2d/leger",
+        src: "/admin/slots/2d/leger",
         title: "စာရင်း",
         isAllow: true,
       },
     ],
     threeDBetRoutes: [
       {
-        src: "/agent/3d",
+        src: "/admin/slots/3d",
         title: "ဂဏန်းရွေးချယ်ခြင်း",
         isAllow: true,
       },
       {
-        src: "/agent/3d/limitations",
+        src: "/admin/slots/3d/limitations",
         title: "ကန့်သတ်ချက်များ",
         isAllow: true,
       },
       {
-        src: "/agent/3d/leger",
+        src: "/admin/slots/3d/leger",
         title: "စာရင်း",
         isAllow: true,
       },
     ],
+  },
+  Nums: {
+    towD: [],
+    threeD: [],
   },
 };
 
@@ -87,10 +91,17 @@ export const manageSlice = createSlice({
   name: "Management",
   initialState,
   reducers: {
-    addRoutes: (state, action) => {},
+    add2DNums: (state, action) => {
+      state.Nums.towD = [];
+      state.Nums.towD = action.payload;
+    },
+    add3DNums: (state, action) => {
+      state.Nums.threeD = [];
+      state.Nums.threeD = action.payload;
+    },
   },
 });
 
-export const { addRoutes } = manageSlice.actions;
+export const { add2DNums, add3DNums } = manageSlice.actions;
 
 export default manageSlice.reducer;

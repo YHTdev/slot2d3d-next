@@ -1,10 +1,8 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { deleteUser } from "../../../../Controllers/Users";
+import { getAdminUsers } from "../../../../Controllers/Users";
 
-const schema = yup.object().shape({
-  id: yup.string().required(),
-});
+const schema = yup.object().shape({});
 const validate = withValidation({
   schema,
   type: "Yup",
@@ -12,9 +10,9 @@ const validate = withValidation({
 });
 
 const handler = async (req, res) => {
-  if (req.method === "DELETE") {
-    const response = await deleteUser(req);
-    res.status(response.statusCode).json(response);
+  if (req.method === "GET") {
+    const response = await getAdminUsers(req);
+    res.status(200).json(response);
   } else {
     res.status(405).json({
       message: "Method is not allowed",

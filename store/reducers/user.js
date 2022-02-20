@@ -2,8 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAuth: false,
-  usrNm: "",
-  accessToken: "",
+  user:null,
   loginTm: "",
 };
 
@@ -13,8 +12,7 @@ const userSlice = createSlice({
   reducers: {
     setCredentials: (state, action) => {
       state.isAuth = true;
-      state.accessToken = action.payload.accessToken;
-      state.usrNm = action.payload.userNm;
+      state.user = action.payload;
       state.loginTm = new Date().toLocaleString();
     },
   },
