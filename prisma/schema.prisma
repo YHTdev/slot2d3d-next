@@ -49,8 +49,14 @@ model Keyword {
   name         String                  @unique
   createdAt    DateTime                @default(now())
   updatedAt    DateTime                @default(now())
+  type         keywordType             @default(TwoD)
   twoDNumber   TwoDNumerOnKeyword[]
   threeDNumber ThreeDNumberOnKeyword[]
+}
+
+enum keywordType {
+  TwoD
+  ThreeD
 }
 
 model ThreeDNumer {
@@ -84,6 +90,17 @@ model ThreeDNumberOnKeyword {
 enum SessionType {
   TwoDSession
   ThreeDSession
+}
+
+model Session {
+  id        String      @id @default(uuid())
+  name      String      @unique
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now())
+  type      SessionType @default(TwoDSession)
+  fromDt    DateTime
+  toDt      DateTime
+  status    Boolean     @default(true)
 }
 
 enum Role {

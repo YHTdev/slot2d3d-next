@@ -1,43 +1,25 @@
-import { NextResponse } from "next/server";
-import { verifyToken } from "../../../lib/JWT";
 
-export default async function middleware(req) {
+import { verifyToken } from '../../../lib/JWT'
+import { jsonResponse } from '../../../lib/responseHelper'
+
+export default async function middleware (req) {
   try {
-    const accessToken = req.cookies["USER_TOKEN"];
+    const accessToken = req.cookies['USER_TOKEN']
     if (authHeader) {
-      const user = verifyToken(accessToken);
+      const user = verifyToken(accessToken)
       if (user) {
-        if (user.role === "SYS_ADMIN" || user.role === "AGENT") {
-          req.user = user;
+        if (user.role === 'SYS_ADMIN' || user.role === 'AGENT') {
+          req.user = user
         } else {
-          return NextResponse.json({
-            message: `You're not agent.`,
-            statusCode: 401,
-          });
+          return jsonResponse(401, { message: 'Unauthenticated' })
         }
       } else {
-        return NextResponse.json({
-          message: "Unauthenticated",
-          statusCode: 401,
-        });
-      }
-      if (user) {
-      } else {
-        return NextResponse.json({
-          message: "Unauthenticated",
-          statusCode: 401,
-        });
+        return jsonResponse(401, { message: 'Unauthenticated' })
       }
     } else {
-      return NextResponse.json({
-        message: "Unauthenticated",
-        statusCode: 401,
-      });
+      return jsonResponse(401, { message: 'Unauthenticated' })
     }
   } catch (error) {
-    return NextResponse.json({
-      message: "System error",
-      statusCode: 500,
-    });
+    return jsonResponse(500, { message: 'System Error' })
   }
 }
