@@ -2,8 +2,10 @@ import { PrismaClient } from '@prisma/client'
 import { ResponseObj } from '../../lib/responseHelper'
 import { hashSync, compareSync } from 'bcrypt'
 import { generateToken, verifyToken } from '../../lib/JWT'
-const prisma = new PrismaClient()
+import { UploadImage } from '../media'
 
+const prisma = new PrismaClient()
+// get all users
 export const getUsers = async req => {
   const returnObj = ResponseObj
   try {
@@ -15,7 +17,11 @@ export const getUsers = async req => {
         phone: true,
         id: true,
         status: true,
-        profile: true
+        profile: {
+          include: {
+            photos: true
+          }
+        }
       },
       take: take ? take : 20,
       skip: skip ? skip : 0
@@ -28,7 +34,7 @@ export const getUsers = async req => {
   }
   return returnObj
 }
-
+// get all agent users
 export const getAllAgents = async () => {
   const returnObj = ResponseObj
   try {
@@ -54,6 +60,7 @@ export const getAllAgents = async () => {
   return returnObj
 }
 
+// get all admin users
 export const getAdminUsers = async () => {
   const returnObj = ResponseObj
   try {
@@ -110,10 +117,23 @@ export const loginUser = async req => {
   return returnObj
 }
 
+// create user
 export const createUser = async req => {
   const returnObj = ResponseObj
+
   try {
-    const { phone, name, password, address, email, nrc, bio } = req.body
+    const {
+      phone,
+      name,
+      password,
+      address,
+      email,
+      nrc,
+      bio,
+      nrc_front,
+      nrc_back
+    } = req.body
+
     const hasPhone = await prisma.user.findFirst({
       where: {
         phone: phone
@@ -124,21 +144,16 @@ export const createUser = async req => {
         nrc: nrc
       }
     })
-    const hasEmail = await prisma.profile.findFirst({
-      where: {
-        email: email
-      }
-    })
+
     if (hasPhone) {
       returnObj.statusCode = 400
       returnObj.message = '၄င်းဖုန်းနံပါတ်အသုံးပြုပြီးသားဖြစ်သည်'
     } else if (hasNrc) {
       returnObj.statusCode = 400
       returnObj.message = '၄င်းမှတ်ပုံတင်အားအသုံးပြုပြီးဖြစ်သည်'
-    } else if (hasEmail) {
-      returnObj.statusCode = 400
-      returnObj.message = '၄င်း အီးမေးလ်အားအသုံးပြုပြီးဖြစ်သည်'
     } else {
+      const nrcFront = await UploadImage(nrc_front)
+      const nrcBack = await UploadImage(nrc_back)
       const hashPassword = hashSync(password, 12)
       const user = await prisma.user.create({
         data: {
@@ -147,14 +162,29 @@ export const createUser = async req => {
           name: name,
           profile: {
             create: {
-              bio: bio,
               email: email,
               nrc: nrc,
-              address: address
+              address: address,
+              bio: bio,
+              photos: {
+                createMany: {
+                  data: [
+                    {
+                      name: 'မှတ်ပုံတင်အရှေ့',
+                      path: nrcFront
+                    },
+                    {
+                      name: 'မှတ်ပုံတင်အနောက်',
+                      path: nrcBack
+                    }
+                  ]
+                }
+              }
             }
           }
         }
       })
+
       if (user) {
         returnObj.statusCode = 201
         ;(returnObj.message = 'အသုံးပြုသူဖန်တီးမှု့အောင်မြင်ပါသည်'),
@@ -177,7 +207,19 @@ export const createUser = async req => {
 export const updateUser = async req => {
   const returnObj = ResponseObj
   try {
-    const { phone, name, address, email, nrc, bio, id } = req.body
+    const {
+      phone,
+      name,
+      address,
+      email,
+      nrc,
+      bio,
+      id,
+      nrc_front,
+      nrc_back
+    } = req.body
+    const nrcFront = await UploadImage(nrc_front)
+    const nrcBack = await UploadImage(nrc_back)
     const user = await prisma.user.update({
       where: {
         id: id
@@ -191,7 +233,21 @@ export const updateUser = async req => {
             email: email,
             nrc: nrc,
             address: address,
-            bio: bio
+            bio: bio,
+            photos: {
+              createMany: {
+                data: [
+                  {
+                    name: 'မှတ်ပုံတင်အရှေ့',
+                    path: nrcFront
+                  },
+                  {
+                    name: 'မှတ်ပုံတင်နောက်',
+                    path: nrcBack
+                  }
+                ]
+              }
+            }
           }
         }
       }
