@@ -108,8 +108,8 @@ model Session {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @default(now())
   type      SessionType @default(TwoDSession)
-  fromDt    DateTime
-  toDt      DateTime
+  fromDt    String
+  toDt      String
   status    Boolean     @default(true)
 }
 

@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import FrontLogo from "../../components/Front/FrontLogo";
@@ -6,6 +7,7 @@ import PageWrapper from "../../components/PageWrapper";
 import { Instance } from "../../Services";
 
 function Login() {
+  const router = useRouter()
   const [formData, setformData] = useState({
     phone: "",
     password: "",
@@ -29,6 +31,7 @@ function Login() {
               appearance: "success",
               autoDismiss: true,
             });
+            router.push('/admin')
           } else if (res.data && res.data.statusCode === 400) {
             addToast(res.data.message, {
               appearance: "warning",

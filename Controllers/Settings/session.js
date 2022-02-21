@@ -1,297 +1,295 @@
-import { PrismaClient } from '@prisma/client'
-import { ResponseObj } from '../../lib/responseHelper'
+import { PrismaClient } from "@prisma/client";
+import { ResponseObj } from "../../lib/responseHelper";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 // 2D management
 
-export const get2DSessions = async req => {
-  const returnObj = ResponseObj
+export const get2DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
     const sessions = await prisma.session.findMany({
       where: {
-        type: 'TwoDSession',
-        status: true
-      }
-    })
-    returnObj.statusCode = 200
-    returnObj.Data = sessions
-    returnObj.message = 'success'
+        type: "TwoDSession",
+      },
+    });
+    returnObj.statusCode = 200;
+    returnObj.Data = sessions;
+    returnObj.message = "success";
   } catch (error) {
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
 
 // create
-export const create2DSessions = async req => {
-  const returnObj = ResponseObj
+export const create2DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { name, fromDt, toDt, status } = req.body
+    const { name, fromDt, toDt, status } = req.body;
     const session = await prisma.session.create({
       data: {
         name: name,
         fromDt: fromDt,
         toDt: toDt,
-        type: 'TwoDSession',
-        status: status ? status : true
-      }
-    })
+        type: "TwoDSession",
+        status: status ? status : true,
+      },
+    });
     if (session) {
-      returnObj.statusCode = 200
-      returnObj.message = 'လုပ်ဆောင်မှု့အောင်မြင်ပါသည်'
-      returnObj.Data = session
+      returnObj.statusCode = 200;
+      returnObj.message = "လုပ်ဆောင်မှု့အောင်မြင်ပါသည်";
+      returnObj.Data = session;
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'လုပ်ဆောင်မှု့မအောင်မြင်ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "လုပ်ဆောင်မှု့မအောင်မြင်ပါ";
     }
   } catch (error) {
-    console.log(error)
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    console.log(error);
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
 
 // update
 
-export const update2DSessions = async req => {
-  const returnObj = ResponseObj
+export const update2DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { name, fromDt, toDt, id, status } = req.body
+    const { name, fromDt, toDt, id, status } = req.body;
     const isExist = await prisma.session.findUnique({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (isExist) {
       const session = await prisma.session.update({
         where: {
-          id: id
+          id: id,
         },
         data: {
           name: name,
           fromDt: fromDt,
           toDt: toDt,
-          status: status ? status : true
-        }
-      })
+          status: status ? status : true,
+        },
+      });
       if (session) {
-        returnObj.statusCode = 200
-        returnObj.message = 'လုပ်ဆောင်မှု့အောင်မြင်ပါသည်'
-        returnObj.Data = session
+        returnObj.statusCode = 200;
+        returnObj.message = "လုပ်ဆောင်မှု့အောင်မြင်ပါသည်";
+        returnObj.Data = session;
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'လုပ်ဆောင်မှု့မအောင်မြင်ပါ'
+        returnObj.statusCode = 400;
+        returnObj.message = "လုပ်ဆောင်မှု့မအောင်မြင်ပါ";
       }
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'ရှာမတွေ့ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "ရှာမတွေ့ပါ";
     }
   } catch (error) {
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
 
 // delete
 
-export const delete2DSessions = async req => {
-  const returnObj = ResponseObj
+export const delete2DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { id } = req.body
+    const { id } = req.body;
     const isExist = await prisma.session.findUnique({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (isExist) {
       const session = await prisma.session.delete({
         where: {
-          id: id
-        }
-      })
+          id: id,
+        },
+      });
       if (session) {
-        returnObj.statusCode = 200
-        returnObj.message = 'လုပ်ဆောင်မှု့အောင်မြင်ပါသည်'
+        returnObj.statusCode = 200;
+        returnObj.message = "လုပ်ဆောင်မှု့အောင်မြင်ပါသည်";
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'လုပ်ဆောင်မှု့မအောင်မြင်ပါ'
+        returnObj.statusCode = 400;
+        returnObj.message = "လုပ်ဆောင်မှု့မအောင်မြင်ပါ";
       }
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'ရှာမတွေ့ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "ရှာမတွေ့ပါ";
     }
   } catch (error) {
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
 
-export const changeSessionStatus = async req => {
-  const returnObj = ResponseObj
+export const changeSessionStatus = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { status, id } = req.body
+    const { status, id } = req.body;
     const isExist = await prisma.session.findUnique({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (isExist) {
       const session = await prisma.session.update({
         where: {
-          id: id
+          id: id,
         },
         data: {
-          status: status
-        }
-      })
+          status: status,
+        },
+      });
       if (session) {
-        returnObj.statusCode = 200
-        returnObj.message = 'လုပ်ဆောင်မှု့အောင်မြင်ပါသည်'
+        returnObj.statusCode = 200;
+        returnObj.message = "လုပ်ဆောင်မှု့အောင်မြင်ပါသည်";
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'လုပ်ဆောင်မှု့မအောင်မြင်ပါ'
+        returnObj.statusCode = 400;
+        returnObj.message = "လုပ်ဆောင်မှု့မအောင်မြင်ပါ";
       }
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'ရှာမတွေ့ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "ရှာမတွေ့ပါ";
     }
   } catch (error) {
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
 // 3D management
 
-export const get3DSessions = async req => {
-  const returnObj = ResponseObj
+export const get3DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
     const sessions = await prisma.session.findMany({
       where: {
-        type: 'ThreeDSession',
-        status: true
-      }
-    })
-    returnObj.statusCode = 200
-    returnObj.Data = sessions
-    returnObj.message = 'success'
+        type: "ThreeDSession",
+      },
+    });
+    returnObj.statusCode = 200;
+    returnObj.Data = sessions;
+    returnObj.message = "success";
   } catch (error) {
-    console.log(error)
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    console.log(error);
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
 
-export const create3DSessions = async req => {
-  const returnObj = ResponseObj
+export const create3DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { name, fromDt, toDt, status } = req.body
+    const { name, fromDt, toDt, status } = req.body;
     const session = await prisma.session.create({
       data: {
         name: name,
         fromDt: fromDt,
         toDt: toDt,
-        type: 'ThreeDSession',
-        status: status ? status : true
-      }
-    })
+        type: "ThreeDSession",
+        status: status ? status : true,
+      },
+    });
     if (session) {
-      returnObj.statusCode = 200
-      returnObj.message = 'လုပ်ဆောင်မှု့အောင်မြင်ပါသည်'
-      returnObj.Data = session
+      returnObj.statusCode = 200;
+      returnObj.message = "လုပ်ဆောင်မှု့အောင်မြင်ပါသည်";
+      returnObj.Data = session;
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'လုပ်ဆောင်မှု့မအောင်မြင်ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "လုပ်ဆောင်မှု့မအောင်မြင်ပါ";
     }
   } catch (error) {
-    console.log(error)
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    console.log(error);
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
 
-export const update3DSessions = async req => {
-  const returnObj = ResponseObj
+export const update3DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { name, fromDt, toDt, id, status } = req.body
+    const { name, fromDt, toDt, id, status } = req.body;
     const isExist = await prisma.session.findUnique({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (isExist) {
       const session = await prisma.session.update({
         where: {
-          id: id
+          id: id,
         },
         data: {
           name: name,
           fromDt: fromDt,
           toDt: toDt,
-          status: status ? status : true
-        }
-      })
+          status: status ? status : true,
+        },
+      });
       if (session) {
-        returnObj.statusCode = 200
-        returnObj.message = 'လုပ်ဆောင်မှု့အောင်မြင်ပါသည်'
-        returnObj.Data = session
+        returnObj.statusCode = 200;
+        returnObj.message = "လုပ်ဆောင်မှု့အောင်မြင်ပါသည်";
+        returnObj.Data = session;
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'လုပ်ဆောင်မှု့မအောင်မြင်ပါ'
+        returnObj.statusCode = 400;
+        returnObj.message = "လုပ်ဆောင်မှု့မအောင်မြင်ပါ";
       }
     }
   } catch (error) {
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
 
-export const delete3DSessions = async req => {
-  const returnObj = ResponseObj
+export const delete3DSessions = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { id } = req.body
+    const { id } = req.body;
     const isExist = await prisma.session.findUnique({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (isExist) {
       const session = await prisma.session.delete({
         where: {
-          id: id
-        }
-      })
+          id: id,
+        },
+      });
       if (session) {
-        returnObj.statusCode = 200
-        returnObj.message = 'လုပ်ဆောင်မှု့အောင်မြင်ပါသည်'
+        returnObj.statusCode = 200;
+        returnObj.message = "လုပ်ဆောင်မှု့အောင်မြင်ပါသည်";
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'လုပ်ဆောင်မှု့မအောင်မြင်ပါ'
+        returnObj.statusCode = 400;
+        returnObj.message = "လုပ်ဆောင်မှု့မအောင်မြင်ပါ";
       }
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'ရှာမတွေ့ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "ရှာမတွေ့ပါ";
     }
   } catch (error) {
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
 
-  return returnObj
-}
+  return returnObj;
+};
