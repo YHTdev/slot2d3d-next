@@ -1,4 +1,5 @@
 import { MenuIcon, SearchIcon } from "@heroicons/react/outline";
+import { useSelector } from "react-redux";
 import DropdownProfile from "../DropdownProfile";
 
 const Header = ({ sideBarOpen, setSideBarOpen }) => {

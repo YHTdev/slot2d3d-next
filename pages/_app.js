@@ -31,7 +31,6 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     getStatus();
   }, [getStatus]);
-
   return (
     <StoreProvider store={store}>
       <ToastProvider placement="top-center">

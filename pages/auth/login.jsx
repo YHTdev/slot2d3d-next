@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import FrontLogo from "../../components/Front/FrontLogo";
@@ -11,6 +12,7 @@ function Login() {
     password: "",
   });
   const { addToast } = useToasts();
+  const router = useRouter();
   const onSumbit = (e) => {
     console.log(process.env.SLOT_SERVER_URL);
     e.preventDefault();
@@ -29,6 +31,7 @@ function Login() {
               appearance: "success",
               autoDismiss: true,
             });
+            router.push("/agent/2d");
           } else if (res.data && res.data.statusCode === 400) {
             addToast(res.data.message, {
               appearance: "warning",
@@ -56,17 +59,15 @@ function Login() {
     <PageWrapper>
       <PageInnerWrapper>
         <FrontLogo />
-        <div className="flex  my-40 overflow-y-scroll  justify-center items-center content-center">
+        <div className="flex items-center content-center justify-center my-40 overflow-y-scroll">
           <div
-            className="flex  px-2 py-2 w-full max-w-screen-xs bg-slate-900 bg-opacity-60 rounded-md"
-            data-aos="zoom-in-up"
-          >
+            className="flex w-full px-2 py-2 rounded-md max-w-screen-xs bg-slate-900 bg-opacity-60"
+            data-aos="zoom-in-up">
             <form
               onSubmit={(e) => {
                 onSumbit(e);
               }}
-              className="flex flex-col space-y-4 w-full px-4 py-4"
-            >
+              className="flex flex-col w-full px-4 py-4 space-y-4">
               <h6 className="text-sm tracking-widest text-yellow-400">
                 ပြန်လည်ကြိုဆိုပါသည် ✨
               </h6>
@@ -80,7 +81,7 @@ function Login() {
                 required
                 placeholder="ဖုန်းနံပါတ်ထည့်သွင်းပါ"
                 type="tel"
-                className="text-sm text-slate-400 px-2 py-2 right-1  focus:ring-0 bg-slate-700 border border-slate-700 appearance-none focus:outline-none w-full "
+                className="w-full px-2 py-2 text-sm border appearance-none text-slate-400 right-1 focus:ring-0 bg-slate-700 border-slate-700 focus:outline-none "
               />
               <input
                 id="password"
@@ -92,12 +93,11 @@ function Login() {
                 required
                 placeholder="စကားဝှက် ထည့်သွင်းပါ"
                 type="password"
-                className="text-sm text-slate-400 px-2 py-2 right-1  focus:ring-0 bg-slate-700 border border-slate-700 appearance-none focus:outline-none w-full "
+                className="w-full px-2 py-2 text-sm border appearance-none text-slate-400 right-1 focus:ring-0 bg-slate-700 border-slate-700 focus:outline-none "
               />
               <button
                 type="submit"
-                className="text-sm text-slate-400 bg-slate-700 appearance-none hover:bg-yellow-400 px-2 py-2 hover:text-white"
-              >
+                className="px-2 py-2 text-sm appearance-none text-slate-400 bg-slate-700 hover:bg-yellow-400 hover:text-white">
                 ဝင်ရောက်မည်
               </button>
             </form>
