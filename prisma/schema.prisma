@@ -22,15 +22,24 @@ model Profile {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  password  String
-  phone     String   @unique
-  name      String?
-  profile   Profile?
-  status    Status   @default(Active)
-  role      Role     @default(AGENT)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id           String      @id @default(uuid())
+  password     String
+  phone        String      @unique
+  name         String?
+  profile      Profile?
+  status       Boolean     @default(true)
+  role         Role        @default(AGENT)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now())
+  commission   Commission? @relation(fields: [commissionId], references: [id])
+  commissionId String?
+}
+
+model Commission {
+  id   String @id @default(uuid())
+  name String
+  rate Int
+  user User[]
 }
 
 model Photos {

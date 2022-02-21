@@ -2,11 +2,38 @@ import Layout from "../../../components/layout";
 import AgentUserLists from "../../../components/AgentUsers/AgentUserLists";
 import { PlusIcon } from "@heroicons/react/outline";
 import Modal, { ModalBody, ModalTitle } from "../../../components/Modal";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CreateAdminUsers from "../../../components/AdminUsers/CreateAdminUsers";
+import { Instance } from "../../../Services";
+import AdminUserLists from "../../../components/AdminUsers/AgentUserLists";
 
 const AdminUsers = ({}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [users, setUsers] = useState([])
+  const fetchUsers = useCallback(
+    () => {
+      Instance({
+        url:'/admin/user/getalladmins',
+        method:'GET'
+      })
+      .then(res=>{
+        if(res.data && res.data.statusCode===200){
+          setUsers(res.data.Data)
+        }
+
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    },
+    [],
+  )
+
+  useEffect(() => {
+    fetchUsers()
+  }, [fetchUsers])
+  
+  
 
   return (
     <Layout>
@@ -30,7 +57,7 @@ const AdminUsers = ({}) => {
           <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
             <ModalTitle> Admin ဖန်တီးပါ</ModalTitle>
             <ModalBody>
-              <CreateAdminUsers />
+              <CreateAdminUsers isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}  fetchUsers={fetchUsers} />
             </ModalBody>
           </Modal>
         </div>
@@ -38,7 +65,7 @@ const AdminUsers = ({}) => {
 
       {/* Cards */}
       <div className="grid grid-cols-12 gap-6 space-y-12">
-        <AgentUserLists />
+        <AdminUserLists customers={users} fetchUsers={fetchUsers} />
       </div>
     </Layout>
   );

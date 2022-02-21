@@ -5,11 +5,35 @@ import CreateAgentUsers from "../../../components/AgentUsers/CreateAgentUsers";
 import AgentUserLists from "../../../components/AgentUsers/AgentUserLists";
 import { PlusIcon } from "@heroicons/react/outline";
 import Modal, { ModalBody, ModalTitle } from "../../../components/Modal";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { Instance } from "../../../Services";
 
 const Agents = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [users, setUsers] = useState([])
+  const fetchUsers = useCallback(
+    () => {
+     Instance({
+       url:'/admin/user/getallagent',
+       method:'GET',
+     })
+     .then(res=>{
+        if(res.data && res.data.statusCode===200){
+          setUsers(res.data.Data)
+        }
+     })
+     .catch(err=>{
+       console.log(err)
+     })
+     
+    },
+    [],
+  )
+  useEffect(() => {
+   fetchUsers()
+  }, [fetchUsers])
+  
+  
   return (
     <Layout>
       <div className="flex flex-row items-center justify-between mb-8">
@@ -32,7 +56,7 @@ const Agents = () => {
           <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
             <ModalTitle> အေးဂျင့်ဖန်တီးပါ</ModalTitle>
             <ModalBody>
-              <CreateAgentUsers />
+              <CreateAgentUsers fetchUsers={fetchUsers} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
             </ModalBody>
           </Modal>
         </div>
@@ -40,7 +64,7 @@ const Agents = () => {
 
       {/* Cards */}
       <div className="grid grid-cols-12 gap-6 space-y-12">
-        <AgentUserLists />
+        <AgentUserLists customers={users} fetchUsers={fetchUsers} />
       </div>
     </Layout>
   );

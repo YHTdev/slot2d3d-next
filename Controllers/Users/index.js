@@ -1,15 +1,15 @@
-import { PrismaClient } from '@prisma/client'
-import { ResponseObj } from '../../lib/responseHelper'
-import { hashSync, compareSync } from 'bcrypt'
-import { generateToken, verifyToken } from '../../lib/JWT'
-import { UploadImage } from '../media'
+import { PrismaClient } from "@prisma/client";
+import { ResponseObj } from "../../lib/responseHelper";
+import { hashSync, compareSync } from "bcrypt";
+import { generateToken, verifyToken } from "../../lib/JWT";
+import { UploadImage } from "../media";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 // get all users
-export const getUsers = async req => {
-  const returnObj = ResponseObj
+export const getUsers = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { take, skip } = req.query
+    const { take, skip } = req.query;
     const users = await prisma.user.findMany({
       select: {
         name: true,
@@ -19,28 +19,28 @@ export const getUsers = async req => {
         status: true,
         profile: {
           include: {
-            photos: true
-          }
-        }
+            photos: true,
+          },
+        },
       },
       take: take ? take : 20,
-      skip: skip ? skip : 0
-    })
-    returnObj.statusCode = 200
-    returnObj.Data = users
+      skip: skip ? skip : 0,
+    });
+    returnObj.statusCode = 200;
+    returnObj.Data = users;
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 // get all agent users
 export const getAllAgents = async () => {
-  const returnObj = ResponseObj
+  const returnObj = ResponseObj;
   try {
     const users = await prisma.user.findMany({
       where: {
-        role: 'AGENT'
+        role: "AGENT",
       },
       select: {
         name: true,
@@ -48,25 +48,25 @@ export const getAllAgents = async () => {
         phone: true,
         id: true,
         status: true,
-        profile: true
-      }
-    })
-    returnObj.statusCode = 200
-    returnObj.Data = users
+        profile: true,
+      },
+    });
+    returnObj.statusCode = 200;
+    returnObj.Data = users;
   } catch (error) {
-    returnObj.statusCode = 500
-    returnObj.Error = error
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
 // get all admin users
 export const getAdminUsers = async () => {
-  const returnObj = ResponseObj
+  const returnObj = ResponseObj;
   try {
     const users = await prisma.user.findMany({
       where: {
-        role: 'ADMIN'
+        role: "ADMIN",
       },
       select: {
         name: true,
@@ -74,52 +74,52 @@ export const getAdminUsers = async () => {
         phone: true,
         id: true,
         status: true,
-        profile: true
-      }
-    })
-    returnObj.statusCode = 200
-    returnObj.Data = users
+        profile: true,
+      },
+    });
+    returnObj.statusCode = 200;
+    returnObj.Data = users;
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
-export const loginUser = async req => {
-  const returnObj = ResponseObj
+export const loginUser = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { phone, password } = req.body
+    const { phone, password } = req.body;
 
     const user = await prisma.user.findFirst({
       where: {
-        phone: phone
-      }
-    })
+        phone: phone,
+      },
+    });
     if (user) {
-      const comparePasswrod = compareSync(password, user.password)
+      const comparePasswrod = compareSync(password, user.password);
       if (comparePasswrod) {
-        const accessToken = generateToken(user)
-        returnObj.accessToken = accessToken
-        ;(returnObj.message = 'success'), (returnObj.statusCode = 200)
+        const accessToken = generateToken(user);
+        returnObj.accessToken = accessToken;
+        (returnObj.message = "success"), (returnObj.statusCode = 200);
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'စကားဝှက်မှားယွင်းနေပါသည်'
+        returnObj.statusCode = 400;
+        returnObj.message = "စကားဝှက်မှားယွင်းနေပါသည်";
       }
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'အသုံးပြုသူမရှိပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "အသုံးပြုသူမရှိပါ";
     }
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
 // create user
-export const createUser = async req => {
-  const returnObj = ResponseObj
+export const createUser = async (req) => {
+  const returnObj = ResponseObj;
 
   try {
     const {
@@ -131,35 +131,37 @@ export const createUser = async req => {
       nrc,
       bio,
       nrc_front,
-      nrc_back
-    } = req.body
+      role,
+      nrc_back,
+    } = req.body;
 
     const hasPhone = await prisma.user.findFirst({
       where: {
-        phone: phone
-      }
-    })
+        phone: phone,
+      },
+    });
     const hasNrc = await prisma.profile.findFirst({
       where: {
-        nrc: nrc
-      }
-    })
+        nrc: nrc,
+      },
+    });
 
     if (hasPhone) {
-      returnObj.statusCode = 400
-      returnObj.message = '၄င်းဖုန်းနံပါတ်အသုံးပြုပြီးသားဖြစ်သည်'
+      returnObj.statusCode = 400;
+      returnObj.message = "၄င်းဖုန်းနံပါတ်အသုံးပြုပြီးသားဖြစ်သည်";
     } else if (hasNrc) {
-      returnObj.statusCode = 400
-      returnObj.message = '၄င်းမှတ်ပုံတင်အားအသုံးပြုပြီးဖြစ်သည်'
+      returnObj.statusCode = 400;
+      returnObj.message = "၄င်းမှတ်ပုံတင်အားအသုံးပြုပြီးဖြစ်သည်";
     } else {
-      const nrcFront = await UploadImage(nrc_front)
-      const nrcBack = await UploadImage(nrc_back)
-      const hashPassword = hashSync(password, 12)
+      const nrcFront = await UploadImage(nrc_front);
+      const nrcBack = await UploadImage(nrc_back);
+      const hashPassword = hashSync(password, 12);
       const user = await prisma.user.create({
         data: {
           phone: req.body.phone,
           password: hashPassword,
           name: name,
+          role: role ? role : "AGENT",
           profile: {
             create: {
               email: email,
@@ -170,59 +172,50 @@ export const createUser = async req => {
                 createMany: {
                   data: [
                     {
-                      name: 'မှတ်ပုံတင်အရှေ့',
-                      path: nrcFront
+                      name: "မှတ်ပုံတင်အရှေ့",
+                      path: nrcFront,
                     },
                     {
-                      name: 'မှတ်ပုံတင်အနောက်',
-                      path: nrcBack
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      })
+                      name: "မှတ်ပုံတင်အနောက်",
+                      path: nrcBack,
+                    },
+                  ],
+                },
+              },
+            },
+          },
+        },
+      });
 
       if (user) {
-        returnObj.statusCode = 201
-        ;(returnObj.message = 'အသုံးပြုသူဖန်တီးမှု့အောင်မြင်ပါသည်'),
+        returnObj.statusCode = 201;
+        (returnObj.message = "အသုံးပြုသူဖန်တီးမှု့အောင်မြင်ပါသည်"),
           (returnObj.Data = {
             userPassword: password,
-            user: user
-          })
+            user: user,
+          });
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'အသုံးပြုသူဖန်တီးမှု့မအောင်မြင်ပါ'
+        returnObj.statusCode = 400;
+        returnObj.message = "အသုံးပြုသူဖန်တီးမှု့မအောင်မြင်ပါ";
       }
     }
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
-export const updateUser = async req => {
-  const returnObj = ResponseObj
+export const updateUser = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const {
-      phone,
-      name,
-      address,
-      email,
-      nrc,
-      bio,
-      id,
-      nrc_front,
-      nrc_back
-    } = req.body
-    const nrcFront = await UploadImage(nrc_front)
-    const nrcBack = await UploadImage(nrc_back)
+    const { phone, name, address, email, nrc, bio, id, nrc_front, nrc_back } =
+      req.body;
+    const nrcFront = await UploadImage(nrc_front);
+    const nrcBack = await UploadImage(nrc_back);
     const user = await prisma.user.update({
       where: {
-        id: id
+        id: id,
       },
       data: {
         name: name,
@@ -238,183 +231,184 @@ export const updateUser = async req => {
               createMany: {
                 data: [
                   {
-                    name: 'မှတ်ပုံတင်အရှေ့',
-                    path: nrcFront
+                    name: "မှတ်ပုံတင်အရှေ့",
+                    path: nrcFront,
                   },
                   {
-                    name: 'မှတ်ပုံတင်နောက်',
-                    path: nrcBack
-                  }
-                ]
-              }
-            }
-          }
-        }
-      }
-    })
+                    name: "မှတ်ပုံတင်နောက်",
+                    path: nrcBack,
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+    });
     if (user) {
-      returnObj.statusCode = 200
-      returnObj.message = 'တည်းဖြတ်မှု့အောင်မြင်ပါသည်'
-      returnObj.Data = user
+      returnObj.statusCode = 200;
+      returnObj.message = "တည်းဖြတ်မှု့အောင်မြင်ပါသည်";
+      returnObj.Data = user;
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'တည်းဖြတ်မှု့မအောင်မြင်ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "တည်းဖြတ်မှု့မအောင်မြင်ပါ";
     }
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
-export const deleteUser = async req => {
-  const returnObj = ResponseObj
+export const deleteUser = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { id } = req.body
+    const { id } = req.body;
     const user = await prisma.user.delete({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (user) {
-      returnObj.statusCode = 200
-      returnObj.message = 'ပယ်ဖျက်ခြင်းအောင်မြင်ပါသည်'
+      returnObj.statusCode = 200;
+      returnObj.message = "ပယ်ဖျက်ခြင်းအောင်မြင်ပါသည်";
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'ပယ်ဖျက်ခြင်းမအောင်မြင်ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "ပယ်ဖျက်ခြင်းမအောင်မြင်ပါ";
     }
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
-export const changeAgentPassword = async req => {
-  const returnObj = ResponseObj
+export const changeAgentPassword = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { id, password } = req.body
+    const { id, password } = req.body;
     const isExist = await prisma.user.findUnique({
       where: {
-        id: id
-      }
-    })
+        id: id,
+      },
+    });
     if (isExist) {
-      const hashPassword = hashSync(password, 12)
+      const hashPassword = hashSync(password, 12);
       const user = await prisma.user.update({
         where: {
-          id: id
+          id: id,
         },
         data: {
-          password: hashPassword
-        }
-      })
+          password: hashPassword,
+        },
+      });
       if (user) {
-        returnObj.statusCode = 200
-        returnObj.message = 'စကားဝှက်ပြောင်းလဲခြင်းအောင်မြင်ပါသည်'
+        returnObj.statusCode = 200;
+        returnObj.message = "စကားဝှက်ပြောင်းလဲခြင်းအောင်မြင်ပါသည်";
         returnObj.Data = {
-          userPassword: password
-        }
+          userPassword: password,
+        };
       } else {
-        returnObj.statusCode = 400
-        returnObj.message = 'စကားဝှက်ပြောင်းလဲခြင်းမအောင်မြင်ပါ'
+        returnObj.statusCode = 400;
+        returnObj.message = "စကားဝှက်ပြောင်းလဲခြင်းမအောင်မြင်ပါ";
       }
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'ရှာမတွေ့ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "ရှာမတွေ့ပါ";
     }
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
-export const changeStatus = async req => {
-  const returnObj = ResponseObj
+export const changeStatus = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { id, status } = req.body
+    const { id, status } = req.body;
     const user = await prisma.user.update({
       where: {
-        id: id
+        id: id,
       },
       data: {
-        role: status
-      }
-    })
+        status: status,
+      },
+    });
     if (user) {
-      returnObj.statusCode = 200
-      returnObj.message = 'အခြေအနေပြောင်းလဲခြင်းအောင်မြင်ပါသည်'
+      returnObj.statusCode = 200;
+      returnObj.message = "အခြေအနေပြောင်းလဲခြင်းအောင်မြင်ပါသည်";
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'အခြေအနေပြောင်းလဲခြင်းမအောင်မြင်ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "အခြေအနေပြောင်းလဲခြင်းမအောင်မြင်ပါ";
     }
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    console.log(error);
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
-export const changeRole = async req => {
-  const returnObj = ResponseObj
+export const changeRole = async (req) => {
+  const returnObj = ResponseObj;
   try {
-    const { id, role } = req.body
+    const { id, role } = req.body;
     const user = await prisma.user.update({
       where: {
-        id: id
+        id: id,
       },
       data: {
-        role: role
-      }
-    })
+        role: role,
+      },
+    });
     if (user) {
-      returnObj.statusCode = 200
-      returnObj.message = 'အခြေအနေပြောင်းလဲခြင်းအောင်မြင်ပါသည်'
+      returnObj.statusCode = 200;
+      returnObj.message = "အခြေအနေပြောင်းလဲခြင်းအောင်မြင်ပါသည်";
     } else {
-      returnObj.statusCode = 400
-      returnObj.message = 'အခြေအနေပြောင်းလဲခြင်းမအောင်မြင်ပါ'
+      returnObj.statusCode = 400;
+      returnObj.message = "အခြေအနေပြောင်းလဲခြင်းမအောင်မြင်ပါ";
     }
   } catch (error) {
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};
 
-export const getStatus = async req => {
-  const returnObj = ResponseObj
+export const getStatus = async (req) => {
+  const returnObj = ResponseObj;
 
   try {
-    const accessToken = req.cookies['USER_TOKEN']
+    const accessToken = req.cookies["USER_TOKEN"];
     if (accessToken) {
-      const verifiedUser = verifyToken(accessToken)
+      const verifiedUser = verifyToken(accessToken);
       if (verifiedUser) {
         const user = await prisma.user.findUnique({
           where: {
-            id: verifiedUser.id
+            id: verifiedUser.id,
           },
           include: {
-            profile: true
-          }
-        })
+            profile: true,
+          },
+        });
         if (user) {
-          returnObj.Data = user
-          returnObj.message = 'success'
-          returnObj.statusCode = 200
+          returnObj.Data = user;
+          returnObj.message = "success";
+          returnObj.statusCode = 200;
         }
       } else {
-        returnObj.message = 'Invalid user'
-        returnObj.statusCode = 401
+        returnObj.message = "Invalid user";
+        returnObj.statusCode = 401;
       }
     } else {
-      returnObj.message = 'Invalid user'
-      returnObj.statusCode = 401
+      returnObj.message = "Invalid user";
+      returnObj.statusCode = 401;
     }
   } catch (error) {
-    console.log(error)
-    returnObj.Error = error
-    returnObj.statusCode = 500
+    console.log(error);
+    returnObj.Error = error;
+    returnObj.statusCode = 500;
   }
-  return returnObj
-}
+  return returnObj;
+};

@@ -1,13 +1,4 @@
-import { withValidation } from "next-validations";
-import * as yup from "yup";
 import { getAllAgents } from "../../../../Controllers/Users";
-
-const schema = yup.object().shape({});
-const validate = withValidation({
-  schema,
-  type: "Yup",
-  mode: "body",
-});
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
@@ -20,4 +11,4 @@ const handler = async (req, res) => {
   }
 };
 
-export default validate(handler);
+export default handler;

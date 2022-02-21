@@ -1,14 +1,12 @@
 import Card, { CardBody, CardHeader } from "../Card";
 import SelectTable, { TableCell, TableRow } from "../SelectTable";
 
-
-import PaginationClassic from "../Pagination/PaginationClassic";
 import { RefreshIcon } from "@heroicons/react/outline";
 import SearchForm from "../SearchForm";
 import { useToasts } from "react-toast-notifications";
 import { Instance } from "../../Services";
 
-const AgentUserLists = ({ customers = [], fetchUsers }) => {
+const AdminUserLists = ({ customers = [], fetchUsers }) => {
   const { addToast } = useToasts();
   const onChangeStatus = (status, id) => {
     Instance({
@@ -41,7 +39,9 @@ const AgentUserLists = ({ customers = [], fetchUsers }) => {
     <>
       <Card className={`col-span-full`}>
         <CardHeader className={`flex items-center justify-between`}>
-          <h2 className="font-semibold text-slate-800">အေးဂျင့် စားရင်းများ</h2>
+          <h2 className="font-semibold text-slate-800">
+            အသုံးပြုသူ စားရင်းများ
+          </h2>
           <div className="flex items-center space-x-4">
             <SearchForm />
             <button className="hidden p-1 rounded-full text-slate-200 bg-slate-500 lg:block">
@@ -73,7 +73,7 @@ const AgentUserLists = ({ customers = [], fetchUsers }) => {
                 <TableCell isHeader={true}>လိပ်စာ</TableCell>
                 <TableCell isHeader={true}>အီးမေးလ်</TableCell>
                 <TableCell isHeader={true} className="sr-only">
-                  Menu
+                  အခြေအနေ
                 </TableCell>
               </TableRow>
             </thead>
@@ -121,6 +121,7 @@ const AgentUserLists = ({ customers = [], fetchUsers }) => {
                   </TableCell>
 
                   <TableCell>
+                    {/* Menu button */}
                     <div
                       className="form-switch"
                       onClick={() => {
@@ -129,7 +130,7 @@ const AgentUserLists = ({ customers = [], fetchUsers }) => {
                     >
                       <input
                         type="checkbox"
-                        readOnly
+                         readOnly
                         className="sr-only"
                         checked={customer.status}
                       />
@@ -146,11 +147,10 @@ const AgentUserLists = ({ customers = [], fetchUsers }) => {
               ))}
             </tbody>
           </SelectTable>
-          
         </CardBody>
       </Card>
     </>
   );
 };
 
-export default AgentUserLists;
+export default AdminUserLists;
