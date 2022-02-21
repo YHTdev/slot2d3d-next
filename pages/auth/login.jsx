@@ -13,7 +13,7 @@ function Login() {
     password: "",
   });
   const { addToast } = useToasts();
-  const router = useRouter();
+  
   const onSumbit = (e) => {
     console.log(process.env.SLOT_SERVER_URL);
     e.preventDefault();
