@@ -23,34 +23,29 @@ function MyApp({ Component, pageProps }) {
 
   const getStatus = useCallback(() => {
     Instance({
-      url: '/auth/get_status',
-      method: 'GET'
-    })
-  }, [])
+      url: "/auth/get_status",
+      method: "GET",
+    });
+  }, []);
 
   useEffect(() => {
-    getStatus()
-  }, [getStatus])
-  
+    getStatus();
+  }, [getStatus]);
   return (
     <StoreProvider store={store}>
-     
-        <ToastProvider placement="top-center">
-          {Component.auth ? (
-            <Layout>
-              <Component {...pageProps}  />
-            </Layout>
-          ) : (
+      <ToastProvider placement="top-center">
+        {Component.auth ? (
+          <Layout>
             <Component {...pageProps} />
-          )}
-        </ToastProvider>
-      
+          </Layout>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </ToastProvider>
     </StoreProvider>
   );
 }
 
 SetupInspector(store);
 
-export default MyApp
-
-
+export default MyApp;

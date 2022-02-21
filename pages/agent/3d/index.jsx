@@ -1,45 +1,37 @@
 import React, { useState } from "react";
-
-import Timer from "../../../../components/CountDown";
+import Timer from "../../../components/CountDown";
 import { each, find } from "lodash";
-
-import UiSelect from "../../../../components/forms/UiSelect";
-import UiInput from "../../../../components/forms/UiInput";
-import UiButton from "../../../../components/forms/UiButton";
+import ManagementLayout from "../../../components/layout/ManagementLayout";
+import { useSelector } from "react-redux";
+import UiSelect from "../../../components/forms/UiSelect";
+import UiInput from "../../../components/forms/UiInput";
+import UiButton from "../../../components/forms/UiButton";
 import SelectTable, {
   TableCell,
   TableRow,
-} from "../../../../components/SelectTable";
-import ManagementLayout from "../../../../components/layout/ManagementLayout";
-import { useSelector } from "react-redux";
-import TrashIcon from "../../../../components/Icons/TrashIcon";
-import { useToasts } from "react-toast-notifications";
-function Slot2D() {
+} from "../../../components/SelectTable";
+import TrashIcon from "../../../components/Icons/TrashIcon";
+function Slot3D() {
+  const { routes } = useSelector((state) => state.management);
   const [formData, setFormData] = useState({
     selectedFormData: [],
     amount: "",
     sessionId: "",
     firstNum: "",
     secondNum: "",
+    thirdNum: "",
     totalAmount: 0,
     name: "",
   });
 
-  const { routes } = useSelector((state) => state.management);
-  const { addToast } = useToasts();
-
   const Sessions = [
     {
-      label: "မနက်ပိုင်း",
+      label: "ပထမအပတ်",
       value: "1",
     },
     {
-      label: "နေ့လည်ပိုင်း",
+      label: "ဒုတိယအပတ်",
       value: "2",
-    },
-    {
-      label: "ညနေပိုင်း",
-      value: "3",
     },
   ];
   const SlotOptions = [
@@ -106,23 +98,21 @@ function Slot2D() {
       formData.amount &&
       formData.firstNum &&
       formData.secondNum &&
+      formData.thirdNum &&
       formData.sessionId
     ) {
       let selectedFormData = formData.selectedFormData;
       const inValidData = find(selectedFormData, {
-        num: formData.firstNum + formData.secondNum,
+        num: formData.firstNum + formData.secondNum + formData.thirdNum,
       });
 
       const params = {
         amount: formData.amount,
-        num: formData.firstNum + formData.secondNum,
+        num: formData.firstNum + formData.secondNum + formData.thirdNum,
       };
 
       if (inValidData) {
-        addToast(`ထည့်ထားပီးသားဂဏန်းဖြစ်သည်`, {
-          appearance: "warning",
-          autoDismiss: true,
-        });
+        alert("ထည့်ပီးသားဂဏန်းဖြစ်သည်");
       } else {
         selectedFormData.push(params);
         setFormData({ ...formData, selectedFormData: selectedFormData });
@@ -133,23 +123,21 @@ function Slot2D() {
       });
       setFormData({ ...formData, totalAmount: totalAmount });
     } else {
-      addToast(`သေချာစွာဖြည့်ပါ`, { appearance: "warning", autoDismiss: true });
+      alert("သေချာစွာဖြည့်ပါ");
     }
   };
   return (
-    <ManagementLayout title="2D ထိုးရန်" routes={routes.twoDBetRoutes}>
+    <ManagementLayout routes={routes.threeDBetRoutes} title="3D ထိုးမည်">
       <div className="flex flex-row items-center justify-between mb-8">
-        {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
-        {/* Left: Title */}
-        <div className="flex w-full justify-end items-center content-center"></div>
-        <div className="flex justify-end w-full items-center content-center flex-col md:flex-row space-x-0 md:space-x-2 space-y-2 md:space-y-0 text-sm tracking-widest">
+        <div className="flex items-center content-center justify-end w-full"></div>
+        <div className="flex flex-col items-center content-center justify-end w-full space-x-0 space-y-2 text-sm tracking-widest md:flex-row md:space-x-2 md:space-y-0">
           <span>ပိတ်ရန်ကျန်ချိန်</span>
           <Timer hour={1} minute={30} />
         </div>
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-6">
-          <form className="flex w-full flex-col justify-start space-y-5">
+          <form className="flex flex-col justify-start w-full space-y-5">
             <UiSelect
               name="sessionId"
               id="sessionId"
@@ -169,42 +157,34 @@ function Slot2D() {
               required={true}
               type="text"
             />
-            <UiInput
-              name="amount"
-              id="amount"
-              formData={formData}
-              setFromData={setFormData}
-              placeHolder="ငွေပမာဏ(အနည်းဆုံး1000) ကျပ်ထည့်သွင်းပါ"
-              required={true}
-              type="number"
-            />
-            <div className="flex items-center content-center flex-row space-x-3 justify-start">
-              <label
-                className="tex-sm text-slate-600 tracking-widest"
-                htmlFor=""
-              >
-                ထိုးမည့်ဂဏန်း
-              </label>
-              <UiSelect
-                name="firstNum"
-                id="firstNum"
-                formData={formData}
-                setFromData={setFormData}
-                options={SlotOptions}
-                optionLabel="label"
-                optionValue="value"
-                placeHolder="ပ"
-              />
-              <UiSelect
-                name="secondNum"
-                id="secondNum"
-                formData={formData}
-                setFromData={setFormData}
-                options={SlotOptions}
-                optionLabel="label"
-                optionValue="value"
-                placeHolder="ဒု"
-              />
+
+            <div className="grid grid-cols-2 gap-5">
+              <div className="">
+                <UiInput
+                  name="number"
+                  id="number"
+                  formData={formData}
+                  setFromData={setFormData}
+                  placeHolder="ထိုးကဏန်း"
+                  required={true}
+                  type="number"
+                />
+              </div>
+
+              <div className="">
+                <UiInput
+                  name="amount"
+                  id="amount"
+                  formData={formData}
+                  setFromData={setFormData}
+                  placeHolder="ငွေပမာဏ"
+                  required={true}
+                  type="number"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-end">
               <UiButton
                 type="button"
                 actionButton={true}
@@ -216,12 +196,13 @@ function Slot2D() {
             </div>
           </form>
         </div>
-        <div className="col-span-12 md:col-span-12">
+        <div className="col-span-12">
           {formData.name && (
-            <h4 className="text-lg text-slate-600 my-3 tracking-widest">
-              {formData.name} ၏စာရင်း{" "}
+            <h4 className="my-3 text-lg tracking-widest text-slate-600">
+              {formData.name} ၏စာရင်း
             </h4>
           )}
+
           <SelectTable>
             <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
               <TableRow className="bg-slate-100">
@@ -232,29 +213,31 @@ function Slot2D() {
               </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-              {formData.selectedFormData.map((s, i) => (
-                <TableRow key={i}>
-                  <TableCell isHeader={false}>{i + 1}</TableCell>
-                  <TableCell isHeader={false}>{s.num}</TableCell>
-                  <TableCell isHeader={false}>{s.amount}</TableCell>
-                  <TableCell isHeader={false}>
-                    <button
-                      onClick={() => {
-                        filterFormData(s);
-                      }}
-                    >
-                      <TrashIcon />
-                    </button>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {formData.selectedFormData.map(
+                (s, i) =>
+                  i < 10 && (
+                    <TableRow key={i}>
+                      <TableCell isHeader={false}>{i + 1}</TableCell>
+                      <TableCell isHeader={false}>{s.num}</TableCell>
+                      <TableCell isHeader={false}>{s.amount}</TableCell>
+                      <TableCell isHeader={false}>
+                        <button
+                          onClick={() => {
+                            filterFormData(s);
+                          }}
+                        >
+                          <TrashIcon />
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  )
+              )}
             </tbody>
           </SelectTable>
-          <div className="flex justify-start w-full space-x-2 border-t border-slate-300 py-4 my-2">
-            <span className="text-sm text-slate-500">စုစုပေါင်း</span>{" "}
+          <div className="flex justify-start w-full py-4 my-2 space-x-2 border-t border-slate-300">
+            <span className="text-sm text-slate-500">စုစုပေါင်း</span>
             <span className="text-sm font-bold text-red-700">
-              {" "}
-              {formData.totalAmount} ကျပ်{" "}
+              {formData.totalAmount} ကျပ်
             </span>
           </div>
           <div>
@@ -270,4 +253,4 @@ function Slot2D() {
   );
 }
 
-export default Slot2D;
+export default Slot3D;

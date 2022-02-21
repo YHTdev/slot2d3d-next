@@ -93,12 +93,12 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
 
               <Divider title="For Agent" />
               <SidebarLink
-                pathName="/admin/slots/2d"
+                pathName="/agent/2d"
                 linkIcon={<Slot2DIcon className={styles.menuIcon} />}
                 linkTitle={`2D Bet`}
               />
               <SidebarLink
-                pathName="/admin/slots/3d"
+                pathName="/agent/3d"
                 linkIcon={<Slot3DIcon className={styles.menuIcon} />}
                 linkTitle={`3D Bet`}
               />

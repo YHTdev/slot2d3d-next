@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import LayoutSwitter from "../../../../components/2D/layoutSwitter";
-import LimitationGrid from "../../../../components/2D/LimitationGrid";
-import LimitationList from "../../../../components/2D/limitationList";
-import Card, { CardBody, CardHeader } from "../../../../components/Card";
-import UiSelect from "../../../../components/forms/UiSelect";
-import ExclimationIcon from "../../../../components/Icons/ExclimationIcon";
-import ManagementLayout from "../../../../components/layout/ManagementLayout";
-import SlotData from "../../../../data/2dnumber.json";
+
+import LayoutSwitter from "../../../components/2D/layoutSwitter";
+import LimitationGrid from "../../../components/2D/LimitationGrid";
+import LimitationList from "../../../components/2D/limitationList";
+import Card, { CardBody, CardHeader } from "../../../components/Card";
+import UiSelect from "../../../components/forms/UiSelect";
+import ExclimationIcon from "../../../components/Icons/ExclimationIcon";
+import ManagementLayout from "../../../components/layout/ManagementLayout";
+import SlotData from "../../../data/2dnumber.json";
 function Limitations() {
   const [isColorModalOpen, setIsColorModalOpen] = useState(false);
   const { routes } = useSelector((state) => state.management);
@@ -30,11 +31,11 @@ function Limitations() {
     },
   ];
   return (
-    <ManagementLayout routes={routes.twoDBetRoutes} title="သတ်မှတ်ချက်များ">
+    <ManagementLayout routes={routes.twoDBetRoutes} title="2D သတ်မှတ်ချက်များ">
       <LayoutSwitter selected={selected} setSelected={setSelected} />
       <Card>
         <CardHeader>
-          <div className="flex w-full justify-between items-center content-center my-4">
+          <div className="flex items-center content-center justify-between w-full my-4">
             <UiSelect
               options={Sessions}
               name="session"
@@ -50,7 +51,7 @@ function Limitations() {
                 onClick={() => {
                   setIsColorModalOpen(!isColorModalOpen);
                 }}
-                className="text-xs text-slate-500 flex flex-row space-x-2 justify-start items-center content-center"
+                className="flex flex-row items-center content-center justify-start space-x-2 text-xs text-slate-500"
               >
                 <span>အရောင်သတ်မှတ်ချက်</span>
                 <ExclimationIcon />

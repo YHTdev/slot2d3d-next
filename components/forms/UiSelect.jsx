@@ -9,8 +9,9 @@ function UiSelect({
   placeHolder,
   optionLabel,
   optionValue,
-  options=[],
+  options = [],
   disabled = false,
+  isMultiple = false,
 }) {
   return (
     <ReactSelect
@@ -19,10 +20,13 @@ function UiSelect({
       id={id}
       options={options}
       placeholder={placeHolder}
-      onChange={(newValue) => setFromData({ ...formData, [name]: newValue[optionValue] })}
+      onChange={(newValue) =>
+        setFromData({ ...formData, [name]: newValue[optionValue] })
+      }
       isDisabled={disabled}
       getOptionLabel={(option) => option[optionLabel]}
       getOptionValue={(option) => option[optionValue]}
+      isMulti={isMultiple}
     />
   );
 }
