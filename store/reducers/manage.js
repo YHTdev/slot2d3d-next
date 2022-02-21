@@ -82,6 +82,15 @@ const initialState = {
     ],
   },
   Nums: {
+    twoD: [],
+    threeD: [],
+  },
+  Sessions: {
+    twoD: [],
+    threeD: [],
+  },
+  Keywords: {
+    twoD: [],
     towD: [],
     threeD: [],
   },
@@ -92,16 +101,39 @@ export const manageSlice = createSlice({
   initialState,
   reducers: {
     add2DNums: (state, action) => {
-      state.Nums.towD = [];
-      state.Nums.towD = action.payload;
+      state.Nums.twoD = [];
+      state.Nums.twoD = action.payload;
     },
     add3DNums: (state, action) => {
       state.Nums.threeD = [];
       state.Nums.threeD = action.payload;
     },
+    add2DSessions: (state, action) => {
+      state.Sessions.twoD = [];
+      state.Sessions.twoD = action.payload;
+    },
+    add3DSessions: (state, action) => {
+      state.Sessions.threeD = [];
+      state.Sessions.threeD = action.payload;
+    },
+    add2DKeywords: (state, action) => {
+      state.Keywords.twoD = [];
+      state.Keywords.twoD = action.payload;
+    },
+    add3DKeywords: (state, action) => {
+      state.Keywords.threeD = [];
+      state.Keywords.threeD = action.payload;
+    },
   },
 });
 
-export const { add2DNums, add3DNums } = manageSlice.actions;
+export const {
+  add2DNums,
+  add3DNums,
+  add2DSessions,
+  add2DKeywords,
+  add3DSessions,
+  add3DKeywords,
+} = manageSlice.actions;
 
 export default manageSlice.reducer;

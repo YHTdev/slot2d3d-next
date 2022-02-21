@@ -7,8 +7,6 @@ const schema = yup.object().shape({
   password: yup.string().min(8).required(),
   name: yup.string().required(),
   nrc: yup.string().required(),
-  nrc_front:yup.string().required(),
-  nrc_back:yup.string().required()
 });
 const validate = withValidation({
   schema,
@@ -19,7 +17,7 @@ const validate = withValidation({
 const handler = async (req, res) => {
   if (req.method === "POST") {
     const response = await createUser(req);
-    res.status(response.statusCode).json(response);
+    res.status(200).json(response);
   } else {
     res.status(405).json({
       message: "Method is not allowed",

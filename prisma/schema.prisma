@@ -22,15 +22,31 @@ model Profile {
 }
 
 model User {
-  id        String   @id @default(uuid())
-  password  String
-  phone     String   @unique
-  name      String?
-  profile   Profile?
-  status    Status   @default(Active)
-  role      Role     @default(AGENT)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  id           String      @id @default(uuid())
+  password     String
+  phone        String      @unique
+  name         String?
+  profile      Profile?
+  status       Boolean     @default(true)
+  role         Role        @default(AGENT)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @default(now())
+  commission   Commission? @relation(fields: [commissionId], references: [id])
+  commissionId String?
+}
+
+model Commission {
+  id     String        @id @default(uuid())
+  name   String
+  rate   Int
+  type   comissionType @default(TwoD)
+  user   User[]
+  status Boolean       @default(true)
+}
+
+enum comissionType {
+  TwoD
+  ThreeD
 }
 
 model Photos {
@@ -108,8 +124,8 @@ model Session {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @default(now())
   type      SessionType @default(TwoDSession)
-  fromDt    DateTime
-  toDt      DateTime
+  fromDt    String
+  toDt      String
   status    Boolean     @default(true)
 }
 

@@ -1,7 +1,17 @@
 import { IdentificationIcon, UploadIcon } from "@heroicons/react/outline";
-import Card, { CardBody, CardHeader } from "../Card";
+import { useState } from "react";
 
-const CreateAgentUsers = () => {
+const CreateAgentUsers = ({ fetchUsers, isModalOpen, setIsModalOpen }) => {
+  const [formData, setformData] = useState({
+    phone: "",
+    name: "",
+    password: "",
+    role: "AGENT",
+    nrc: "",
+    address: "",
+    nrc_front: "",
+    nrc_back: "",
+  });
   return (
     <>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -10,11 +20,17 @@ const CreateAgentUsers = () => {
             <div className="">
               <label
                 className="block mb-2 text-sm font-medium"
-                htmlFor="userName">
+                htmlFor="userName"
+              >
                 အမည်<span className="text-rose-500">*</span>
               </label>
               <input
-                id="userName"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={(e) => {
+                  setformData({ ...formData, [e.target.name]: e.target.value });
+                }}
                 className="w-full form-input"
                 type="text"
                 required
@@ -23,11 +39,17 @@ const CreateAgentUsers = () => {
             <div className="">
               <label
                 className="block mb-2 text-sm font-medium"
-                htmlFor="phoneNumber">
+                htmlFor="phoneNumber"
+              >
                 ဖုန်းနံပါတ် <span className="text-rose-500">*</span>
               </label>
               <input
-                id="phoneNumber"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={(e) => {
+                  setformData({ ...formData, [e.target.name]: e.target.value });
+                }}
                 className="w-full form-input"
                 type="tel"
                 placeholder="09"
@@ -40,7 +62,8 @@ const CreateAgentUsers = () => {
             <div className="">
               <label
                 className="block mb-2 text-sm font-medium"
-                htmlFor="commission">
+                htmlFor="commission"
+              >
                 ကော်မရှင်နှန်းထား <span className="text-rose-500">*</span>
               </label>
               <input
@@ -61,7 +84,8 @@ const CreateAgentUsers = () => {
           <div className="">
             <label
               className="block mb-2 text-sm font-medium"
-              htmlFor="password">
+              htmlFor="password"
+            >
               စကားဝှက် <span className="text-rose-500">*</span>
             </label>
             <input
@@ -76,7 +100,8 @@ const CreateAgentUsers = () => {
           <div className="">
             <label
               className="block mb-2 text-sm font-medium"
-              htmlFor="userName">
+              htmlFor="userName"
+            >
               မှတ်ပုံတင်အမှတ် <span className="text-rose-500">*</span>
             </label>
 
@@ -86,7 +111,8 @@ const CreateAgentUsers = () => {
                   <select
                     name="regionNumber"
                     id="regionId"
-                    className=" form-select">
+                    className=" form-select"
+                  >
                     <option value="၁">၁</option>
                     <option value="၂">၂</option>
                     <option value="၃">၃</option>
@@ -100,7 +126,8 @@ const CreateAgentUsers = () => {
                   <select
                     name="regionNumber"
                     id="regionId"
-                    className=" form-select">
+                    className=" form-select"
+                  >
                     <option value="ကက န">ကက န</option>
                     <option value="ခခ န">ခခ န</option>
                     <option value="ဓဓ">ဓဓ</option>
@@ -111,7 +138,8 @@ const CreateAgentUsers = () => {
                   <select
                     name="regionNumber"
                     id="regionId"
-                    className=" form-select">
+                    className=" form-select"
+                  >
                     <option value="(နိုင်)">(နိုင်)</option>
                     <option value="(ဧည့်)">(ဧည့်)</option>
                   </select>
@@ -141,7 +169,8 @@ const CreateAgentUsers = () => {
           <div className="">
             <label
               className="block mb-2 text-sm font-medium"
-              htmlFor="AgentAddress">
+              htmlFor="AgentAddress"
+            >
               လိပ်စာ <span className="text-rose-500">*</span>
             </label>
             <textarea

@@ -1,8 +1,8 @@
-import { getAllAgents } from "../../../../Controllers/Users";
+import { get2DComissions } from "../../../../Controllers/Settings/comission";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
-    const response = await getAllAgents(req);
+    const response = await get2DComissions(req);
     res.status(200).json(response);
   } else {
     res.status(405).json({

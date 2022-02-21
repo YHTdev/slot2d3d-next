@@ -7,12 +7,13 @@ import PageWrapper from "../../components/PageWrapper";
 import { Instance } from "../../Services";
 
 function Login() {
+  const router = useRouter()
   const [formData, setformData] = useState({
     phone: "",
     password: "",
   });
   const { addToast } = useToasts();
-  const router = useRouter();
+  
   const onSumbit = (e) => {
     console.log(process.env.SLOT_SERVER_URL);
     e.preventDefault();
@@ -31,7 +32,7 @@ function Login() {
               appearance: "success",
               autoDismiss: true,
             });
-            router.push("/agent/2d");
+            router.push('/admin')
           } else if (res.data && res.data.statusCode === 400) {
             addToast(res.data.message, {
               appearance: "warning",

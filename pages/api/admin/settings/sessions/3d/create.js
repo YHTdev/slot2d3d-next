@@ -4,9 +4,8 @@ import { create3DSessions } from "../../../../../../Controllers/Settings/session
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  fromDt:yup.date().required(),
-  toDt:yup.date().required(),
-  
+  fromDt: yup.string().required(),
+  toDt: yup.string().required(),
 });
 const validate = withValidation({
   schema,
