@@ -1,5 +1,10 @@
 import Axios from "axios";
-import { add2DNums, add3DNums } from "../store/reducers/manage";
+import {
+  add2DNums,
+  add2DSessions,
+  add3DNums,
+  add3DSessions,
+} from "../store/reducers/manage";
 import { setCredentials } from "../store/reducers/user";
 
 export const Instance = Axios.create({
@@ -51,6 +56,26 @@ export const SetupInspector = (store) => {
           response2D.data.statusCode === 200
         ) {
           dispatch(add2DNums(response2D.data.Data));
+        }
+        const response2DSessions = await Instance({
+          url: "/settings/keywords/get2d_keywords",
+        });
+        if (
+          response2DSessions.data &&
+          response2DSessions.data.Data &&
+          response2DSessions.data.statusCode === 200
+        ) {
+          dispatch(add2DSessions(response2DSessions.data.Data));
+        }
+        const response3DSessions = await Instance({
+          url: "/settings/keywords/get3d_keywords",
+        });
+        if (
+          response3DSessions.data &&
+          response3DSessions.data.Data &&
+          response3DSessions.data.statusCode === 200
+        ) {
+          dispatch(add3DSessions(response3DSessions.data.Data));
         }
       }
       document.body.classList.remove("loading-indicator");
