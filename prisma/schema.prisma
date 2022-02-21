@@ -12,11 +12,13 @@ model Profile {
   bio       String?
   userId    String   @unique
   address   String?
-  email     String?  @unique
+  email     String?
   nrc       String   @unique
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   createdAt DateTime @default(now())
+
   updatedAt DateTime @default(now())
+  photos    Photos[]
 }
 
 model User {
@@ -29,6 +31,14 @@ model User {
   role      Role     @default(AGENT)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+}
+
+model Photos {
+  id        String   @id @default(uuid())
+  name      String?
+  path      String
+  Profile   Profile? @relation(fields: [profileId], references: [id])
+  profileId String?
 }
 
 enum Status {
@@ -49,8 +59,14 @@ model Keyword {
   name         String                  @unique
   createdAt    DateTime                @default(now())
   updatedAt    DateTime                @default(now())
+  type         keywordType             @default(TwoD)
   twoDNumber   TwoDNumerOnKeyword[]
   threeDNumber ThreeDNumberOnKeyword[]
+}
+
+enum keywordType {
+  TwoD
+  ThreeD
 }
 
 model ThreeDNumer {
@@ -86,8 +102,28 @@ enum SessionType {
   ThreeDSession
 }
 
+model Session {
+  id        String      @id @default(uuid())
+  name      String      @unique
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @default(now())
+  type      SessionType @default(TwoDSession)
+  fromDt    DateTime
+  toDt      DateTime
+  status    Boolean     @default(true)
+}
+
 enum Role {
   AGENT
   SYS_ADMIN
   ADMIN
+}
+
+model Setting {
+  id            String  @id @default(uuid())
+  appNm         String
+  copyRightText String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }

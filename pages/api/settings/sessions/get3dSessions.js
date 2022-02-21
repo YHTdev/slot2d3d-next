@@ -1,8 +1,8 @@
-import { getKeywords } from "../../../../../../Controllers/Settings/keywords";
+import { get3DSessions } from "../../../../Controllers/Settings/session";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
-    const response = await getKeywords(req);
+    const response = await get3DSessions(req);
     res.status(200).json(response);
   } else {
     res.status(405).json({

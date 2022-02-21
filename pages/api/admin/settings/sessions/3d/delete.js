@@ -1,10 +1,8 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { update2DKeyword } from "../../../../../../Controllers/Settings/keywords";
+import { delete3DSessions } from "../../../../../../Controllers/Settings/session";
 
 const schema = yup.object().shape({
-  name: yup.string().required(),
-  nums: yup.array().required(),
   id: yup.string().required(),
 });
 const validate = withValidation({
@@ -15,7 +13,7 @@ const validate = withValidation({
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await update2DKeyword(req);
+    const response = await delete3DSessions(req);
     res.status(response.statusCode).json(response);
   } else {
     res.status(405).json({

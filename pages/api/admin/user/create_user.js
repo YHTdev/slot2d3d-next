@@ -7,6 +7,8 @@ const schema = yup.object().shape({
   password: yup.string().min(8).required(),
   name: yup.string().required(),
   nrc: yup.string().required(),
+  nrc_front:yup.string().required(),
+  nrc_back:yup.string().required()
 });
 const validate = withValidation({
   schema,

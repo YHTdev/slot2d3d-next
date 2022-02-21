@@ -1,6 +1,6 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { createKeyword } from "../../../../../../Controllers/Settings/keywords";
+import { create2DKeyword } from "../../../../../../Controllers/Settings/keywords";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -14,7 +14,7 @@ const validate = withValidation({
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await createKeyword(req);
+    const response = await create2DKeyword(req);
     res.status(response.statusCode).json(response);
   } else {
     res.status(405).json({

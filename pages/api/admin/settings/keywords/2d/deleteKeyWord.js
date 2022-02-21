@@ -1,6 +1,6 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { deleteKeyword } from "../../../../../../Controllers/Settings/keywords";
+import { delete2DKeyword } from "../../../../../../Controllers/Settings/keywords";
 
 const schema = yup.object().shape({
   id: yup.string().required(),
@@ -13,7 +13,7 @@ const validate = withValidation({
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await deleteKeyword(req);
+    const response = await delete2DKeyword(req);
     res.status(response.statusCode).json(response);
   } else {
     res.status(405).json({

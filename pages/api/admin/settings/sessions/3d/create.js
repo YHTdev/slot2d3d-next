@@ -1,11 +1,12 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { update2DKeyword } from "../../../../../../Controllers/Settings/keywords";
+import { create3DSessions } from "../../../../../../Controllers/Settings/session";
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  nums: yup.array().required(),
-  id: yup.string().required(),
+  fromDt:yup.date().required(),
+  toDt:yup.date().required(),
+  
 });
 const validate = withValidation({
   schema,
@@ -15,7 +16,7 @@ const validate = withValidation({
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await update2DKeyword(req);
+    const response = await create3DSessions(req);
     res.status(response.statusCode).json(response);
   } else {
     res.status(405).json({
