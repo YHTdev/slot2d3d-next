@@ -36,10 +36,17 @@ model User {
 }
 
 model Commission {
-  id   String @id @default(uuid())
-  name String
-  rate Int
-  user User[]
+  id     String        @id @default(uuid())
+  name   String
+  rate   Int
+  type   comissionType @default(TwoD)
+  user   User[]
+  status Boolean       @default(true)
+}
+
+enum comissionType {
+  TwoD
+  ThreeD
 }
 
 model Photos {

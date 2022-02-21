@@ -1,12 +1,59 @@
 import ManagementLayout, {
   ManagementHeader,
 } from "../../../components/layout/ManagementLayout";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import {Instance} from '../../../Services/'
+import { useToasts } from "react-toast-notifications";
 const CommissionSettings = ({ children }) => {
   const [messages, setMessages] = useState(false);
   const { routes } = useSelector((state) => state.management);
+  const [comissions, setcomissions] = useState([])
+  const {addToast}= useToasts()
+  const [formData, setformData] = useState({
+    name:'',
+    rate:0,
+
+  })
+  const fetchComissions = useCallback(
+    () => {
+        Instance({
+          url:'',
+          method:'GET'
+        }).then(res=>{
+            if(res.data && res.data.statusCode===200){
+              setcomissions(res.data.Data)
+            }
+
+        })
+        .catch(err=>{
+          console.log(err)
+        })
+    },
+    [],
+  )
+  useEffect(() => {
+     fetchComissions()
+  }, [fetchComissions])
+  
+  const submitForm = e =>{
+    try {
+      Instance({
+        url:'',
+        method:'POST',
+        data:formData
+      }).then(res=>{
+
+      })
+      .catch(err=>{
+        addToast('')
+      })
+      
+    } catch (error) {
+      addToast('လုပ်ဆောင်ချက်မအောင်မြင်ပါ',{appearance:'error',autoDismiss:true})
+    }
+  }
+  
   return (
     <ManagementLayout routes={routes.twoDManagementRoutes} title="2D Manament">
       <ManagementHeader className={`text-indigo-500`}>
@@ -15,6 +62,7 @@ const CommissionSettings = ({ children }) => {
 
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-1 ">
         <div className="space-y-4 lg:space-y-6">
+          <form>
           <div className="">
             <label
               className="block mb-2 text-sm font-medium"
@@ -34,6 +82,7 @@ const CommissionSettings = ({ children }) => {
               အတည်ပြုမည်
             </button>
           </div>
+          </form>
 
           <div className="flex items-center justify-between py-3 leading-loose border-b border-slate-200">
             {/* Left */}

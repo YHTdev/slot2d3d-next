@@ -3,10 +3,14 @@ import { ResponseObj } from "../../lib/responseHelper";
 
 const prisma = new PrismaClient();
 
-export const getComissions = async () => {
+export const get2DComissions = async () => {
   const returnObj = ResponseObj;
   try {
-    const comissions = await prisma.commission.findMany({});
+    const comissions = await prisma.commission.findMany({
+      where: {
+        type: TwoD,
+      },
+    });
     returnObj.Data = comissions;
     returnObj.statusCode = 200;
   } catch (error) {
@@ -16,14 +20,31 @@ export const getComissions = async () => {
   return returnObj;
 };
 
+export const get3DComissions = async () => {
+  const returnObj = ResponseObj;
+  try {
+    const comissions = await prisma.commission.findMany({
+      where: {
+        type: ThreeD,
+      },
+    });
+    returnObj.Data = comissions;
+    returnObj.statusCode = 200;
+  } catch (error) {
+    returnObj.statusCode = 500;
+    returnObj.Error = error;
+  }
+  return returnObj;
+};
 export const createCommission = async () => {
   const returnObj = ResponseObj;
   try {
-    const { name, rate } = req.body;
+    const { name, rate, type } = req.body;
     const comission = await prisma.commission.create({
       data: {
         name: name,
         rate: rate,
+        type: type,
       },
     });
     if (comission) {
@@ -58,6 +79,7 @@ export const updateComission = async () => {
         data: {
           name: name,
           id: id,
+          type: type,
         },
       });
       if (comission) {
