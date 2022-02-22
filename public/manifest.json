@@ -1,7 +1,10 @@
 {
-  "name": "Slot2d3d",
-  "short_name": "2d3d",
+  "name": "Golden 21",
+  "short_name": "Golden 21",
+  "description": "Golden 21 is a 2d,3d application",
   "start_url": "/",
+  "theme_color": "#1e293b",
+  "background_color": "#1e293b",
   "display": "fullscreen",
   "icons": [
     {

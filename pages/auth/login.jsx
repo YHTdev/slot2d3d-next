@@ -7,15 +7,14 @@ import PageWrapper from "../../components/PageWrapper";
 import { Instance } from "../../Services";
 
 function Login() {
-  const router = useRouter()
+  const router = useRouter();
   const [formData, setformData] = useState({
     phone: "",
     password: "",
   });
   const { addToast } = useToasts();
-  
+
   const onSumbit = (e) => {
-   
     e.preventDefault();
     try {
       Instance({
@@ -32,7 +31,7 @@ function Login() {
               appearance: "success",
               autoDismiss: true,
             });
-            router.push('/admin')
+            router.push("/admin");
           } else if (res.data && res.data.statusCode === 400) {
             addToast(res.data.message, {
               appearance: "warning",
