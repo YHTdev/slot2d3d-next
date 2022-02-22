@@ -77,7 +77,7 @@ const SectionSettings = ({ children }) => {
       method: "POST",
       data: {
         id: id,
-        status: status,
+        status: !status,
       },
     })
       .then((res) => {
@@ -231,7 +231,7 @@ const SectionSettings = ({ children }) => {
                 {/* Left */}
                 <div>
                   <div className="font-semibold text-indigo-500">
-                    မနက်ပိုင်း ၈း၀၀ မှ ၁၀း၀၀ ထိ
+                    {s.name} {s.fromDt} မှ {s.toDt} ထိ
                   </div>
                   <div className="text-sm">
                     Excepteur sint occaecat cupidatat non proident, sunt in culpa

@@ -41,8 +41,18 @@ const initialState = {
         isAllow: true,
       },
       {
+        src: "/admin/threeDManagement/commission-settings",
+        title: "ကော်မရှင်သတ်မှတ်ချက်",
+        isAllow: true,
+      },
+      {
         src: "/admin/threeDManagement/limitation-settings",
         title: "ကန့်သတ်ချက်",
+        isAllow: true,
+      },
+      {
+        src: "/admin/threeDManagement/keywords-settings",
+        title: "အသုံးနှုတ်း သတ်မှတ်ချက်",
         isAllow: true,
       },
     ],

@@ -26,7 +26,7 @@ export const get3DComissions = async () => {
   try {
     const comissions = await prisma.commission.findMany({
       where: {
-        type: ThreeD,
+        type: "ThreeD",
       },
     });
     returnObj.Data = comissions;

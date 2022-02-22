@@ -238,7 +238,7 @@ const SectionSettings = ({ children }) => {
                     className="sr-only"
                     name={`status${i}`}
                     checked={s.status}
-
+                    readOnly={true}
                    
                   />
                   <label className="bg-slate-400" htmlFor="messages">

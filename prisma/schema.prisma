@@ -22,26 +22,35 @@ model Profile {
 }
 
 model User {
-  id           String      @id @default(uuid())
-  password     String
-  phone        String      @unique
-  name         String?
-  profile      Profile?
-  status       Boolean     @default(true)
-  role         Role        @default(AGENT)
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @default(now())
-  commission   Commission? @relation(fields: [commissionId], references: [id])
-  commissionId String?
+  id         String           @id @default(uuid())
+  password   String
+  phone      String           @unique
+  name       String?
+  profile    Profile?
+  status     Boolean          @default(true)
+  role       Role             @default(AGENT)
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @default(now())
+  commission UserCommission[]
+
+}
+
+model UserCommission {
+
+  User         User?       @relation(fields: [userId], references: [id])
+  userId       String
+  Commission   Commission? @relation(fields: [commissionId], references: [id])
+  commissionId String
+  @@id([userId, commissionId])
 }
 
 model Commission {
-  id     String        @id @default(uuid())
+  id     String           @id @default(uuid())
   name   String
   rate   Int
-  type   comissionType @default(TwoD)
-  user   User[]
-  status Boolean       @default(true)
+  type   comissionType    @default(TwoD)
+  User   UserCommission[]
+  status Boolean          @default(true)
 }
 
 enum comissionType {
@@ -68,7 +77,7 @@ model TwoDNumer {
   createdAt DateTime             @default(now())
   updatedAt DateTime             @default(now())
   keyWord   TwoDNumerOnKeyword[]
-  limit     TwoDNumberOnLimit[]
+
 }
 
 model Keyword {
@@ -92,38 +101,17 @@ model ThreeDNumer {
   keyword   ThreeDNumberOnKeyword[]
   createdAt DateTime                @default(now())
   updatedAt DateTime                @default(now())
-  limit     ThreeDNumberonLimit[]
 
 
-}
 
-model TwoDNumberOnLimit {
-
-  Limit       Limit     @relation(fields: [limitId], references: [id])
-  limitId     String
-  TwoDNumer   TwoDNumer @relation(fields: [twoDNumerId], references: [id])
-  twoDNumerId String    @unique
-  @@id([limitId, twoDNumerId])
-}
-
-model ThreeDNumberonLimit {
-
-  Limit         Limit?       @relation(fields: [limitId], references: [id])
-  limitId       String
-  ThreeDNumer   ThreeDNumer? @relation(fields: [threeDNumerId], references: [id])
-  threeDNumerId String       @unique
-  @@id([limitId, threeDNumerId])
 }
 
 model Limit {
-  id        String                @id @default(uuid())
-  name      String
-  amount    BigInt
-  session   Session               @relation(fields: [sessionId], references: [id])
-  twoDNum   TwoDNumberOnLimit[]
-  threeDNum ThreeDNumberonLimit[]
-  type      LimitType             @default(TwoD)
-  sessionId String                @unique
+  id        String    @id @default(uuid())
+  amount    Int
+  session   Session   @relation(fields: [sessionId], references: [id])
+  type      LimitType @default(TwoD)
+  sessionId String    @unique
 
 }
 

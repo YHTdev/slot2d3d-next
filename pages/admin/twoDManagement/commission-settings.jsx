@@ -207,7 +207,7 @@ const CommissionSettings = ({ children }) => {
                 {c.name}
               </div>
               <div className="text-sm">
-                Agent အား {c.rate}%  ပေးပါမည်
+                {c.rate}% 
               </div>
             </div>
             {/* Right */}
