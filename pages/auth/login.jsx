@@ -15,7 +15,7 @@ function Login() {
   const { addToast } = useToasts();
   
   const onSumbit = (e) => {
-    console.log(process.env.SLOT_SERVER_URL);
+   
     e.preventDefault();
     try {
       Instance({

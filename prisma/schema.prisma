@@ -68,6 +68,7 @@ model TwoDNumer {
   createdAt DateTime             @default(now())
   updatedAt DateTime             @default(now())
   keyWord   TwoDNumerOnKeyword[]
+  limit     TwoDNumberOnLimit[]
 }
 
 model Keyword {
@@ -91,8 +92,44 @@ model ThreeDNumer {
   keyword   ThreeDNumberOnKeyword[]
   createdAt DateTime                @default(now())
   updatedAt DateTime                @default(now())
+  limit     ThreeDNumberonLimit[]
 
 
+}
+
+model TwoDNumberOnLimit {
+
+  Limit       Limit     @relation(fields: [limitId], references: [id])
+  limitId     String
+  TwoDNumer   TwoDNumer @relation(fields: [twoDNumerId], references: [id])
+  twoDNumerId String    @unique
+  @@id([limitId, twoDNumerId])
+}
+
+model ThreeDNumberonLimit {
+
+  Limit         Limit?       @relation(fields: [limitId], references: [id])
+  limitId       String
+  ThreeDNumer   ThreeDNumer? @relation(fields: [threeDNumerId], references: [id])
+  threeDNumerId String       @unique
+  @@id([limitId, threeDNumerId])
+}
+
+model Limit {
+  id        String                @id @default(uuid())
+  name      String
+  amount    BigInt
+  session   Session               @relation(fields: [sessionId], references: [id])
+  twoDNum   TwoDNumberOnLimit[]
+  threeDNum ThreeDNumberonLimit[]
+  type      LimitType             @default(TwoD)
+  sessionId String                @unique
+
+}
+
+enum LimitType {
+  TwoD
+  ThreeD
 }
 
 model TwoDNumerOnKeyword {
@@ -127,6 +164,7 @@ model Session {
   fromDt    String
   toDt      String
   status    Boolean     @default(true)
+  Limit     Limit[]
 }
 
 enum Role {
