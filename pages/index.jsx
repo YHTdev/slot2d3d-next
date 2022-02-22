@@ -9,31 +9,24 @@ import ThreeDSession from "../components/Front/ThreeDSession";
 import ResultWrapper from "../components/Front/ResultWrapper";
 import AnimateText from "../components/TypeAnimation";
 function Home() {
-  const [selected, setSelected] = useState('2d')
+  const [selected, setSelected] = useState("2d");
   return (
     <PageWrapper>
-      <div
-        className="flex justify-center w-full  items-center content-center  h-screen overflow-y-scroll py-24"
-        
-      >
-      <PageInnerWrapper>
-        <FrontLogo />
-       
-         <AnimateText text={`ဖုန်း ၀၉-၁၂၃၄၅၆၇၈ သို့ဆက်သွယ်မေးမြန်းနိုင်ပါသည်`} />
-         
-        <PageSwitcher selected={selected} setselected={setSelected} />
-         
-        <ResultWrapper>
-        {
-          selected === '2d' && 
-          <TwoDSession />
-        }
-        {
-          selected==='3d' && 
-          <ThreeDSession />
-        }
-        </ResultWrapper>
-      </PageInnerWrapper>
+      <div className="flex items-center content-center justify-center w-full h-screen py-24 overflow-y-scroll">
+        <PageInnerWrapper>
+          <FrontLogo />
+
+          <AnimateText
+            text={`ဖုန်း ၀၉-၁၂၃၄၅၆၇၈ သို့ဆက်သွယ်မေးမြန်းနိုင်ပါသည်`}
+          />
+
+          <PageSwitcher selected={selected} setselected={setSelected} />
+
+          <ResultWrapper>
+            {selected === "2d" && <TwoDSession />}
+            {selected === "3d" && <ThreeDSession />}
+          </ResultWrapper>
+        </PageInnerWrapper>
       </div>
     </PageWrapper>
   );

@@ -119,3 +119,16 @@ body {
   font-size: 1.5rem;
   @apply animate-spin;
 }
+
+.iframe-container {
+  position: relative;
+  overflow: hidden;
+  padding-top: 100vh;
+  iframe {
+    position: absolute;
+    top: 0;
+    border: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
