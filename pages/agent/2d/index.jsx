@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import Timer from "../../../components/CountDown";
-import { each, find } from "lodash";
 
 import UiSelect from "../../../components/forms/UiSelect";
 import UiInput from "../../../components/forms/UiInput";
@@ -14,206 +13,97 @@ import ManagementLayout from "../../../components/layout/ManagementLayout";
 import { useSelector } from "react-redux";
 import TrashIcon from "../../../components/Icons/TrashIcon";
 import { useToasts } from "react-toast-notifications";
+import UiMultiSelect from "../../../components/forms/UiMultiSelect";
+import { Instance } from "../../../Services";
+import { each, find } from "lodash";
 function Slot2D() {
   const [formData, setFormData] = useState({
-    selectedFormData: [],
-    amount: "",
+    customerNm: "",
+    betOnTwoDNumber: [],
     sessionId: "",
-    quickPick: "",
+    amount: 0,
+    keywords: [],
     totalAmount: 0,
-    name: "",
+    selectedNums: [],
   });
+  const [sessions, setSessions] = useState([]);
+  const [keywords, setKeywords] = useState([]);
+  const [postData, setpostData] = useState();
+  const { Nums } = useSelector((state) => state.management);
+  const twoDNums = Nums.twoD;
+  console.log(formData);
+  const getSessions = useCallback(() => {
+    Instance({
+      url: "/settings/sessions/get2dSessions",
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.data && res.data.statusCode === 200) {
+          setSessions(res.data.Data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  
+  const onSumEvent = () => {
+    if (formData.betOnTwoDNumber.length > 0 || formData.keywords.length > 0) {
+      if (formData.customerNm && formData.sessionId && formData.amount) {
+        if (formData.betOnTwoDNumber) {
+          let selectedNums = formData.betOnTwoDNumber;
+          
+          each(formData.betOnTwoDNumber, (b) => {
+            selectedNums.push({
+              twoDNumerId: b.id,
+              amount: formData.amount,
+            });
+          });
+          
+        }
+        else{
+          each(formData.keywords, (b) => {
+            nums.push({
+              twoDNumerId: b.id,
+              amount: parseInt(formData.amount),
+            });
+          });
+          formData.selectedNums.push(nums)
+        }
+      }
+      else{
+        addToast('သေချာစွာဖြည့်ပါ',{appearance:'warning',autoDismiss:true})
+      }
+    }
+    else{
+      addToast('ဂဏန်းရွေးချယ်ပါ',{appearance:'warning',autoDismiss:true})
+    }
+  };
+
+  const getKeywords = useCallback(() => {
+    Instance({
+      url: "/settings/keywords/get2d_keywords",
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.data && res.data.statusCode === 200) {
+          setKeywords(res.data.Data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    getSessions();
+    getKeywords();
+  }, [getSessions, getKeywords]);
 
   const { routes } = useSelector((state) => state.management);
   const { addToast } = useToasts();
 
-  const Sessions = [
-    {
-      label: "မနက်ပိုင်း",
-      value: "1",
-    },
-    {
-      label: "နေ့လည်ပိုင်း",
-      value: "2",
-    },
-    {
-      label: "ညနေပိုင်း",
-      value: "3",
-    },
-  ];
-  const SlotOptions = [
-    {
-      label: "0",
-      value: "0",
-    },
-    {
-      label: "1",
-      value: "1",
-    },
-    {
-      label: "2",
-      value: "2",
-    },
-    {
-      label: "3",
-      value: "3",
-    },
-    {
-      label: "4",
-      value: "4",
-    },
-    {
-      label: "5",
-      value: "5",
-    },
-    {
-      label: "6",
-      value: "6",
-    },
-    {
-      label: "7",
-      value: "7",
-    },
-    {
-      label: "8",
-      value: "8",
-    },
-    {
-      label: "9",
-      value: "9",
-    },
-  ];
-
-  const quickPicks = [
-    {
-      label: "ပါဝါ",
-      value: "power",
-    },
-    {
-      label: "နက္ခတ်",
-      value: "natKhat",
-    },
-    {
-      label: "ဆယ်ပြည့်",
-      value: "tenFull",
-    },
-    {
-      label: "5 ပြည့်",
-      value: "fiveFull",
-    },
-    {
-      label: "0 ပြည့်",
-      value: "zeroFull",
-    },
-    {
-      label: "ပဒေသာ",
-      value: "paDayThar",
-    },
-    {
-      label: "ညီကို",
-      value: "vro",
-    },
-    {
-      label: "ပါဝါညီကို",
-      value: "powerVro",
-    },
-    {
-      label: "အပူး",
-      value: "twin",
-    },
-    {
-      label: "0/10 ဘရိတ်",
-      value: "zeroBreak",
-    },
-    {
-      label: "1/11 ဘရိတ်",
-      value: "oneBreak",
-    },
-    {
-      label: "2/12 ဘရိတ်",
-      value: "twoBreak",
-    },
-    {
-      label: "3/13 ဘရိတ်",
-      value: "threeBreak",
-    },
-    {
-      label: "4/14 ဘရိတ်",
-      value: "fourBreak",
-    },
-    {
-      label: "5/15 ဘရိတ်",
-      value: "fiveBreak",
-    },
-    {
-      label: "6/16 ဘရိတ်",
-      value: "sixBreak",
-    },
-    {
-      label: "7/17 ဘရိတ်",
-      value: "sevenBreak",
-    },
-    {
-      label: "8/18 ဘရိတ်",
-      value: "eightBreak",
-    },
-    {
-      label: "9/19 ဘရိတ်",
-      value: "nineBreak",
-    },
-  ];
-
-  const filterFormData = (obj) => {
-    const filteredFormData = formData.selectedFormData.filter(
-      (value) => value.num !== obj.num
-    );
-
-    let totalAmount = 0;
-    each(filteredFormData, (e) => {
-      totalAmount += parseInt(e.amount);
-    });
-    setFormData({
-      ...formData,
-      selectedFormData: filteredFormData,
-      totalAmount: totalAmount,
-    });
-  };
-
-  const onSumEvent = () => {
-    if (
-      formData.amount &&
-      formData.firstNum &&
-      formData.secondNum &&
-      formData.sessionId
-    ) {
-      let selectedFormData = formData.selectedFormData;
-      const inValidData = find(selectedFormData, {
-        num: formData.firstNum + formData.secondNum,
-      });
-
-      const params = {
-        amount: formData.amount,
-        num: formData.firstNum + formData.secondNum,
-      };
-
-      if (inValidData) {
-        addToast(`ထည့်ထားပီးသားဂဏန်းဖြစ်သည်`, {
-          appearance: "warning",
-          autoDismiss: true,
-        });
-      } else {
-        selectedFormData.push(params);
-        setFormData({ ...formData, selectedFormData: selectedFormData });
-      }
-      let totalAmount = 0;
-      formData.selectedFormData.forEach((element) => {
-        totalAmount += parseInt(element.amount);
-      });
-      setFormData({ ...formData, totalAmount: totalAmount });
-    } else {
-      addToast(`သေချာစွာဖြည့်ပါ`, { appearance: "warning", autoDismiss: true });
-    }
-  };
   return (
     <ManagementLayout title="2D ထိုးရန်" routes={routes.twoDBetRoutes}>
       <div className="flex flex-row items-center justify-between mb-8">
@@ -233,14 +123,14 @@ function Slot2D() {
               id="sessionId"
               formData={formData}
               setFromData={setFormData}
-              options={Sessions}
-              optionLabel="label"
-              optionValue="value"
+              options={sessions.filter((s) => s.status === true)}
+              optionLabel="name"
+              optionValue="id"
               placeHolder="အချိန်ရွေးချယ်ပါ"
             />
             <UiInput
-              name="name"
-              id="name"
+              name="customerNm"
+              id="customerNm"
               formData={formData}
               setFromData={setFormData}
               placeHolder="အမည်ထည့်ပါ"
@@ -250,14 +140,17 @@ function Slot2D() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="">
-                <UiInput
-                  name="number"
-                  id="number"
+                <UiMultiSelect
+                  isMultiple={true}
+                  isSearchable={true}
+                  placeHolder="ဂဏန်းရွေးချယ်ပါ"
                   formData={formData}
                   setFromData={setFormData}
-                  placeHolder="ထိုးကဏန်း"
-                  required={true}
-                  type="number"
+                  name="betOnTwoDNumber"
+                  id="betOnTwoDNumber"
+                  options={twoDNums}
+                  optionLabel="num"
+                  optionValue="id"
                 />
               </div>
               <div className="">
@@ -276,11 +169,9 @@ function Slot2D() {
             <div className="flex items-center justify-between">
               <div className="w-1/2 ">
                 <UiSelect
-                  name="quickPick"
-                  id="quickPick"
-                  formData={formData}
-                  setFromData={setFormData}
-                  options={quickPicks}
+                  name="keywords"
+                  id="keywords"
+                  options={keywords}
                   optionLabel="label"
                   optionValue="value"
                   placeHolder="အမြန်ရွေးပါ"
@@ -298,9 +189,9 @@ function Slot2D() {
           </form>
         </div>
         <div className="col-span-12 md:col-span-12">
-          {formData.name && (
+          {formData.customerNm && (
             <h4 className="my-3 text-lg tracking-widest text-slate-600">
-              {formData.name} ၏စာရင်း{" "}
+              {formData.customerNm} ၏စာရင်း{" "}
             </h4>
           )}
           <SelectTable>
@@ -313,7 +204,7 @@ function Slot2D() {
               </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-              {formData.selectedFormData.map((s, i) => (
+              {/* {formData.selectedFormData.map((s, i) => (
                 <TableRow key={i}>
                   <TableCell isHeader={false}>{i + 1}</TableCell>
                   <TableCell isHeader={false}>{s.num}</TableCell>
@@ -328,7 +219,7 @@ function Slot2D() {
                     </button>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))} */}
             </tbody>
           </SelectTable>
           <div className="flex justify-start w-full py-4 my-2 space-x-2 border-t border-slate-300">

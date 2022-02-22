@@ -1,29 +1,27 @@
+import { verifyToken } from "../../lib/JWT";
+import { jsonResponse } from "../../lib/responseHelper";
+import { Instance } from "../../Services";
 
-
-import { verifyToken } from '../../lib/JWT'
-import { jsonResponse } from '../../lib/responseHelper'
-
-export default async function middleware (req) {
-    
+export default async function middleware(req) {
   try {
-    const accessToken = req.cookies['USER_TOKEN']
+    const accessToken = req.cookies["USER_TOKEN"];
 
     if (accessToken) {
-      const user = verifyToken(accessToken)
+      const user = verifyToken(accessToken);
 
       if (user) {
-        if (user.role === 'SYS_ADMIN' || user.role === 'ADMIN') {
+        if (user.role === "SYS_ADMIN" || user.role === "ADMIN") {
         } else {
-          return jsonResponse(401, { message: 'Unauthenticated' })
+          return jsonResponse(401, { message: "Unauthenticated" });
         }
       } else {
-        return jsonResponse(401, { message: 'Unauthenticated' })
+        return jsonResponse(401, { message: "Unauthenticated" });
       }
     } else {
-      return jsonResponse(401, { message: 'Unauthenticated' })
+      return jsonResponse(401, { message: "Unauthenticated" });
     }
   } catch (error) {
-      console.log(error)
-    return jsonResponse(500, { message: 'System Error' })
+    console.log(error);
+    return jsonResponse(500, { message: "System Error" });
   }
 }
