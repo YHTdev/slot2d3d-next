@@ -50,15 +50,31 @@ export const getAdmin2DLeger = async (req) => {
 export const getAgentLeger = async (req) => {
   const returnObj = ResponseObj;
   try {
-    const { fromDt, toDt } = req.query();
     const userToken = req.cookies["USER_TOKEN"];
+    const { fromDt, toDt } = req.query;
+
     const user = verifyToken(userToken);
     if (user) {
-      const leger = await prisma.bets.findMany({
-        where: {
-          type: "TwoD",
-          userId: user.id,
+      let query = {
+        type: "TwoD",
+        userId: user.id,
+        updatedAt: {
+          gte: new Date(
+            new Date().getFullYear(),
+            new Date().getMonth() - 1,
+            new Date().getDate()
+          ),
+          lte: new Date(),
         },
+      };
+      if (fromDt) {
+        query["updatedAt"]["gte"] = new Date(fromDt);
+      }
+      if (toDt) {
+        query["updatedAt"]["lte"] = new Date(toDt);
+      }
+      const leger = await prisma.bets.findMany({
+        where: query,
         select: {
           id: true,
           customerNm: true,
@@ -73,8 +89,12 @@ export const getAgentLeger = async (req) => {
               amount: true,
             },
           },
+
           createdAt: true,
           updatedAt: true,
+        },
+        orderBy: {
+          updatedAt: "desc",
         },
       });
       let grandTotal = 0;

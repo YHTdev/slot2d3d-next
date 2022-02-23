@@ -1,97 +1,77 @@
-import Card, { CardBody, CardHeader } from "../Card";
 import SelectTable, { TableCell, TableRow } from "../SelectTable";
 
-import Image02 from "../../public/images/adminUsers/user-28-02.jpg";
-import Image03 from "../../public/images/adminUsers/user-28-03.jpg";
+import { format } from "date-fns";
+import { useState } from "react";
+import MyModal, { ModalBody, ModalTitle } from "../Modal";
 
-import PaginationClassic from "../Pagination/PaginationClassic";
+const TwoDLeger = ({ data }) => {
+  const [legerState, setLegerState] = useState([]);
+  const [show, setShow] = useState(false);
 
-const TwoDLeger = () => {
-  const customers = [
-    {
-      id: "1",
-      image: Image02,
-      name: "ကောင်းမြင့်သူ",
-      num:'34',
-      amount:70000
-    },
-    {
-      id: "2",
-      image: Image02,
-      name: "Aung Paing Zaw",
-      num:'35',
-      amount:70000
-    },
-    {
-      id: "3",
-      image: Image03,
-      name: "Aung Paing Zaw",
-      num:'32',
-      amount:70000
-    },
-  ];
+  const OnSelectLeger = (data) => {
+    setShow(!show);
+    setLegerState(data);
+  };
   return (
     <>
-          <SelectTable>
-            <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
-              <TableRow>
-                <TableCell isHeader={true} className={` w-px`}>
+      <SelectTable>
+        <thead className="text-sm font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
+          <TableRow>
+            <TableCell isHeader={true} className={` w-px`}>
+              <div className="flex items-center">
+                <label className="inline-flex">
+                  <span className="sr-only">Select all</span>
+                  <input
+                    className="form-checkbox"
+                    type="checkbox"
+                    // checked={selectAll}
+                    // onChange={handleSelectAll}
+                  />
+                </label>
+              </div>
+            </TableCell>
+
+            <TableCell isHeader={true}>အမည်</TableCell>
+            <TableCell isHeader={true}>ဂဏန်း</TableCell>
+            <TableCell className="text-right px-4" isHeader={true}>
+              ပမာဏ(ကျပ်)
+            </TableCell>
+            <TableCell isHeader={true}>နေ့ရက်</TableCell>
+          </TableRow>
+        </thead>
+        {data && (
+          <tbody className="text-sm divide-y divide-slate-200">
+            {data.leger.map((l, i) => (
+              <TableRow key={i}>
+                <TableCell>
                   <div className="flex items-center">
                     <label className="inline-flex">
-                      <span className="sr-only">Select all</span>
+                      <span className="sr-only">Select</span>
                       <input
+                        id={l.id}
                         className="form-checkbox"
                         type="checkbox"
-                        // checked={selectAll}
-                        // onChange={handleSelectAll}
+                        // onChange={customer.handleClick}
+                        // checked={customer.isChecked}
                       />
                     </label>
                   </div>
                 </TableCell>
 
-                <TableCell isHeader={true}>အမည်</TableCell>
-                <TableCell isHeader={true}>ဂဏန်း</TableCell>
-                <TableCell isHeader={true}>ပမာဏ</TableCell>
-                <TableCell isHeader={true} className="sr-only">
-                  Menu
+                <TableCell>
+                  <div className="font-medium text-slate-800">
+                    {l.customerNm}
+                  </div>
                 </TableCell>
-              </TableRow>
-            </thead>
-            <tbody className="text-sm divide-y divide-slate-200">
-              {customers.map((customer, i) => (
-                <TableRow key={i}>
-                  <TableCell>
-                    <div className="flex items-center">
-                      <label className="inline-flex">
-                        <span className="sr-only">Select</span>
-                        <input
-                          id={customer.id}
-                          className="form-checkbox"
-                          type="checkbox"
-                          // onChange={customer.handleClick}
-                          // checked={customer.isChecked}
-                        />
-                      </label>
-                    </div>
-                  </TableCell>
 
-                  <TableCell>
-                    <div className="font-medium text-slate-800">
-                      {customer.name}
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className="text-left">{customer.num}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{customer.amount}</div>
-                  </TableCell>
-                 
-
-                  <TableCell>
-                    {/* Menu button */}
-                    <button className="rounded-full text-slate-400 hover:text-slate-500">
+                <TableCell>
+                  <div className="text-left">
+                    <button
+                      onClick={() => {
+                        OnSelectLeger(l.betOnTwoDNumber);
+                      }}
+                      className="rounded-full text-slate-400 hover:text-slate-500"
+                    >
                       <span className="sr-only">Menu</span>
                       <svg className="w-8 h-8 fill-current" viewBox="0 0 32 32">
                         <circle cx="16" cy="16" r="2" />
@@ -99,15 +79,76 @@ const TwoDLeger = () => {
                         <circle cx="22" cy="16" r="2" />
                       </svg>
                     </button>
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="text-right px-4 result_font">
+                    {l.totalAmt}
+                  </div>
+                </TableCell>
+
+                <TableCell>
+                  <span className="result_font">
+                    {format(new Date(l.updatedAt), "yyyy-MM-dd")}
+                  </span>
+                </TableCell>
+              </TableRow>
+            ))}
+          </tbody>
+        )}
+        <thead className="text-sm font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
+          <TableRow>
+            <TableCell></TableCell>
+            <TableCell>
+              <span className="text-lg text-slate-500">စုစုပေါင်း</span>
+            </TableCell>
+            <TableCell></TableCell>
+            <TableCell className="text-right">
+              {data && (
+                <span className="text-yellow-600 text-lg result_font">
+                  {data.grandTotal}
+                </span>
+              )}
+            </TableCell>
+            <TableCell></TableCell>
+          </TableRow>
+        </thead>
+      </SelectTable>
+      <div className="mt-8"></div>
+      <MyModal isModalOpen={show} setIsModalOpen={setShow}>
+        <ModalTitle>
+          <span>ရွေးချယ်ထားသောဂဏန်းများ</span>
+        </ModalTitle>
+        <ModalBody>
+          <SelectTable>
+            <thead className="text-sm font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
+              <TableRow>
+                <TableCell isHeader={true}>
+                  <span>ဂဏန်း</span>
+                </TableCell>
+                <TableCell isHeader={true}>
+                  <span>ပမာဏ</span>
+                </TableCell>
+              </TableRow>
+            </thead>
+            <tbody className="text-sm divide-y divide-slate-200">
+              {legerState.map((d, i) => (
+                <TableRow key={i}>
+                  <TableCell>
+                    {
+                      d.TwoDNum && 
+                      <span>{d.TwoDNum.num}</span>
+                    }
+                  </TableCell>
+                  <TableCell>
+                    <span>{d.amount}</span>
                   </TableCell>
                 </TableRow>
               ))}
             </tbody>
           </SelectTable>
-          <div className="mt-8">
-            <PaginationClassic />
-          </div>
-     
+        </ModalBody>
+      </MyModal>
     </>
   );
 };
