@@ -14,6 +14,12 @@ export const get2DBets = async (req) => {
         customerNm: true,
         id: true,
         totalAmt: true,
+        session: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
         betOnTwoDNumber: {
           select: {
             TwoDNum: {

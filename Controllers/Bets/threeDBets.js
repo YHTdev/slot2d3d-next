@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { each } from "lodash";
 import { ResponseObj } from "../../lib/responseHelper";
 const prisma = new PrismaClient();
 
@@ -15,7 +16,7 @@ export const get3DBets = async (req) => {
         totalAmt: true,
         betOnThreeDNumber: {
           select: {
-            TwoDNum: {
+            ThreeDNum: {
               select: {
                 num: true,
                 id: true,
@@ -24,42 +25,41 @@ export const get3DBets = async (req) => {
             amount: true,
           },
         },
-        _count: {
-          select: {
-            betOnThreeDNumber: true,
-          },
-        },
       },
     });
     returnObj.statusCode = 200;
     returnObj.Data = bets;
     returnObj.message = "success";
   } catch (error) {
+    console.log(error);
     returnObj.statusCode = 500;
     returnObj.Error = error;
   }
+  return returnObj;
 };
 
-export const create2DBet = async (req) => {
+export const create3DBet = async (req) => {
   const returnObj = ResponseObj;
   try {
-    //   twoDNumber Input
-    // [
-    //     {
-    //         twoDNumerId:'',
-    //         amount:45
-    //     }
-    // ]
-    const { betOnThreeDNumber, customerNm, sessionId, totalAmt } = req.body;
+    const { betOnThreeDNumber, customerNm, sessionId, totalAmt, agentId } =
+      req.body;
+    let formatedNums = [];
+    each(betOnThreeDNumber, (bet) => {
+      formatedNums.push({
+        threeDNumerId: bet.threeDNumerId,
+        amount: parseInt(bet.amount),
+      });
+    });
     const bet = await prisma.bets.create({
       data: {
         customerNm: customerNm,
-        type: "TwoD",
+        type: "ThreeD",
         sessionId: sessionId,
+        userId: agentId,
         totalAmt: parseInt(totalAmt),
         betOnThreeDNumber: {
           createMany: {
-            data: betOnThreeDNumber,
+            data: formatedNums,
           },
         },
       },
@@ -73,25 +73,9 @@ export const create2DBet = async (req) => {
       returnObj.message = "လုပ်ဆောင်ချက်မအောင်မြင်ပါ";
     }
   } catch (error) {
+    console.log(error);
     returnObj.statusCode = 500;
     returnObj.Error = error;
   }
-};
-
-export const update2DBet = async (req) => {
-  const returnObj = ResponseObj;
-  try {
-  } catch (error) {
-    returnObj.statusCode = 500;
-    returnObj.Error = error;
-  }
-};
-
-export const delete2DBet = async (req) => {
-  const returnObj = ResponseObj;
-  try {
-  } catch (error) {
-    returnObj.statusCode = 500;
-    returnObj.Error = error;
-  }
+  return returnObj;
 };

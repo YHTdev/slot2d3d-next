@@ -5,48 +5,6 @@ import { ResponseObj } from "../../../lib/responseHelper";
 
 const prisma = new PrismaClient();
 
-export const getAdmin2DLeger = async (req) => {
-  const returnObj = ResponseObj;
-  try {
-    const leger = await prisma.bets.findMany({
-      where: {
-        type: "TwoD",
-      },
-      select: {
-        id: true,
-        customerNm: true,
-        totalAmt: true,
-        betOnTwoDNumber: {
-          select: {
-            TwoDNum: {
-              select: {
-                num: true,
-              },
-            },
-            amount: true,
-          },
-        },
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
-    let grandTotal = 0;
-    each(leger, (l) => {
-      grandTotal += l.totalAmt;
-    });
-    returnObj.statusCode = 200;
-    returnObj.Data = {
-      leger: leger,
-      grandTotal: grandTotal,
-    };
-  } catch (error) {
-    returnObj.statusCode = 500;
-    returnObj.Error = error;
-  }
-
-  return returnObj;
-};
-
 export const getAgentLeger = async (req) => {
   const returnObj = ResponseObj;
   try {
@@ -56,7 +14,7 @@ export const getAgentLeger = async (req) => {
     const user = verifyToken(userToken);
     if (user) {
       let query = {
-        type: "TwoD",
+        type: "ThreeD",
         userId: user.id,
         updatedAt: {
           gte: new Date(
@@ -87,9 +45,9 @@ export const getAgentLeger = async (req) => {
               name: true,
             },
           },
-          betOnTwoDNumber: {
+          betOnThreeDNumber: {
             select: {
-              TwoDNum: {
+              ThreeDNum: {
                 select: {
                   num: true,
                 },

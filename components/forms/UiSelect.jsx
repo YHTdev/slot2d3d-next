@@ -16,6 +16,7 @@ function UiSelect({
 }) {
   return (
     <ReactSelect
+      
       className={`${className}`}
       name={name}
       id={id}

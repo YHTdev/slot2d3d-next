@@ -32,6 +32,7 @@ const TwoDLeger = ({ data }) => {
             </TableCell>
 
             <TableCell isHeader={true}>အမည်</TableCell>
+            <TableCell isHeader={true}>အချိန်</TableCell>
             <TableCell isHeader={true}>ဂဏန်း</TableCell>
             <TableCell className="text-right px-4" isHeader={true}>
               ပမာဏ(ကျပ်)
@@ -61,6 +62,11 @@ const TwoDLeger = ({ data }) => {
                 <TableCell>
                   <div className="font-medium text-slate-800">
                     {l.customerNm}
+                  </div>
+                </TableCell>
+                <TableCell>
+                  <div className="font-medium text-slate-800">
+                    {l.session && l.session.name}
                   </div>
                 </TableCell>
 
@@ -105,7 +111,7 @@ const TwoDLeger = ({ data }) => {
             <TableCell></TableCell>
             <TableCell className="text-right">
               {data && (
-                <span className="text-yellow-600 text-lg result_font">
+                <span className="text-yellow-600  text-lg result_font">
                   {data.grandTotal}
                 </span>
               )}
