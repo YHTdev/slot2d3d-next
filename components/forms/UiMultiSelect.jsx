@@ -1,6 +1,6 @@
 import React from "react";
 import ReactSelect from "react-select";
-function UiSelect({
+function UiMultiSelect({
   className,
   formData,
   setFromData,
@@ -24,7 +24,7 @@ function UiSelect({
       
       placeholder={placeHolder}
       onChange={(newValue) =>
-        setFromData({ ...formData, [name]: newValue[optionValue] })
+        setFromData({ ...formData, [name]: newValue })
       }
       isDisabled={disabled}
       getOptionLabel={(option) => option[optionLabel]}
@@ -34,4 +34,4 @@ function UiSelect({
   );
 }
 
-export default UiSelect;
+export default UiMultiSelect;

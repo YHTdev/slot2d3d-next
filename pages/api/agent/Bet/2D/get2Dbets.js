@@ -1,8 +1,8 @@
-import { getUsers } from "../../../../Controllers/Users";
+import { get2DBets } from "../../../../../Controllers/Bets/twoDBets";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
-    const response = await getUsers(req);
+    const response = await get2DBets(req);
     res.status(200).json(response);
   } else {
     res.status(405).json({

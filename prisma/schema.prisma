@@ -33,6 +33,7 @@ model User {
   updatedAt  DateTime         @default(now())
   commission UserCommission[]
 
+  Bets Bets[]
 }
 
 model UserCommission {
@@ -78,6 +79,7 @@ model TwoDNumer {
   updatedAt DateTime             @default(now())
   keyWord   TwoDNumerOnKeyword[]
 
+  BetOnTwoDNumber BetOnTwoDNumber[]
 }
 
 model Keyword {
@@ -104,6 +106,7 @@ model ThreeDNumer {
 
 
 
+  BetOnThreeDNumber BetOnThreeDNumber[]
 }
 
 model Limit {
@@ -153,6 +156,49 @@ model Session {
   toDt      String
   status    Boolean     @default(true)
   Limit     Limit[]
+  Bets      Bets[]
+}
+
+model BetOnTwoDNumber {
+  id          String    @id @default(uuid())
+  TwoDNum     TwoDNumer @relation(fields: [twoDNumerId], references: [id])
+  twoDNumerId String
+  amount      Int
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  Bets        Bets?     @relation(fields: [betsId], references: [id])
+  betsId      String?
+}
+
+model BetOnThreeDNumber {
+  id            String      @id @default(uuid())
+  ThreeDNum     ThreeDNumer @relation(fields: [threeDNumerId], references: [id])
+  threeDNumerId String
+  amount        Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @default(now())
+  Bets          Bets?       @relation(fields: [betsId], references: [id])
+  betsId        String?
+}
+
+model Bets {
+  id                String              @id @default(uuid())
+  createdAt         DateTime            @default(now())
+  type              BetType             @default(TwoD)
+  betOnTwoDNumber   BetOnTwoDNumber[]
+  betOnThreeDNumber BetOnThreeDNumber[]
+  session           Session             @relation(fields: [sessionId], references: [id])
+  customerNm        String
+  totalAmt          Int
+  updatedAt         DateTime            @default(now())
+  agent             User                @relation(fields: [userId], references: [id])
+  sessionId         String
+  userId            String
+}
+
+enum BetType {
+  TwoD
+  ThreeD
 }
 
 enum Role {

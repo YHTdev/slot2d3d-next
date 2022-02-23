@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import TwoDLeger from "../../../components/2D/Leger";
-
+import {Instance} from '../../../Services/'
 import Card, { CardBody, CardHeader } from "../../../components/Card";
 
 import UiRangePicker from "../../../components/forms/UiRangePicker";
@@ -35,6 +35,28 @@ function AgentLeger() {
       value: "4",
     },
   ];
+
+  const getLeger = useCallback(
+    () => {
+      Instance({
+        url:'/agent/Bet/2D/leger',
+        method:'GET'
+      })
+      .then(res=>{
+        console.log(res.data)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    },
+    [],
+  )
+
+  useEffect(() => {
+    getLeger()
+  }, [getLeger])
+  
+  
 
   
   return (
