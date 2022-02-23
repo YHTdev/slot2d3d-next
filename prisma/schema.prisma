@@ -33,6 +33,7 @@ model User {
   updatedAt  DateTime         @default(now())
   commission UserCommission[]
 
+  Bets Bets[]
 }
 
 model UserCommission {
@@ -190,8 +191,9 @@ model Bets {
   customerNm        String
   totalAmt          Int
   updatedAt         DateTime            @default(now())
-
-  sessionId String
+  agent             User                @relation(fields: [userId], references: [id])
+  sessionId         String
+  userId            String
 }
 
 enum BetType {

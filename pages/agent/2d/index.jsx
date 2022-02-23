@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Timer from "../../../components/CountDown";
 
 import UiSelect from "../../../components/forms/UiSelect";
+
 import UiInput from "../../../components/forms/UiInput";
 import UiButton from "../../../components/forms/UiButton";
 import SelectTable, {
@@ -13,10 +14,18 @@ import ManagementLayout from "../../../components/layout/ManagementLayout";
 import { useSelector } from "react-redux";
 import TrashIcon from "../../../components/Icons/TrashIcon";
 import { useToasts } from "react-toast-notifications";
-import UiMultiSelect from "../../../components/forms/UiMultiSelect";
+
 import { Instance } from "../../../Services";
 import { each, find } from "lodash";
+
 function Slot2D() {
+  const [sessions, setSessions] = useState([]);
+  const [keywords, setKeywords] = useState([]);
+
+  const { Nums } = useSelector((state) => state.management);
+  const twoDNums = Nums.twoD;
+  const { user } = useSelector((state) => state.auth);
+  
   const [formData, setFormData] = useState({
     customerNm: "",
     betOnTwoDNumber: [],
@@ -24,14 +33,10 @@ function Slot2D() {
     amount: 0,
     keywords: [],
     totalAmount: 0,
-    selectedNums: [],
+    selectedNum: "",
+    
   });
-  const [sessions, setSessions] = useState([]);
-  const [keywords, setKeywords] = useState([]);
-  const [postData, setpostData] = useState();
-  const { Nums } = useSelector((state) => state.management);
-  const twoDNums = Nums.twoD;
-  console.log(formData);
+
   const getSessions = useCallback(() => {
     Instance({
       url: "/settings/sessions/get2dSessions",
@@ -47,37 +52,70 @@ function Slot2D() {
       });
   }, []);
 
-  
+  const filterFormData = (s) => {
+    const filteredArray = formData.betOnTwoDNumber.filter(
+      (bet) => bet.twoDNumerId !== s.twoDNumerId
+    );
+    let totalAmount = 0;
+    each(filteredArray, (f) => {
+      totalAmount += parseInt(f.amount);
+    });
+    setFormData({
+      ...formData,
+      totalAmount: totalAmount,
+      betOnTwoDNumber: filteredArray,
+    });
+  };
   const onSumEvent = () => {
-    if (formData.betOnTwoDNumber.length > 0 || formData.keywords.length > 0) {
-      if (formData.customerNm && formData.sessionId && formData.amount) {
-        if (formData.betOnTwoDNumber) {
-          let selectedNums = formData.betOnTwoDNumber;
-          
-          each(formData.betOnTwoDNumber, (b) => {
-            selectedNums.push({
-              twoDNumerId: b.id,
-              amount: formData.amount,
-            });
+    if (formData.selectedNum && formData.amount > 0 && formData.sessionId) {
+      const selectedNumObj = find(
+        twoDNums,
+        (num) => num.num === formData.selectedNum
+      );
+      if (selectedNumObj) {
+        const IsExist = find(
+          formData.betOnTwoDNumber,
+          (bet) => bet.twoDNumerId === selectedNumObj.id
+        );
+        if (IsExist) {
+          addToast("ထည့်ပြီးသားဂဏန်းဖြစ်သည်", {
+            appearance: "warning",
+            autoDismiss: true,
           });
-          
-        }
-        else{
-          each(formData.keywords, (b) => {
-            nums.push({
-              twoDNumerId: b.id,
-              amount: parseInt(formData.amount),
-            });
+        } else {
+          let betOnTwoDNumberArray = formData.betOnTwoDNumber;
+          const pushObj = {
+            twoDNumerId: selectedNumObj.id,
+            amount: formData.amount,
+          };
+          betOnTwoDNumberArray.push(pushObj);
+          let totalAmount = 0;
+          each(betOnTwoDNumberArray, (bet) => {
+            totalAmount += parseInt(bet.amount);
           });
-          formData.selectedNums.push(nums)
+          setFormData({
+            ...formData,
+            betOnTwoDNumber: betOnTwoDNumberArray,
+            totalAmount: totalAmount,
+            amount: 0,
+            selectedNum: "",
+          });
         }
+      } else {
+        addToast("ဂဏန်းထည့်ခြင်းမှားယွင်းနေပါသည်", {
+          appearance: "warning",
+          autoDismiss: false,
+        });
       }
-      else{
-        addToast('သေချာစွာဖြည့်ပါ',{appearance:'warning',autoDismiss:true})
-      }
-    }
-    else{
-      addToast('ဂဏန်းရွေးချယ်ပါ',{appearance:'warning',autoDismiss:true})
+    } else if (
+      formData.keywords.length > 0 &&
+      formData.selectedNum &&
+      formData.amount > 0 &&
+      formData.sessionId
+    ) {
+    } else if (formData.keywords && formData.amount > 0 && formData.sessionId) {
+    } else {
+      addToast("သေချာစွာဖြည့်ပါ", { appearance: "warning", autoDismiss: true });
     }
   };
 
@@ -103,7 +141,50 @@ function Slot2D() {
 
   const { routes } = useSelector((state) => state.management);
   const { addToast } = useToasts();
-
+  const SubmitForm = () => {
+    try {
+      if (
+        formData.betOnTwoDNumber.length > 0 &&
+        formData.sessionId &&
+        formData.customerNm &&
+        formData.totalAmount
+      ) {
+        Instance({
+          url: "/agent/Bet/2D/bet2DNum",
+          method: "POST",
+          data: {
+            customerNm: formData.customerNm,
+            sessionId: formData.sessionId,
+            totalAmt: formData.totalAmount,
+            betOnTwoDNumber: formData.betOnTwoDNumber,
+            agentId:user.id
+          },
+        }).then(res=>{
+            if(res.data && res.data.statusCode===200){
+              addToast(res.data.message,{appearance:'success',autoDismiss:true})
+              setFormData({
+                customerNm: "",
+                betOnTwoDNumber: [],
+                sessionId: "",
+                amount: 0,
+                keywords: [],
+                totalAmount: 0,
+                selectedNum: "",
+              })
+            }
+            else{
+              addToast(res.data.message,{appearance:'warning',autoDismiss:true})
+            }
+        })
+        .catch(err=>{
+            addToast('တခုခုမှားယွင်းနေပါသည်',{appearance:'warning',autoDismiss:true})
+        })
+        
+      }
+    } catch (error) {
+      addToast("တခုခုမှားယွင်းနေပါသည်",{appearance:'error',autoDismiss:true});
+    }
+  };
   return (
     <ManagementLayout title="2D ထိုးရန်" routes={routes.twoDBetRoutes}>
       <div className="flex flex-row items-center justify-between mb-8">
@@ -140,17 +221,14 @@ function Slot2D() {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="">
-                <UiMultiSelect
-                  isMultiple={true}
-                  isSearchable={true}
-                  placeHolder="ဂဏန်းရွေးချယ်ပါ"
+                <UiInput
+                  id="selectedNum"
+                  name="selectedNum"
                   formData={formData}
                   setFromData={setFormData}
-                  name="betOnTwoDNumber"
-                  id="betOnTwoDNumber"
-                  options={twoDNums}
-                  optionLabel="num"
-                  optionValue="id"
+                  placeHolder="ဂဏန်းရိုက်ထည့်ပါ"
+                  required={true}
+                  type="text"
                 />
               </div>
               <div className="">
@@ -204,10 +282,12 @@ function Slot2D() {
               </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-              {/* {formData.selectedFormData.map((s, i) => (
+              {formData.betOnTwoDNumber.map((s, i) => (
                 <TableRow key={i}>
                   <TableCell isHeader={false}>{i + 1}</TableCell>
-                  <TableCell isHeader={false}>{s.num}</TableCell>
+                  <TableCell isHeader={false}>
+                    {find(twoDNums, (num) => num.id === s.twoDNumerId).num}
+                  </TableCell>
                   <TableCell isHeader={false}>{s.amount}</TableCell>
                   <TableCell isHeader={false}>
                     <button
@@ -219,7 +299,7 @@ function Slot2D() {
                     </button>
                   </TableCell>
                 </TableRow>
-              ))} */}
+              ))}
             </tbody>
           </SelectTable>
           <div className="flex justify-start w-full py-4 my-2 space-x-2 border-t border-slate-300">
@@ -233,7 +313,7 @@ function Slot2D() {
             <UiButton
               title="အတည်ပြုမည်"
               actionButton={true}
-              NextFun={() => console.log("ok")}
+              NextFun={() => SubmitForm()}
             />
           </div>
         </div>

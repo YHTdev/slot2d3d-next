@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { each } from "lodash";
 import { ResponseObj } from "../../lib/responseHelper";
 const prisma = new PrismaClient();
 
@@ -40,23 +41,25 @@ export const get2DBets = async (req) => {
 export const create2DBet = async (req) => {
   const returnObj = ResponseObj;
   try {
-    //   twoDNumber Input
-    // [
-    //     {
-    //         twoDNumerId:'',
-    //         amount:45
-    //     }
-    // ]
-    const { betOnTwoDNumer, customerNm, sessionId, totalAmt } = req.body;
+    const { betOnTwoDNumber, customerNm, sessionId, totalAmt, agentId } =
+      req.body;
+    let formatedNums = [];
+    each(betOnTwoDNumber, (bet) => {
+      formatedNums.push({
+        amount: parseInt(bet.amount),
+        twoDNumerId: bet.twoDNumerId,
+      });
+    });
     const bet = await prisma.bets.create({
       data: {
         customerNm: customerNm,
         type: "TwoD",
         sessionId: sessionId,
+        userId: agentId,
         totalAmt: parseInt(totalAmt),
         betOnTwoDNumber: {
           createMany: {
-            data: betOnTwoDNumer,
+            data: formatedNums,
           },
         },
       },
@@ -70,25 +73,9 @@ export const create2DBet = async (req) => {
       returnObj.message = "လုပ်ဆောင်ချက်မအောင်မြင်ပါ";
     }
   } catch (error) {
+    console.log(error);
     returnObj.statusCode = 500;
     returnObj.Error = error;
   }
-};
-
-export const update2DBet = async (req) => {
-  const returnObj = ResponseObj;
-  try {
-  } catch (error) {
-    returnObj.statusCode = 500;
-    returnObj.Error = error;
-  }
-};
-
-export const delete2DBet = async (req) => {
-  const returnObj = ResponseObj;
-  try {
-  } catch (error) {
-    returnObj.statusCode = 500;
-    returnObj.Error = error;
-  }
+  return returnObj;
 };
