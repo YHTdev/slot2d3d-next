@@ -32,7 +32,9 @@ function Login() {
               appearance: "success",
               autoDismiss: true,
             });
-            router.push('/admin')
+           router.push('/admin')
+         
+           
           } else if (res.data && res.data.statusCode === 400) {
             addToast(res.data.message, {
               appearance: "warning",

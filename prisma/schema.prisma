@@ -80,6 +80,7 @@ model TwoDNumer {
   keyWord   TwoDNumerOnKeyword[]
 
   BetOnTwoDNumber BetOnTwoDNumber[]
+  TwoDResult      TwoDResult[]
 }
 
 model Keyword {
@@ -107,6 +108,7 @@ model ThreeDNumer {
 
 
   BetOnThreeDNumber BetOnThreeDNumber[]
+  ThreeDResult      ThreeDResult[]
 }
 
 model Limit {
@@ -147,16 +149,18 @@ enum SessionType {
 }
 
 model Session {
-  id        String      @id @default(uuid())
-  name      String      @unique
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @default(now())
-  type      SessionType @default(TwoDSession)
-  fromDt    String
-  toDt      String
-  status    Boolean     @default(true)
-  Limit     Limit[]
-  Bets      Bets[]
+  id           String         @id @default(uuid())
+  name         String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @default(now())
+  type         SessionType    @default(TwoDSession)
+  fromDt       String
+  toDt         String
+  status       Boolean        @default(true)
+  Limit        Limit[]
+  Bets         Bets[]
+  TwoDResult   TwoDResult[]
+  ThreeDResult ThreeDResult[]
 }
 
 model BetOnTwoDNumber {
@@ -214,4 +218,35 @@ model Setting {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+}
+
+model TwoDResult {
+  id          String    @id @default(uuid())
+  num         TwoDNumer @relation(fields: [twoDNumerId], references: [id])
+  twoDNumerId String
+  session     Session   @relation(fields: [sessionId], references: [id])
+  sessionId   String
+  confirmDt   String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+}
+
+model ThreeDResult {
+  id            String      @id @default(uuid())
+  num           ThreeDNumer @relation(fields: [threeDNumerId], references: [id])
+  threeDNumerId String
+  session       Session     @relation(fields: [sessionId], references: [id])
+  sessionId     String
+  confirmDt     String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @default(now())
+}
+
+model PrizeRate {
+  id        String   @id @default(uuid())
+  amount    Int
+  type      BetType  @default(TwoD)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
 }

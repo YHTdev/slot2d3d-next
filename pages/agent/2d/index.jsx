@@ -156,7 +156,7 @@ function Slot2D() {
             sessionId: formData.sessionId,
             totalAmt: formData.totalAmount,
             betOnTwoDNumber: formData.betOnTwoDNumber,
-            agentId:user.id
+            agentId:user?user.id:null
           },
         }).then(res=>{
             if(res.data && res.data.statusCode===200){
@@ -176,11 +176,13 @@ function Slot2D() {
             }
         })
         .catch(err=>{
+          console.log(err)
             addToast('တခုခုမှားယွင်းနေပါသည်',{appearance:'warning',autoDismiss:true})
         })
         
       }
     } catch (error) {
+      console.log(error)
       addToast("တခုခုမှားယွင်းနေပါသည်",{appearance:'error',autoDismiss:true});
     }
   };
