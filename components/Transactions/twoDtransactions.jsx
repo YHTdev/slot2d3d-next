@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Card, { CardBody, CardHeader } from "../Card";
 import UiRangePicker from "../forms/UiRangePicker";
 import UiSelect from "../forms/UiSelect";
 import PaginationClassic from "../Pagination/PaginationClassic";
 import SelectTable, { TableCell, TableRow } from "../SelectTable";
-
+import {Instance} from '../../Services/'
+import {format} from 'date-fns'
+import { DotsHorizontalIcon } from "@heroicons/react/solid";
 function TwoDTransactions() {
   const [formData, setFormData] = useState({
     agentId: "",
@@ -15,9 +17,38 @@ function TwoDTransactions() {
         new Date().getMonth() - 1,
         new Date().getDate()
       ),
-      new Date(),
+      new Date(new Date().getFullYear(),
+      new Date().getMonth(),
+      new Date().getDate()+1),
     ],
   });
+  const [legerData, setlegerData] = useState()
+  const getLegers = useCallback(
+    () => {
+      if (formData.range[0] && formData.range[1]) {
+        const fromDt = format(formData.range[0], "yyyy-MM-dd");
+        const toDt = format(formData.range[1], "yyyy-MM-dd");
+        Instance({
+          url: `/admin/leger?fromDt=${fromDt}&toDt=${toDt}&sessionId=${formData.sessionId}&agentId=${formData.agentId}&type=TwoD`,
+          method: "GET",
+        })
+          .then((res) => {
+           if(res.data && res.data.statusCode===200){
+             setlegerData(res.data.Data)
+           }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    [formData],
+  )
+
+  useEffect(() => {
+   getLegers()
+  }, [getLegers])
+  
   
   return (
     <div>
@@ -58,7 +89,9 @@ function TwoDTransactions() {
                       new Date().getDate()
                     )
                   }
-                  maxDate={new Date()}
+                  maxDate={new Date( new Date().getFullYear() +1,
+                    new Date().getMonth(),
+                    new Date().getDate())}
                 />
               </div>
             </div>
@@ -102,6 +135,9 @@ function TwoDTransactions() {
                   <span>စဉ်</span>
                 </TableCell>
                 <TableCell isHeader={true}>
+                  <span>အမည်</span>
+                </TableCell>
+                <TableCell isHeader={true}>
                   <span>အေးဂျင့်အမည်</span>
                 </TableCell>
                 <TableCell isHeader={true}>
@@ -117,56 +153,48 @@ function TwoDTransactions() {
                 <TableCell isHeader={true}>
                   <span>ပမာဏ</span>
                 </TableCell>
-                <TableCell isHeader={true}>
-                  <span>အခြေအန</span>
-                </TableCell>
-                <TableCell isHeader={true}>
-                  <span>ကော်မရှင်</span>
-                </TableCell>
-                <TableCell isHeader={true}>
-                  <span>အသားတင်ငွေ</span>
-                </TableCell>
+               
                 <TableCell isHeader={true}>
                   <span>လုပ်ဆောင်ချက်များ</span>
                 </TableCell>
               </TableRow>
             </thead>
-            <tbody className="text-sm divide-y divide-slate-200">
-              {/* {transactions.map((t, i) => (
-                <TableRow key={i}>
-                  <TableCell>
-                    <div className="text-left">{t.id}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.agentNm}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.session}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.releasedDt}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.num}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.amount}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.status}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.commission}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">{t.remainingBalance}</div>
-                  </TableCell>
-                  <TableCell>
-                    <div className="text-left">.....</div>
-                  </TableCell>
-                </TableRow>
-              ))} */}
-            </tbody>
+           {
+             legerData && 
+             <tbody className="text-sm divide-y divide-slate-200">
+             {legerData.leger.map((t, i) => (
+               <TableRow key={i}>
+                 <TableCell>
+                   <div className="text-left">{i+1}</div>
+                 </TableCell>
+                 <TableCell>
+                   <div className="text-left">{t.customerNm}</div>
+                 </TableCell>
+                 <TableCell>
+                   <div className="text-left">{t.agent?t.agent.name:''}</div>
+                 </TableCell>
+                 <TableCell>
+                   <div className="text-left">{t.session?t.session.name:''}</div>
+                 </TableCell>
+                 <TableCell>
+                   <div className="text-left">{format(new Date(t.createdAt),'yyyy-MM-dd')}</div>
+                 </TableCell>
+                 <TableCell>
+                   <div className="text-left">
+                     <DotsHorizontalIcon className="w-4 h-4" />
+                   </div>
+                 </TableCell>
+                 <TableCell>
+                   <div className="text-left">{t.totalAmt}</div>
+                 </TableCell>
+                 
+                 <TableCell>
+                   <div className="text-left">.....</div>
+                 </TableCell>
+               </TableRow>
+             ))}
+           </tbody>
+           }
           </SelectTable>
           <div>
             <PaginationClassic />
