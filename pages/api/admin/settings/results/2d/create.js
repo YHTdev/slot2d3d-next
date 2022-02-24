@@ -1,12 +1,11 @@
 import { withValidation } from "next-validations";
 import * as yup from "yup";
-import { create3DBet } from "../../../../../Controllers/Bets/threeDBets";
+import { create2DResult } from "../../../../../../Controllers/Result/twoD";
 
 const schema = yup.object().shape({
-  customerNm: yup.string().required(),
-  sessionId: yup.string().required(),
-  totalAmt: yup.string().required(),
-  agentId: yup.string().required(),
+    twoDNumerId:yup.string().required(),
+    sessionId:yup.string().required(),
+    confirmDt:yup.string().required()
 });
 const validate = withValidation({
   schema,
@@ -16,7 +15,7 @@ const validate = withValidation({
 
 const handler = async (req, res) => {
   if (req.method === "POST") {
-    const response = await create3DBet(req);
+    const response = await create2DResult(req);
     res.status(200).json(response);
   } else {
     res.status(405).json({

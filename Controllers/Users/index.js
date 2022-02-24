@@ -94,6 +94,7 @@ export const loginUser = async (req) => {
     const user = await prisma.user.findFirst({
       where: {
         phone: phone,
+        status: true,
       },
     });
     if (user) {

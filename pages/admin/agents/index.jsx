@@ -1,5 +1,4 @@
 import Layout from "../../../components/layout";
-import Breadcrumb from "../../../components/Breadcrumb";
 
 import CreateAgentUsers from "../../../components/AgentUsers/CreateAgentUsers";
 import AgentUserLists from "../../../components/AgentUsers/AgentUserLists";
@@ -32,7 +31,43 @@ const Agents = () => {
   useEffect(() => {
    fetchUsers()
   }, [fetchUsers])
-  
+  const [TwoDComissions, setTwoDComissions] = useState([]);
+  const [ThreeDComissions, setThreeDComissions] = useState([]);
+  const get2DComissions = useCallback(() => {
+    Instance({
+      url: "/settings/comissions/get_2D_commissions",
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.data && res.data.statusCode === 200 && res.data.Data) {
+          setTwoDComissions(res.data.Data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const get3DComissions = useCallback(() => {
+    Instance({
+      url: "/settings/comissions/get_3D_commissions",
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.data && res.data.statusCode === 200 && res.data.Data) {
+          setThreeDComissions(res.data.Data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    get3DComissions();
+    get2DComissions();
+  }, [get2DComissions, get3DComissions]);
+
   
   return (
     <Layout>
@@ -56,7 +91,7 @@ const Agents = () => {
           <Modal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen}>
             <ModalTitle> အေးဂျင့်ဖန်တီးပါ</ModalTitle>
             <ModalBody>
-              <CreateAgentUsers fetchUsers={fetchUsers} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+              <CreateAgentUsers twoDcomissions={TwoDComissions} threeDComissions={ThreeDComissions} fetchUsers={fetchUsers} isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
             </ModalBody>
           </Modal>
         </div>

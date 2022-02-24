@@ -4,9 +4,11 @@ import { createUser } from "../../../../Controllers/Users";
 
 const schema = yup.object().shape({
   phone: yup.string().required(),
-  password: yup.string().min(8).required(),
+  password: yup.string().required(),
   name: yup.string().required(),
   nrc: yup.string().required(),
+  nrc_front: yup.string().required(),
+  nrc_back: yup.string().required(),
 });
 const validate = withValidation({
   schema,

@@ -18,85 +18,7 @@ function TwoDTransactions() {
       new Date(),
     ],
   });
-  const transactions = [
-    {
-      id: 0,
-      agentNm: "ကိုမောင်မောင်",
-      session: "မနက်ပိုင်း",
-      releasedDt: "2022/01/20",
-      num: "34",
-      amount: 20000,
-      status: "..",
-      commission: 2000,
-      remainingBalance: 18000,
-    },
-    {
-      id: 1,
-      agentNm: "ကိုမောင်မောင်",
-      session: "မနက်ပိုင်း",
-      releasedDt: "2022/01/20",
-      num: "34",
-      amount: 20000,
-      status: "..",
-      commission: 2000,
-      remainingBalance: 18000,
-    },
-    {
-      id: 2,
-      agentNm: "ကိုမောင်မောင်",
-      session: "မနက်ပိုင်း",
-      releasedDt: "2022/01/20",
-      num: "34",
-      amount: 20000,
-      status: "..",
-      commission: 2000,
-      remainingBalance: 18000,
-    },
-    {
-      id: 3,
-      agentNm: "ကိုမောင်မောင်",
-      session: "မနက်ပိုင်း",
-      releasedDt: "2022/01/20",
-      num: "34",
-      amount: 20000,
-      status: "..",
-      commission: 2000,
-      remainingBalance: 18000,
-    },
-    {
-      id: 4,
-      agentNm: "ကိုမောင်မောင်",
-      session: "မနက်ပိုင်း",
-      releasedDt: "2022/01/20",
-      num: "34",
-      amount: 20000,
-      status: "..",
-      commission: 2000,
-      remainingBalance: 18000,
-    },
-    {
-      id: 5,
-      agentNm: "ကိုမောင်မောင်",
-      session: "မနက်ပိုင်း",
-      releasedDt: "2022/01/20",
-      num: "34",
-      amount: 20000,
-      status: "..",
-      commission: 2000,
-      remainingBalance: 18000,
-    },
-    {
-      id: 6,
-      agentNm: "ကိုမောင်မောင်",
-      session: "မနက်ပိုင်း",
-      releasedDt: "2022/01/20",
-      num: "34",
-      amount: 20000,
-      status: "..",
-      commission: 2000,
-      remainingBalance: 18000,
-    },
-  ];
+  
   return (
     <div>
       <Card>
@@ -210,7 +132,7 @@ function TwoDTransactions() {
               </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-              {transactions.map((t, i) => (
+              {/* {transactions.map((t, i) => (
                 <TableRow key={i}>
                   <TableCell>
                     <div className="text-left">{t.id}</div>
@@ -243,7 +165,7 @@ function TwoDTransactions() {
                     <div className="text-left">.....</div>
                   </TableCell>
                 </TableRow>
-              ))}
+              ))} */}
             </tbody>
           </SelectTable>
           <div>

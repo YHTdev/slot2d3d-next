@@ -4,7 +4,7 @@ import { format } from "date-fns";
 import { useState } from "react";
 import MyModal, { ModalBody, ModalTitle } from "../Modal";
 
-const ThreeDLeger = ({ data }) => {
+const AdminLeger = ({ data }) => {
   const [legerState, setLegerState] = useState([]);
   const [show, setShow] = useState(false);
 
@@ -159,4 +159,4 @@ const ThreeDLeger = ({ data }) => {
   );
 };
 
-export default ThreeDLeger;
+export default AdminLeger;

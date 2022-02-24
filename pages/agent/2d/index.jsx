@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import Timer from "../../../components/CountDown";
 
 import UiSelect from "../../../components/forms/UiSelect";
 
@@ -157,7 +156,7 @@ function Slot2D() {
             sessionId: formData.sessionId,
             totalAmt: formData.totalAmount,
             betOnTwoDNumber: formData.betOnTwoDNumber,
-            agentId:user.id
+            agentId:user?user.id:null
           },
         }).then(res=>{
             if(res.data && res.data.statusCode===200){
@@ -177,11 +176,13 @@ function Slot2D() {
             }
         })
         .catch(err=>{
+          console.log(err)
             addToast('တခုခုမှားယွင်းနေပါသည်',{appearance:'warning',autoDismiss:true})
         })
         
       }
     } catch (error) {
+      console.log(error)
       addToast("တခုခုမှားယွင်းနေပါသည်",{appearance:'error',autoDismiss:true});
     }
   };
@@ -191,10 +192,7 @@ function Slot2D() {
         {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
         {/* Left: Title */}
         <div className="flex items-center content-center justify-end w-full"></div>
-        <div className="flex flex-col items-center content-center justify-end w-full space-x-0 space-y-2 text-sm tracking-widest md:flex-row md:space-x-2 md:space-y-0">
-          <span>ပိတ်ရန်ကျန်ချိန်</span>
-          <Timer hour={1} minute={30} />
-        </div>
+        
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-6">

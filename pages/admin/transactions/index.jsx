@@ -5,6 +5,9 @@ import TwoDTransactions from "../../../components/Transactions/twoDtransactions"
 
 function TransactionPage() {
   const [selected, setSelected] = useState('2d')
+  const [formData, setformData] = useState({
+     
+  })
    
   return (
     <Layout>
