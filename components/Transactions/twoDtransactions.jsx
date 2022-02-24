@@ -7,7 +7,7 @@ import SelectTable, { TableCell, TableRow } from "../SelectTable";
 import {Instance} from '../../Services/'
 import {format} from 'date-fns'
 import { DotsHorizontalIcon } from "@heroicons/react/solid";
-function TwoDTransactions() {
+function TwoDTransactions({users=[],sessions=[]}) {
   const [formData, setFormData] = useState({
     agentId: "",
     sessionId: "",
@@ -61,20 +61,24 @@ function TwoDTransactions() {
                 <UiSelect
                   id="agentId"
                   name="agentId"
-                  options={[]}
+                  options={users}
                   placeHolder="အသုံးပြုသူအမည်"
-                  optionLabel="label"
-                  optionValue="value"
+                  optionLabel="name"
+                  optionValue="id"
+                  formData={formData}
+                  setFromData={setFormData}
                 />
               </div>
               <div className="col-span-12 md:col-span-3">
                 <UiSelect
                   id="sessionId"
                   name="sessionId"
-                  options={[]}
+                  options={sessions}
                   placeHolder="အချိန်အပိုင်းအခြား"
-                  optionLabel="label"
-                  optionValue="value"
+                  optionLabel="name"
+                  optionValue="id"
+                  formData={formData}
+                  setFromData={setFormData}
                 />
               </div>
               <div className="col-span-12 md:col-span-3">
@@ -82,6 +86,7 @@ function TwoDTransactions() {
                   id="range"
                   name="range"
                   formData={formData}
+                  
                   setFormData={setFormData}
                   minDate={
                     new Date(
@@ -104,27 +109,16 @@ function TwoDTransactions() {
               <div className="col-span-12 md:col-span-3 tracking-widest">
                 <div className="w-full flex-col space-y-4 justify-start items-center content-center px-4 py-2 bg-slate-200 rounded-md border-2 border-l-yellow-400">
                   <h3 className="text-slate-400  text-xl">စုစုပေါင်း</h3>
-                  <h6 className="text-lg text-yellow-400"> 456000 ကျပ် </h6>
+                  <h6 className="text-lg text-yellow-400"> {legerData && legerData.grandTotal} ကျပ် </h6>
                 </div>
               </div>
               <div className="col-span-12 md:col-span-3">
                 <div className="w-full flex-col space-y-4 justify-start items-center content-center px-4 py-2 bg-slate-200 rounded-md border-2 border-l-yellow-800">
                   <h3 className="text-slate-400  text-xl">ကော်မရှင်</h3>
-                  <h6 className="text-lg text-yellow-800"> 4560 ကျပ် </h6>
+                  <h6 className="text-lg text-yellow-800"> {legerData && parseInt(legerData.grandTotal)*8/100} ကျပ် </h6>
                 </div>
               </div>
-              <div className="col-span-12 md:col-span-3">
-                <div className="w-full flex-col space-y-4 justify-start items-center content-center px-4 py-2 bg-slate-200 rounded-md border-2 border-l-red-400">
-                  <h3 className="text-slate-400  text-xl">လျော်ရငွေ</h3>
-                  <h6 className="text-lg text-red-400"> 356000 ကျပ် </h6>
-                </div>
-              </div>
-              <div className="col-span-12 md:col-span-3">
-                <div className="w-full flex-col space-y-4 justify-start items-center content-center px-4 py-2 bg-slate-200 rounded-md border-2 border-l-green-400">
-                  <h3 className="text-slate-400  text-xl">အသားတင်ငွေ</h3>
-                  <h6 className="text-lg text-green-400"> 156000 ကျပ် </h6>
-                </div>
-              </div>
+              
             </div>
           </div>
         </CardHeader>
@@ -197,9 +191,7 @@ function TwoDTransactions() {
            </tbody>
            }
           </SelectTable>
-          <div>
-            <PaginationClassic />
-          </div>
+          
         </CardBody>
       </Card>
     </div>
