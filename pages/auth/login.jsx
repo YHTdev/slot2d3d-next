@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import FrontLogo from "../../components/Front/FrontLogo";
 import PageInnerWrapper from "../../components/Front/PageInnerWrapper";
@@ -13,7 +13,16 @@ function Login() {
     password: "",
   });
   const { addToast } = useToasts();
-
+  const callInstance = useCallback(
+    () => {
+      Instance({
+        url: "/auth/get_status",
+        method: "GET",
+      });
+    },
+    [],
+  )
+  
   const onSumbit = (e) => {
     e.preventDefault();
     try {
@@ -31,7 +40,24 @@ function Login() {
               appearance: "success",
               autoDismiss: true,
             });
-            router.push("/admin");
+            if(res.data.Data){
+               
+              if(res.data.Data.role==='AGENT'){
+                callInstance()
+                router.push('/agent/2d')
+                
+              }
+              else if(res.data.role==='ADMIN'){
+                callInstance()
+               router.push('/admin')
+               
+              }
+              else{
+                callInstance()
+                router.push('/admin')
+             
+              }
+            }
           } else if (res.data && res.data.statusCode === 400) {
             addToast(res.data.message, {
               appearance: "warning",
@@ -45,6 +71,7 @@ function Login() {
           }
         })
         .catch((err) => {
+          console.log(err)
           addToast("တခုခုမှားယွင်းနေပါသည်", {
             appearance: "warning",
             autoDismiss: true,

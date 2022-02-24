@@ -22,6 +22,7 @@ function TwoDTransactions() {
       new Date().getDate()+1),
     ],
   });
+
   const [legerData, setlegerData] = useState()
   const getLegers = useCallback(
     () => {

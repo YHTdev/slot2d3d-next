@@ -102,7 +102,9 @@ export const loginUser = async (req) => {
       if (comparePasswrod) {
         const accessToken = generateToken(user);
         returnObj.accessToken = accessToken;
-        (returnObj.message = "success"), (returnObj.statusCode = 200);
+        returnObj.Data = user;
+        returnObj.message = "success";
+        returnObj.statusCode = 200;
       } else {
         returnObj.statusCode = 400;
         returnObj.message = "စကားဝှက်မှားယွင်းနေပါသည်";
