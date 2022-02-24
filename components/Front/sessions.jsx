@@ -16,12 +16,12 @@ function Sessions({sessions}) {
           <div className="col-span-6">
             <div className="flex flex-row space-x-8 justify-start items-center content-center">
               <TimeIcon />
-              <span className="text-slate-50 text-base">{s.session}</span>
+              <span className="text-slate-50 text-base">{s.name}</span>
             </div>
           </div>
           <div className="col-span-6">
             <span className="text-sm tracking-widest result_font text-yellow-400">
-             {s.dt}
+             {s.fromDt} ~ {s.toDt}
             </span>
           </div>
         </div>

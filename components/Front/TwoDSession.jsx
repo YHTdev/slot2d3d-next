@@ -1,45 +1,56 @@
 import React from "react";
-import Timer from "../CountDown";
+import { useCallback, useEffect, useState } from "react";
 import LongTimeResult from "./LongTimeResult";
-import RealTimeResult from "./RealTimeResult";
-import Sessions from "./sessions";
 
+import Sessions from "./sessions";
+import { Instance } from "../../Services/";
+import RealTimeResult from "./RealTimeResult";
 function TwoDSession() {
-  const results = [
-    {
-      session: "နေ့လည်",
-      result: "78",
+  
+  const [sessions, setSessions] = useState([]);
+  const [luckyNumbers, setluckyNumbers] = useState([])
+  const getSessions = useCallback(() => {
+    Instance({
+      url: "/settings/sessions/get2dSessions",
+      method: "GET",
+    }).then((res) => {
+      if (res.data && res.data.statusCode === 200) {
+        setSessions(res.data.Data)
+      }
+    });
+  }, []);
+  const getResults = useCallback(
+    () => {
+      Instance({
+        url:"/settings/result/get2dresults",
+        method:'GET'
+      })
+      .then(res=>{
+        if (res.data && res.data.statusCode === 200 && res.data.Data) {
+          setluckyNumbers(res.data.Data)
+        }
+      })
+      .catch(err=>{
+        console.log(err)
+      })
     },
-    {
-      session: "ညနေ",
-      result: "45",
-    },
-  ];
-  const sessions = [
-    {
-      session: "မနက်",
-      dt: "7:00AM - 9:00AM",
-    },
-    {
-      session: "နေ့လည်",
-      dt: "9:00AM - 12:00AM",
-    },
-    
-    {
-      session: "ညနေ",
-      dt: "4:00PM - 6:00PM",
-    },
-  ];
+    [],
+  )
+  
+
+  useEffect(() => {
+    getSessions();
+    getResults()
+  }, [getSessions,getResults]);
+
   return (
-    <div className="flex flex-col space-y-6 w-full max-w-screen-md mx-auto" data-aos="zoom-in-up">
-      <div className="flex space-x-2 justify-end items-center content-center w-full">
-        <span>ဂဏန်းထွက်ရန်</span>
-        <Timer hour={1} minute={30} />
-        <span> သာကျန်ရှိပါသည် </span>
-      </div>
-      <RealTimeResult />
+    <div
+      className="flex flex-col space-y-6 w-full max-w-screen-md mx-auto"
+      data-aos="zoom-in-up"
+    >
+      <RealTimeResult result={luckyNumbers}  />
       <Sessions sessions={sessions} />
-      <LongTimeResult results={results} />
+      <LongTimeResult results={luckyNumbers} />
     </div>
   );
 }

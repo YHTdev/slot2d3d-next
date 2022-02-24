@@ -1,7 +1,8 @@
 import { IdentificationIcon, UploadIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { Instance } from "../../Services";
 
-const CreateAgentUsers = ({ fetchUsers, isModalOpen, setIsModalOpen }) => {
+const CreateAgentUsers = ({ fetchUsers, isModalOpen, setIsModalOpen,twoDcomissions=[],threeDComissions=[] }) => {
   const [formData, setformData] = useState({
     phone: "",
     name: "",
@@ -12,6 +13,8 @@ const CreateAgentUsers = ({ fetchUsers, isModalOpen, setIsModalOpen }) => {
     nrc_front: "",
     nrc_back: "",
   });
+
+ 
   return (
     <>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -64,7 +67,7 @@ const CreateAgentUsers = ({ fetchUsers, isModalOpen, setIsModalOpen }) => {
                 className="block mb-2 text-sm font-medium"
                 htmlFor="commission"
               >
-                ကော်မရှင်နှန်းထား <span className="text-rose-500">*</span>
+                2Dကော်မရှင်နှန်းထား <span className="text-rose-500">*</span>
               </label>
               <input
                 id="commission"
@@ -105,56 +108,13 @@ const CreateAgentUsers = ({ fetchUsers, isModalOpen, setIsModalOpen }) => {
               မှတ်ပုံတင်အမှတ် <span className="text-rose-500">*</span>
             </label>
 
-            <div className="flex flex-col space-y-4 lg:space-y-0 lg:flex-row">
-              <div className="flex flex-row space-x-4 ">
-                <div className="">
-                  <select
-                    name="regionNumber"
-                    id="regionId"
-                    className=" form-select"
-                  >
-                    <option value="၁">၁</option>
-                    <option value="၂">၂</option>
-                    <option value="၃">၃</option>
-                    <option value="၄">၄</option>
-                    <option value="၅">၅</option>
-                    <option value="၆">၆</option>
-                    <option value="၇">၇</option>
-                  </select>
-                </div>
-                <div className="">
-                  <select
-                    name="regionNumber"
-                    id="regionId"
-                    className=" form-select"
-                  >
-                    <option value="ကက န">ကက န</option>
-                    <option value="ခခ န">ခခ န</option>
-                    <option value="ဓဓ">ဓဓ</option>
-                    <option value="ညည န">ညည န</option>
-                  </select>
-                </div>
-                <div className="">
-                  <select
-                    name="regionNumber"
-                    id="regionId"
-                    className=" form-select"
-                  >
-                    <option value="(နိုင်)">(နိုင်)</option>
-                    <option value="(ဧည့်)">(ဧည့်)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="lg:ml-4">
-                <input
-                  id="userName"
-                  className="w-full form-input"
-                  type="text"
-                  required
-                />
-              </div>
-            </div>
+            <input
+              id="nrc"
+              name="nrc"
+              className="w-full form-input"
+              type="text"
+              required
+            />
           </div>
           <div className="grid grid-cols-2 gap-3 ">
             <button className="flex flex-col items-center justify-center p-2 space-y-2 border rounded-md border-slate-200">

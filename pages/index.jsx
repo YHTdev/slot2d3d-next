@@ -8,6 +8,7 @@ import TwoDSession from "../components/Front/TwoDSession";
 import ThreeDSession from "../components/Front/ThreeDSession";
 import ResultWrapper from "../components/Front/ResultWrapper";
 import AnimateText from "../components/TypeAnimation";
+
 function Home() {
   const [selected, setSelected] = useState("2d");
   return (
@@ -15,11 +16,10 @@ function Home() {
       <div className="flex items-center content-center justify-center w-full h-screen py-24 overflow-y-scroll">
         <PageInnerWrapper>
           <FrontLogo />
-
           <AnimateText
-            text={`ဖုန်း ၀၉-၁၂၃၄၅၆၇၈ သို့ဆက်သွယ်မေးမြန်းနိုင်ပါသည်`}
-          />
-
+          text={`WELCOME FROM GOLDEN21`}
+          
+        />
           <PageSwitcher selected={selected} setselected={setSelected} />
 
           <ResultWrapper>

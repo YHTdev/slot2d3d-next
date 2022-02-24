@@ -132,7 +132,7 @@ const ThreeDManagement = ({ children }) => {
 
   return (
     <ManagementLayout
-      routes={routes.twoDManagementRoutes}
+      routes={routes.threeDManamentRoutes}
       title='3D management'
     >
       <ManagementHeader className={`text-indigo-500`}>
