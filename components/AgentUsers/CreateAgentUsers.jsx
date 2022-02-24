@@ -1,5 +1,5 @@
-import { IdentificationIcon, UploadIcon } from "@heroicons/react/outline";
-import { useCallback, useState } from "react";
+import {  UploadIcon } from "@heroicons/react/outline";
+import {  useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import { Instance } from "../../Services";
 import { UiFileInput } from "../forms/UiFileInput";
