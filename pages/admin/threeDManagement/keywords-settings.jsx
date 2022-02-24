@@ -1,70 +1,153 @@
-import { DotsHorizontalIcon, XIcon } from "@heroicons/react/outline";
-import { useState } from "react";
+import { DotsHorizontalIcon, TrashIcon, XIcon } from "@heroicons/react/outline";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useToasts } from "react-toast-notifications";
 import UiInput from "../../../components/forms/UiInput";
-import UiSelect from "../../../components/forms/UiSelect";
+
 import UiMultiSelect from "../../../components/forms/UiMultiSelect";
 import ManagementLayout, {
-  ManagementHeader,
+  ManagementHeader
 } from "../../../components/layout/ManagementLayout";
 import SelectTable, {
   TableCell,
-  TableRow,
+  TableRow
 } from "../../../components/SelectTable";
 import { Instance } from "../../../Services";
 import { each } from "lodash";
+import MyModal, { ModalBody, ModalTitle } from "../../../components/Modal";
 
-const ThreeDKeywords = ({ threeDKeywords }) => {
+const ThreeDKeywords = () => {
   const [formInput, setFormInput] = useState({
     nums: [],
-    name: "",
+    name: ""
   });
-
+  const [keyWords, setKeyWords] = useState([]);
+  const [selectedNums, setSelectedNums] = useState();
+  const [show, setShow] = useState(false);
   const { addToast } = useToasts();
+  const getKeywords = useCallback(() => {
+    Instance({
+      url: "/settings/keywords/get3d_keywords",
+      method: "get"
+    })
+      .then(res => {
+        if (res.data && res.data.statusCode === 200 && res.data.Data) {
+          setKeyWords(res.data.Data);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(
+    () => {
+      getKeywords();
+    },
+    [getKeywords]
+  );
 
-  const submitHandler = (event) => {
+  const showNums = obj => {
+    setShow(!show);
+    setSelectedNums(obj);
+  };
+
+  const submitHandler = event => {
     event.preventDefault();
     const filteredNUm = [];
-    each(formInput.nums, (num) => {
+    each(formInput.nums, num => {
       filteredNUm.push(num.id);
     });
     try {
-      Instance({
-        url: "/admin/settings/keywords/3d/createKeyWord",
-        method: "POST",
-        data: {
-          name: formInput.name,
-          nums: filteredNUm,
-        },
-      }).then((res) => {
-        if (res.data && res.data.statusCode === 201) {
-          addToast(res.data.message, {
-            appearance: "success",
-            autoDismiss: true,
+      if (formInput.name && formInput.nums.length > 0) {
+        Instance({
+          url: "/admin/settings/keywords/3d/createKeyWord",
+          method: "POST",
+          data: {
+            name: formInput.name,
+            nums: filteredNUm
+          }
+        })
+          .then(res => {
+            if (res.data && res.data.statusCode === 201) {
+              addToast(res.data.message, {
+                appearance: "success",
+                autoDismiss: true
+              });
+            } else if (res.data && res.data.statusCode === 400) {
+              addToast(res.data.message, {
+                appearance: "warning",
+                autoDismiss: true
+              });
+            } else {
+              addToast("တစ်ခုခုမှားယွင်းနေပါသည်", {
+                appearance: "warning",
+                autoDismiss: true
+              });
+            }
+          })
+          .catch(err => {
+            addToast("တစ်ခုခုမှားယွင်းနေပါသည်", {
+              appearance: "warning",
+              autoDismiss: true
+            });
+          })
+          .finally(() => {
+            setFormInput({
+              name: ""
+            });
+            getKeywords();
           });
-        } else if (res.data && res.data.statusCode === 400) {
-          addToast(res.data.message, {
-            appearance: "warning",
-            autoDismiss: true,
-          });
-        } else {
-          addToast("တစ်ခုခုမှားယွင်းနေပါသည်", {
-            appearance: "warning",
-            autoDismiss: true,
-          });
-        }
-      });
+      } else {
+        addToast("သေချာအောင်ဖြည့်ပါ", {
+          appearance: "warning",
+          autoDismiss: true
+        });
+      }
     } catch (err) {
       addToast("System error", { appearance: "error", autoDismiss: true });
     }
   };
-  const { routes } = useSelector((state) => state.management);
-  const { Nums } = useSelector((state) => state.management);
+
+  const DeleteKeyword = id => {
+    try {
+      Instance({
+        url: `/admin/settings/keywords/3d/deleteKeyWord`,
+        method: "POST",
+        data: {
+          id: id
+        }
+      })
+        .then(res => {
+          if (res.data && res.data.statusCode === 200) {
+            addToast(res.data.message, {
+              appearance: "success",
+              autoDismiss: true
+            });
+          }
+        })
+        .catch(err => {
+          addToast("တစ်ခုခုမှားယွင်းနေပါသည်", {
+            appearance: "warning",
+            autoDismiss: true
+          });
+        })
+        .finally(() => {
+          getKeywords();
+        });
+    } catch (error) {
+      addToast("တစ်ခုခုမှားယွင်းနေပါသည်", {
+        appearance: "warning",
+        autoDismiss: true
+      });
+    }
+  };
+  const { routes } = useSelector(state => state.management);
+  const { Nums } = useSelector(state => state.management);
   return (
     <ManagementLayout
       routes={routes.threeDManamentRoutes}
-      title="3D management">
+      title="3D management"
+    >
       <ManagementHeader className={`text-indigo-500`}>
         အသုံးအနှုန်းများ ထည့်ရန်
       </ManagementHeader>
@@ -94,13 +177,15 @@ const ThreeDKeywords = ({ threeDKeywords }) => {
               optionValue="id"
               placeHolder="ကဏန်းရိုက်ပါ"
               isMultiple={true}
+              isSearchable={true}
             />
           </div>
 
           <div className="flex items-center justify-end ">
             <button
               onClick={submitHandler}
-              className="px-4 py-2 text-indigo-400 border border-indigo-400 rounded-md shadow-lg">
+              className="px-4 py-2 text-indigo-400 border border-indigo-400 rounded-md shadow-lg"
+            >
               အတည်ပြုမည်
             </button>
           </div>
@@ -120,33 +205,86 @@ const ThreeDKeywords = ({ threeDKeywords }) => {
               </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-              {threeDKeywords.map((threeDKeyword, i) => (
+              {keyWords.map((threeDKeyword, i) =>
                 <TableRow key={i}>
-                  <TableCell>{threeDKeyword.name}</TableCell>
                   <TableCell>
-                    <div className="text-lg text-indigo-500">20</div>
+                    {threeDKeyword.name}
+                  </TableCell>
+
+                  <TableCell>
+                    <DotsHorizontalIcon
+                      onClick={() => {
+                        showNums(threeDKeyword);
+                      }}
+                      className="w-6 h-6 "
+                    />
                   </TableCell>
                   <TableCell>
-                    <DotsHorizontalIcon className="w-6 h-6 " />
+                    <TrashIcon
+                      onClick={() => {
+                        DeleteKeyword(threeDKeyword.id);
+                      }}
+                      className="w-6 h-6 "
+                    />
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </tbody>
           </SelectTable>
         </div>
       </div>
+      <MyModal isModalOpen={show} setIsModalOpen={setShow}>
+        <ModalTitle>
+          {selectedNums &&
+            <span>
+              {" "}{selectedNums.name}{" "}
+            </span>}
+        </ModalTitle>
+        <ModalBody>
+          <div className="border-t border-slate-300">
+            <div className="py-5 ">
+              <SelectTable>
+                <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
+                  <TableRow>
+                    <TableCell isHeader={true}>စဉ်</TableCell>
+                    <TableCell isHeader={true}>ကဏန်း</TableCell>
+                    <TableCell isHeader={true} className="sr-only">
+                      Menu
+                    </TableCell>
+                  </TableRow>
+                </thead>
+                {selectedNums &&
+                  <tbody className="text-sm divide-y divide-slate-200">
+                    {selectedNums.threeDNumber &&
+                      selectedNums.threeDNumber.map((threeDKeyword, i) =>
+                        <TableRow key={i}>
+                          <TableCell>
+                            {" "}{i + 1}{" "}
+                          </TableCell>
+                          <TableCell>
+                            {threeDKeyword.ThreeDNumer
+                              ? threeDKeyword.ThreeDNumer.num
+                              : ""}
+                          </TableCell>
+
+                          <TableCell>
+                            <DotsHorizontalIcon
+                              onClick={() => {
+                                showNums(threeDKeyword);
+                              }}
+                              className="w-6 h-6 "
+                            />
+                          </TableCell>
+                        </TableRow>
+                      )}
+                  </tbody>}
+              </SelectTable>
+            </div>
+          </div>
+        </ModalBody>
+      </MyModal>
     </ManagementLayout>
   );
-};
-
-export const getServerSideProps = async () => {
-  const res = await fetch(
-    "http://localhost:3000/api/settings/keywords/get3d_keywords"
-  ).then((result) => result.json());
-  const threeDKeywords = await res.Data;
-  return {
-    props: { threeDKeywords },
-  };
 };
 
 export default ThreeDKeywords;
