@@ -9,6 +9,7 @@ import { CogIcon, LogoutIcon } from "@heroicons/react/outline";
 import { useSelector } from "react-redux";
 const DropdownProfile = () => {
   const { user } = useSelector((state) => state.auth);
+  const logoutHandler = () => {};
   return (
     <div className="text-right">
       <Menu as="div" className="relative inline-block text-left">
@@ -58,7 +59,7 @@ const DropdownProfile = () => {
                     className={`${
                       active ? "bg-blue-900 text-slate-200" : "text-blue-900"
                     } group  rounded-md w-full px-2 py-2 text-sm`}>
-                    <Link href="/setting">
+                    <button onClick={logoutHandler}>
                       <a className="flex items-center ">
                         <LogoutIcon
                           className="w-5 h-5 mr-2"
@@ -66,7 +67,7 @@ const DropdownProfile = () => {
                         />
                         Logout
                       </a>
-                    </Link>
+                    </button>
                   </button>
                 )}
               </Menu.Item>

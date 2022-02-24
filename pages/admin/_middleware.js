@@ -1,6 +1,5 @@
 import { verifyToken } from "../../lib/JWT";
 import { jsonResponse } from "../../lib/responseHelper";
-import { Instance } from "../../Services";
 
 export default async function middleware(req) {
   try {
