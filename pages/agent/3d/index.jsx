@@ -1,21 +1,30 @@
 import React, { useCallback, useEffect, useState } from "react";
 
-import {  each, find } from "lodash";
-import ManagementLayout from "../../../components/layout/ManagementLayout";
-import { useSelector } from "react-redux";
 import UiSelect from "../../../components/forms/UiSelect";
+
 import UiInput from "../../../components/forms/UiInput";
 import UiButton from "../../../components/forms/UiButton";
 import SelectTable, {
   TableCell,
   TableRow,
 } from "../../../components/SelectTable";
+import ManagementLayout from "../../../components/layout/ManagementLayout";
+import { useSelector } from "react-redux";
 import TrashIcon from "../../../components/Icons/TrashIcon";
-import { Instance } from "../../../Services";
 import { useToasts } from "react-toast-notifications";
+
+import { Instance } from "../../../Services";
+import { each, find } from "lodash";
+
 function Slot3D() {
-  const { routes, Nums } = useSelector((state) => state.management);
+  const [sessions, setSessions] = useState([]);
+  const [keywords, setKeywords] = useState([]);
+  console.log("KeyWords =>", keywords);
+
+  const { Nums } = useSelector((state) => state.management);
+  const threeDNums = Nums.threeD;
   const { user } = useSelector((state) => state.auth);
+
   const [formData, setFormData] = useState({
     customerNm: "",
     betOnThreeDNumber: [],
@@ -25,9 +34,7 @@ function Slot3D() {
     totalAmount: 0,
     selectedNum: "",
   });
-  const threeDNums = Nums.threeD;
-  const [sessions, setSessions] = useState([]);
-  const { addToast } = useToasts();
+
   const getSessions = useCallback(() => {
     Instance({
       url: "/settings/sessions/get3dSessions",
@@ -42,67 +49,7 @@ function Slot3D() {
         console.log(err);
       });
   }, []);
-  const SubmitForm = () => {
-    try {
-      if (
-        formData.betOnThreeDNumber.length > 0 &&
-        formData.sessionId &&
-        formData.customerNm &&
-        formData.totalAmount
-      ) {
-        Instance({
-          url: "/agent/Bet/3D/bet3DNum",
-          method: "POST",
-          data: {
-            customerNm: formData.customerNm,
-            sessionId: formData.sessionId,
-            totalAmt: formData.totalAmount,
-            betOnThreeDNumber: formData.betOnThreeDNumber,
-            agentId: user.id,
-          },
-        })
-          .then((res) => {
-            if (res.data && res.data.statusCode === 200) {
-              addToast(res.data.message, {
-                appearance: "success",
-                autoDismiss: true,
-              });
-              setFormData({
-                customerNm: "",
-                betOnThreeDNumber: [],
-                sessionId: "",
-                amount: 0,
-                keywords: [],
-                totalAmount: 0,
-                selectedNum: "",
-              })
-            } else {
-              addToast(res.data.message, {
-                appearance: "warning",
-                autoDismiss: true,
-              });
-            }
-          })
-          .catch((err) => {
-            addToast("တခုခုမှားယွင်းနေပါသည်", {
-              appearance: "warning",
-              autoDismiss: true,
-            });
-          });
-      }
-      else{
-        addToast('သေချာစွာဖြည့်ပါ',{appearance:'warning',autoDismiss:true})
-      }
-    } catch (error) {
-      addToast("တခုခုမှားယွင်းနေပါသည်", {
-        appearance: "error",
-        autoDismiss: true,
-      });
-    }
-  };
-  useEffect(() => {
-    getSessions();
-  }, [getSessions]);
+
   const filterFormData = (s) => {
     const filteredArray = formData.betOnThreeDNumber.filter(
       (bet) => bet.threeDNumerId !== s.threeDNumerId
@@ -123,7 +70,6 @@ function Slot3D() {
         threeDNums,
         (num) => num.num === formData.selectedNum
       );
-      console.log(threeDNums);
       if (selectedNumObj) {
         const IsExist = find(
           formData.betOnThreeDNumber,
@@ -156,23 +102,105 @@ function Slot3D() {
       } else {
         addToast("ဂဏန်းထည့်ခြင်းမှားယွင်းနေပါသည်", {
           appearance: "warning",
-          autoDismiss: true,
+          autoDismiss: false,
         });
       }
-    } else if (formData.keywords && formData.amount > 0 && formData.sessionId) {
     } else if (
-      formData.keywords &&
+      formData.keywords.length > 0 &&
       formData.selectedNum &&
-      formData.sessionId &&
-      formData.amount > 0
+      formData.amount > 0 &&
+      formData.sessionId
     ) {
+    } else if (formData.keywords && formData.amount > 0 && formData.sessionId) {
     } else {
-      addToast("သေချာစွာဖြည့်ပါ", { appearance: "error", autoDismiss: true });
+      addToast("သေချာစွာဖြည့်ပါ", { appearance: "warning", autoDismiss: true });
+    }
+  };
+
+  const getKeywords = useCallback(() => {
+    Instance({
+      url: "/settings/keywords/get3d_keywords",
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.data && res.data.statusCode === 200) {
+          setKeywords(res.data.Data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    getSessions();
+    getKeywords();
+  }, [getSessions, getKeywords]);
+
+  const { routes } = useSelector((state) => state.management);
+  const { addToast } = useToasts();
+  const SubmitForm = () => {
+    try {
+      if (
+        formData.betOnThreeDNumber.length > 0 &&
+        formData.sessionId &&
+        formData.customerNm &&
+        formData.totalAmount
+      ) {
+        Instance({
+          url: "/agent/Bet/3D/bet3DNum",
+          method: "POST",
+          data: {
+            customerNm: formData.customerNm,
+            sessionId: formData.sessionId,
+            totalAmt: formData.totalAmount,
+            betOnThreeDNumber: formData.betOnThreeDNumber,
+            agentId: user ? user.id : null,
+          },
+        })
+          .then((res) => {
+            if (res.data && res.data.statusCode === 200) {
+              addToast(res.data.message, {
+                appearance: "success",
+                autoDismiss: true,
+              });
+              setFormData({
+                customerNm: "",
+                betOnThreeDNumber: [],
+                sessionId: "",
+                amount: 0,
+                keywords: [],
+                totalAmount: 0,
+                selectedNum: "",
+              });
+            } else {
+              addToast(res.data.message, {
+                appearance: "warning",
+                autoDismiss: true,
+              });
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+            addToast("တခုခုမှားယွင်းနေပါသည်", {
+              appearance: "warning",
+              autoDismiss: true,
+            });
+          });
+      }
+    } catch (error) {
+      console.log(error);
+      addToast("တခုခုမှားယွင်းနေပါသည်", {
+        appearance: "error",
+        autoDismiss: true,
+      });
     }
   };
   return (
-    <ManagementLayout routes={routes.threeDBetRoutes} title="3D ထိုးမည်">
+    <ManagementLayout title="3D ထိုးရန်" routes={routes.threeDBetRoutes}>
       <div className="flex flex-row items-center justify-between mb-8">
+        {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
+        {/* Left: Title */}
         <div className="flex items-center content-center justify-end w-full"></div>
       </div>
       <div className="grid grid-cols-12 gap-8">
@@ -183,7 +211,7 @@ function Slot3D() {
               id="sessionId"
               formData={formData}
               setFromData={setFormData}
-              options={sessions}
+              options={sessions.filter((s) => s.status === true)}
               optionLabel="name"
               optionValue="id"
               placeHolder="အချိန်ရွေးချယ်ပါ"
@@ -198,19 +226,18 @@ function Slot3D() {
               type="text"
             />
 
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-4">
               <div className="">
                 <UiInput
-                  name="selectedNum"
                   id="selectedNum"
+                  name="selectedNum"
                   formData={formData}
                   setFromData={setFormData}
-                  placeHolder="ထိုးကဏန်း"
+                  placeHolder="ဂဏန်းရိုက်ထည့်ပါ"
                   required={true}
                   type="text"
                 />
               </div>
-
               <div className="">
                 <UiInput
                   name="amount"
@@ -224,7 +251,17 @@ function Slot3D() {
               </div>
             </div>
 
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-between">
+              <div className="w-1/2 ">
+                <UiSelect
+                  name="keywords"
+                  id="keywords"
+                  options={keywords}
+                  optionLabel="label"
+                  optionValue="value"
+                  placeHolder="အမြန်ရွေးပါ"
+                />
+              </div>
               <UiButton
                 type="button"
                 actionButton={true}
@@ -236,13 +273,12 @@ function Slot3D() {
             </div>
           </form>
         </div>
-        <div className="col-span-12">
+        <div className="col-span-12 md:col-span-12">
           {formData.customerNm && (
             <h4 className="my-3 text-lg tracking-widest text-slate-600">
               {formData.customerNm} ၏စာရင်း
             </h4>
           )}
-
           <SelectTable>
             <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
               <TableRow className="bg-slate-100">
@@ -264,8 +300,7 @@ function Slot3D() {
                     <button
                       onClick={() => {
                         filterFormData(s);
-                      }}
-                    >
+                      }}>
                       <TrashIcon />
                     </button>
                   </TableCell>
@@ -291,5 +326,4 @@ function Slot3D() {
     </ManagementLayout>
   );
 }
-
 export default Slot3D;
