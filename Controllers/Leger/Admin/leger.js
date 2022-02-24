@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
 import { each } from "lodash";
-import { verifyToken } from "../../../lib/JWT";
 import { ResponseObj } from "../../../lib/responseHelper";
 
 const prisma = new PrismaClient();
@@ -9,6 +8,7 @@ export const getAdminLeger = async (req) => {
   const returnObj = ResponseObj;
   try {
     const { fromDt, toDt, sessionId, type, agentId } = req.query;
+    console.log(req.query);
     let query = {
       updatedAt: {
         gte: new Date(
@@ -16,7 +16,11 @@ export const getAdminLeger = async (req) => {
           new Date().getMonth() - 1,
           new Date().getDate()
         ),
-        lte: new Date(),
+        lte: new Date(
+          new Date().getFullYear(),
+          new Date().getMonth(),
+          new Date().getDate() + 1
+        ),
       },
     };
     if (fromDt) {
@@ -67,6 +71,12 @@ export const getAdminLeger = async (req) => {
 
         createdAt: true,
         updatedAt: true,
+        agent: {
+          select: {
+            name: true,
+            id: true,
+          },
+        },
       },
       orderBy: {
         updatedAt: "desc",
