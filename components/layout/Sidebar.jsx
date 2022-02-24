@@ -16,8 +16,10 @@ import ThreeDIcon from "../Icons/ThreeDIcon";
 
 import Golden21Flower from "../../public/images/adminUsers/golden-21-flower.png";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className="">
       {/* Sidebar backdrop (mobile only) */}
@@ -51,60 +53,120 @@ const Sidebar = ({ sideBarOpen, setSideBarOpen }) => {
         </div>
 
         {/* Links */}
-        <div className="space-y-8 ">
-          {/* Pages Groups */}
-          <div className="">
-            <div className="mt-3">
-              {/* Dashboard */}
-              <SidebarLink
-                pathName="/admin/"
-                linkIcon={<DashbaordIcon className={styles.menuIcon} />}
-                linkTitle={`Dashboardss`}
-              />
-              <Divider title="User Management" />
-              <SidebarLink
-                pathName="/admin/agents"
-                linkIcon={<AgentIcon className={styles.menuIcon} />}
-                linkTitle={`Agent Users`}
-              />
-              <SidebarLink
-                pathName="/admin/admin-users"
-                linkIcon={<AdminIcon className={styles.menuIcon} />}
-                linkTitle={`Admin Users`}
-              />
-              <Divider title="Settings" />
-              <SidebarLink
-                pathName="/admin/twoDManagement"
-                linkIcon={<TwoDIcon className={styles.menuIcon} />}
-                linkTitle={`2D Management`}
-              />
-              <SidebarLink
-                pathName="/admin/threeDManagement"
-                linkIcon={<ThreeDIcon className={styles.menuIcon} />}
-                linkTitle={`3D Management`}
-              />
+        {user && (
+          <div className="space-y-8 ">
+            {/* Pages Groups */}
 
-              <Divider title="Leger" />
-              <SidebarLink
-                pathName="/admin/transactions"
-                linkIcon={<LegerIcon className={styles.menuIcon} />}
-                linkTitle={`Leger`}
-              />
+            {user.role === "ADMIN" && (
+              <div className="">
+                <div className="mt-3">
+                  {/* Dashboard */}
+                  <SidebarLink
+                    pathName="/admin/"
+                    linkIcon={<DashbaordIcon className={styles.menuIcon} />}
+                    linkTitle={`Dashboardss`}
+                  />
+                  <Divider title="User Management" />
+                  <SidebarLink
+                    pathName="/admin/agents"
+                    linkIcon={<AgentIcon className={styles.menuIcon} />}
+                    linkTitle={`Agent Users`}
+                  />
+                  <SidebarLink
+                    pathName="/admin/admin-users"
+                    linkIcon={<AdminIcon className={styles.menuIcon} />}
+                    linkTitle={`Admin Users`}
+                  />
+                  <Divider title="Settings" />
+                  <SidebarLink
+                    pathName="/admin/twoDManagement"
+                    linkIcon={<TwoDIcon className={styles.menuIcon} />}
+                    linkTitle={`2D Management`}
+                  />
+                  <SidebarLink
+                    pathName="/admin/threeDManagement"
+                    linkIcon={<ThreeDIcon className={styles.menuIcon} />}
+                    linkTitle={`3D Management`}
+                  />
 
-              <Divider title="For Agent" />
-              <SidebarLink
-                pathName="/agent/2d"
-                linkIcon={<Slot2DIcon className={styles.menuIcon} />}
-                linkTitle={`2D Bet`}
-              />
-              <SidebarLink
-                pathName="/agent/3d"
-                linkIcon={<Slot3DIcon className={styles.menuIcon} />}
-                linkTitle={`3D Bet`}
-              />
-            </div>
+                  <Divider title="Leger" />
+                  <SidebarLink
+                    pathName="/admin/transactions"
+                    linkIcon={<LegerIcon className={styles.menuIcon} />}
+                    linkTitle={`Leger`}
+                  />
+                </div>
+              </div>
+            )}
+            {user.role === "SYS_ADMIN" && (
+              <div className="">
+                <div className="mt-3">
+                  {/* Dashboard */}
+                  <SidebarLink
+                    pathName="/admin/"
+                    linkIcon={<DashbaordIcon className={styles.menuIcon} />}
+                    linkTitle={`Dashboardss`}
+                  />
+                  <Divider title="User Management" />
+                  <SidebarLink
+                    pathName="/admin/agents"
+                    linkIcon={<AgentIcon className={styles.menuIcon} />}
+                    linkTitle={`Agent Users`}
+                  />
+                  <SidebarLink
+                    pathName="/admin/admin-users"
+                    linkIcon={<AdminIcon className={styles.menuIcon} />}
+                    linkTitle={`Admin Users`}
+                  />
+                  <Divider title="Settings" />
+                  <SidebarLink
+                    pathName="/admin/twoDManagement"
+                    linkIcon={<TwoDIcon className={styles.menuIcon} />}
+                    linkTitle={`2D Management`}
+                  />
+                  <SidebarLink
+                    pathName="/admin/threeDManagement"
+                    linkIcon={<ThreeDIcon className={styles.menuIcon} />}
+                    linkTitle={`3D Management`}
+                  />
+
+                  <Divider title="Leger" />
+                  <SidebarLink
+                    pathName="/admin/transactions"
+                    linkIcon={<LegerIcon className={styles.menuIcon} />}
+                    linkTitle={`Leger`}
+                  />
+                  <Divider title="For Agent" />
+                  <SidebarLink
+                    pathName="/agent/2d"
+                    linkIcon={<Slot2DIcon className={styles.menuIcon} />}
+                    linkTitle={`2D Bet`}
+                  />
+                  <SidebarLink
+                    pathName="/agent/3d"
+                    linkIcon={<Slot3DIcon className={styles.menuIcon} />}
+                    linkTitle={`3D Bet`}
+                  />
+                </div>
+              </div>
+            )}
+            {user.role === "AGENT" && (
+              <div className="">
+                <Divider title="For Agent" />
+                <SidebarLink
+                  pathName="/agent/2d"
+                  linkIcon={<Slot2DIcon className={styles.menuIcon} />}
+                  linkTitle={`2D Bet`}
+                />
+                <SidebarLink
+                  pathName="/agent/3d"
+                  linkIcon={<Slot3DIcon className={styles.menuIcon} />}
+                  linkTitle={`3D Bet`}
+                />
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
         <div className="inline-flex items-center justify-center h-full ">
           <Image

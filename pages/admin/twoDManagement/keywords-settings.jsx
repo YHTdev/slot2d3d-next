@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useToasts } from "react-toast-notifications";
 import UiInput from "../../../components/forms/UiInput";
 import UiSelect from "../../../components/forms/UiSelect";
+import UiMultiSelect from "../../../components/forms/UiMultiSelect";
 import ManagementLayout, {
   ManagementHeader,
 } from "../../../components/layout/ManagementLayout";
@@ -12,28 +13,32 @@ import SelectTable, {
   TableRow,
 } from "../../../components/SelectTable";
 import { Instance } from "../../../Services";
+import { each } from "lodash";
 
-const TwoDKeywords = ({ children }) => {
+const TwoDKeywords = ({ twoDKeywords }) => {
   const [formInput, setFormInput] = useState({
-    keywordNumbs: [],
-    keywordName: "",
+    nums: [],
+    name: "",
   });
 
   const { addToast } = useToasts();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log("submit handlar", formInput);
+    const filteredNUm = [];
+    each(formInput.nums, (num) => {
+      filteredNUm.push(num.id);
+    });
     try {
       Instance({
-        url: "/admin/settings/keywords/2d/createKeyWords",
+        url: "/admin/settings/keywords/2d/createKeyWord",
         method: "POST",
         data: {
-          name: keywordName,
-          nums: keywordNumbs,
+          name: formInput.name,
+          nums: filteredNUm,
         },
       }).then((res) => {
-        if (res.data && res.data.statusCode === 200) {
+        if (res.data && res.data.statusCode === 201) {
           addToast(res.data.message, {
             appearance: "success",
             autoDismiss: true,
@@ -56,7 +61,7 @@ const TwoDKeywords = ({ children }) => {
   };
   const { routes } = useSelector((state) => state.management);
   const { Nums } = useSelector((state) => state.management);
-  console.log();
+  console.log("on Main ==>", twoDKeywords);
   return (
     <ManagementLayout
       routes={routes.twoDManagementRoutes}
@@ -69,8 +74,8 @@ const TwoDKeywords = ({ children }) => {
         <div className="space-y-4 ">
           <div className="">
             <UiInput
-              name="keywordName"
-              id="keywordName"
+              name="name"
+              id="name"
               formData={formInput}
               setFromData={setFormInput}
               placeHolder="အသုံးအနှုန်းအမည်"
@@ -80,12 +85,12 @@ const TwoDKeywords = ({ children }) => {
           </div>
 
           <div className="">
-            <UiSelect
-              name="keywordNumbs"
-              id="keywordNumbs"
+            <UiMultiSelect
+              name="nums"
+              id="nums"
               formData={formInput}
               setFromData={setFormInput}
-              options={Nums.towD}
+              options={Nums.twoD}
               optionLabel="num"
               optionValue="id"
               placeHolder="ကဏန်းရိုက်ပါ"
@@ -102,7 +107,7 @@ const TwoDKeywords = ({ children }) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 gap-5">
+        {/* <div className="grid grid-cols-4 gap-5">
           <div className="border rounded-md border-slate-900">
             <div className="flex items-center justify-between p-2">
               <div className="flex-auto text-xl">23</div>
@@ -135,7 +140,7 @@ const TwoDKeywords = ({ children }) => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
       <div className="border-t border-slate-300">
@@ -151,21 +156,34 @@ const TwoDKeywords = ({ children }) => {
               </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-              <TableRow>
-                <TableCell>နက္ခတ်</TableCell>
-                <TableCell>
-                  <div className="text-lg text-indigo-500">20</div>
-                </TableCell>
-                <TableCell>
-                  <DotsHorizontalIcon className="w-6 h-6 " />
-                </TableCell>
-              </TableRow>
+              {twoDKeywords.map((twoDKeyword, i) => (
+                <TableRow key={i}>
+                  <TableCell>{twoDKeyword.name}</TableCell>
+                  <TableCell>
+                    <div className="text-lg text-indigo-500">20</div>
+                  </TableCell>
+                  <TableCell>
+                    <DotsHorizontalIcon className="w-6 h-6 " />
+                  </TableCell>
+                </TableRow>
+              ))}
             </tbody>
           </SelectTable>
         </div>
       </div>
     </ManagementLayout>
   );
+};
+
+export const getServerSideProps = async () => {
+  const res = await fetch(
+    "http://localhost:3000/api/settings/keywords/get2d_keywords"
+  ).then((result) => result.json());
+  const twoDKeywords = await res.Data;
+  console.log("resData ==>", twoDKeywords);
+  return {
+    props: { twoDKeywords },
+  };
 };
 
 export default TwoDKeywords;
