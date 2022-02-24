@@ -6,7 +6,7 @@ import UiInput from "../../../components/forms/UiInput";
 import UiButton from "../../../components/forms/UiButton";
 import SelectTable, {
   TableCell,
-  TableRow,
+  TableRow
 } from "../../../components/SelectTable";
 import ManagementLayout from "../../../components/layout/ManagementLayout";
 import { useSelector } from "react-redux";
@@ -21,9 +21,9 @@ function Slot3D() {
   const [keywords, setKeywords] = useState([]);
   console.log("KeyWords =>", keywords);
 
-  const { Nums } = useSelector((state) => state.management);
+  const { Nums } = useSelector(state => state.management);
   const threeDNums = Nums.threeD;
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector(state => state.auth);
 
   const [formData, setFormData] = useState({
     customerNm: "",
@@ -32,86 +32,109 @@ function Slot3D() {
     amount: 0,
     keywords: [],
     totalAmount: 0,
-    selectedNum: "",
+    selectedNum: ""
   });
 
   const getSessions = useCallback(() => {
     Instance({
       url: "/settings/sessions/get3dSessions",
-      method: "GET",
+      method: "GET"
     })
-      .then((res) => {
+      .then(res => {
         if (res.data && res.data.statusCode === 200) {
           setSessions(res.data.Data);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
-  const filterFormData = (s) => {
+  const filterFormData = s => {
     const filteredArray = formData.betOnThreeDNumber.filter(
-      (bet) => bet.threeDNumerId !== s.threeDNumerId
+      bet => bet.threeDNumerId !== s.threeDNumerId
     );
     let totalAmount = 0;
-    each(filteredArray, (f) => {
+    each(filteredArray, f => {
       totalAmount += parseInt(f.amount);
     });
     setFormData({
       ...formData,
       totalAmount: totalAmount,
-      betOnThreeDNumber: filteredArray,
+      betOnThreeDNumber: filteredArray
     });
   };
+  console.log(formData)
   const onSumEvent = () => {
-    if (formData.selectedNum && formData.amount > 0 && formData.sessionId) {
-      const selectedNumObj = find(
-        threeDNums,
-        (num) => num.num === formData.selectedNum
-      );
-      if (selectedNumObj) {
-        const IsExist = find(
-          formData.betOnThreeDNumber,
-          (bet) => bet.threeDNumerId === selectedNumObj.id
+    if (
+      (formData.selectedNum && formData.amount > 0 && formData.sessionId) ||
+      (formData.keywords.length > 0 && formData.amount > 0 && formData.sessionId)
+    ) {
+      if (formData.selectedNum) {
+        const selectedNumObj = find(
+          threeDNums,
+          num => num.num === formData.selectedNum
         );
-        if (IsExist) {
-          addToast("ထည့်ပြီးသားဂဏန်းဖြစ်သည်", {
-            appearance: "warning",
-            autoDismiss: true,
-          });
+        if (selectedNumObj) {
+          const IsExist = find(
+            formData.betOnThreeDNumber,
+            bet => bet.threeDNumerId === selectedNumObj.id
+          );
+          if (IsExist) {
+            addToast("ထည့်ပြီးသားဂဏန်းဖြစ်သည်", {
+              appearance: "warning",
+              autoDismiss: true
+            });
+          } else {
+            let betOnThreeDNumberArray = formData.betOnThreeDNumber;
+            const pushObj = {
+              threeDNumerId: selectedNumObj.id,
+              amount: formData.amount
+            };
+            betOnThreeDNumberArray.push(pushObj);
+            let totalAmount = 0;
+            each(betOnThreeDNumberArray, bet => {
+              totalAmount += parseInt(bet.amount);
+            });
+            setFormData({
+              ...formData,
+              betOnThreeDNumber: betOnThreeDNumberArray,
+              totalAmount: totalAmount,
+              amount: 0,
+              selectedNum: ""
+            });
+          }
         } else {
-          let betOnThreeDNumberArray = formData.betOnThreeDNumber;
-          const pushObj = {
-            threeDNumerId: selectedNumObj.id,
-            amount: formData.amount,
-          };
-          betOnThreeDNumberArray.push(pushObj);
-          let totalAmount = 0;
-          each(betOnThreeDNumberArray, (bet) => {
-            totalAmount += parseInt(bet.amount);
-          });
-          setFormData({
-            ...formData,
-            betOnThreeDNumber: betOnThreeDNumberArray,
-            totalAmount: totalAmount,
-            amount: 0,
-            selectedNum: "",
+          addToast("ဂဏန်းထည့်ခြင်းမှားယွင်းနေပါသည်", {
+            appearance: "warning",
+            autoDismiss: false
           });
         }
-      } else {
-        addToast("ဂဏန်းထည့်ခြင်းမှားယွင်းနေပါသည်", {
-          appearance: "warning",
-          autoDismiss: false,
+      }
+      if (formData.keywords.length > 0) {
+        let betOnKeywordArray = [];
+        let totalAmount = formData.totalAmount;
+        each(formData.keywords, key => {
+          if (key.ThreeDNumer) {
+            betOnKeywordArray.push({
+              threeDNumerId: key.ThreeDNumer.id,
+              amount: formData.amount
+            });
+          }
+        });
+        each(betOnKeywordArray, betKeyword => {
+          totalAmount += parseInt(betKeyword.amount);
+        });
+        setFormData({
+          ...formData,
+          keywords: [],
+          amount: 0,
+          totalAmount: totalAmount,
+          betOnThreeDNumber: formData.betOnThreeDNumber.concat(
+            betOnKeywordArray
+          )
         });
       }
-    } else if (
-      formData.keywords.length > 0 &&
-      formData.selectedNum &&
-      formData.amount > 0 &&
-      formData.sessionId
-    ) {
-    } else if (formData.keywords && formData.amount > 0 && formData.sessionId) {
     } else {
       addToast("သေချာစွာဖြည့်ပါ", { appearance: "warning", autoDismiss: true });
     }
@@ -120,24 +143,27 @@ function Slot3D() {
   const getKeywords = useCallback(() => {
     Instance({
       url: "/settings/keywords/get3d_keywords",
-      method: "GET",
+      method: "GET"
     })
-      .then((res) => {
+      .then(res => {
         if (res.data && res.data.statusCode === 200) {
           setKeywords(res.data.Data);
         }
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
-  useEffect(() => {
-    getSessions();
-    getKeywords();
-  }, [getSessions, getKeywords]);
+  useEffect(
+    () => {
+      getSessions();
+      getKeywords();
+    },
+    [getSessions, getKeywords]
+  );
 
-  const { routes } = useSelector((state) => state.management);
+  const { routes } = useSelector(state => state.management);
   const { addToast } = useToasts();
   const SubmitForm = () => {
     try {
@@ -155,14 +181,14 @@ function Slot3D() {
             sessionId: formData.sessionId,
             totalAmt: formData.totalAmount,
             betOnThreeDNumber: formData.betOnThreeDNumber,
-            agentId: user ? user.id : null,
-          },
+            agentId: user ? user.id : null
+          }
         })
-          .then((res) => {
+          .then(res => {
             if (res.data && res.data.statusCode === 200) {
               addToast(res.data.message, {
                 appearance: "success",
-                autoDismiss: true,
+                autoDismiss: true
               });
               setFormData({
                 customerNm: "",
@@ -171,20 +197,20 @@ function Slot3D() {
                 amount: 0,
                 keywords: [],
                 totalAmount: 0,
-                selectedNum: "",
+                selectedNum: ""
               });
             } else {
               addToast(res.data.message, {
                 appearance: "warning",
-                autoDismiss: true,
+                autoDismiss: true
               });
             }
           })
-          .catch((err) => {
+          .catch(err => {
             console.log(err);
             addToast("တခုခုမှားယွင်းနေပါသည်", {
               appearance: "warning",
-              autoDismiss: true,
+              autoDismiss: true
             });
           });
       }
@@ -192,7 +218,7 @@ function Slot3D() {
       console.log(error);
       addToast("တခုခုမှားယွင်းနေပါသည်", {
         appearance: "error",
-        autoDismiss: true,
+        autoDismiss: true
       });
     }
   };
@@ -201,7 +227,7 @@ function Slot3D() {
       <div className="flex flex-row items-center justify-between mb-8">
         {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
         {/* Left: Title */}
-        <div className="flex items-center content-center justify-end w-full"></div>
+        <div className="flex items-center content-center justify-end w-full" />
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-6">
@@ -211,7 +237,7 @@ function Slot3D() {
               id="sessionId"
               formData={formData}
               setFromData={setFormData}
-              options={sessions.filter((s) => s.status === true)}
+              options={sessions.filter(s => s.status === true)}
               optionLabel="name"
               optionValue="id"
               placeHolder="အချိန်ရွေးချယ်ပါ"
@@ -257,9 +283,11 @@ function Slot3D() {
                   name="keywords"
                   id="keywords"
                   options={keywords}
-                  optionLabel="label"
-                  optionValue="value"
+                  optionLabel="name"
+                  optionValue="threeDNumber"
                   placeHolder="အမြန်ရွေးပါ"
+                  formData={formData}
+                  setFromData={setFormData}
                 />
               </div>
               <UiButton
@@ -274,11 +302,10 @@ function Slot3D() {
           </form>
         </div>
         <div className="col-span-12 md:col-span-12">
-          {formData.customerNm && (
+          {formData.customerNm &&
             <h4 className="my-3 text-lg tracking-widest text-slate-600">
               {formData.customerNm} ၏စာရင်း
-            </h4>
-          )}
+            </h4>}
           <SelectTable>
             <thead className="text-xs font-semibold uppercase border-t border-b text-slate-500 bg-slate-50 border-slate-200">
               <TableRow className="bg-slate-100">
@@ -289,23 +316,28 @@ function Slot3D() {
               </TableRow>
             </thead>
             <tbody className="text-sm divide-y divide-slate-200">
-              {formData.betOnThreeDNumber.map((s, i) => (
+              {formData.betOnThreeDNumber.map((s, i) =>
                 <TableRow key={i}>
-                  <TableCell isHeader={false}>{i + 1}</TableCell>
                   <TableCell isHeader={false}>
-                    {find(threeDNums, (num) => num.id === s.threeDNumerId).num}
+                    {i + 1}
                   </TableCell>
-                  <TableCell isHeader={false}>{s.amount}</TableCell>
+                  <TableCell isHeader={false}>
+                    {find(threeDNums, num => num.id === s.threeDNumerId).num}
+                  </TableCell>
+                  <TableCell isHeader={false}>
+                    {s.amount}
+                  </TableCell>
                   <TableCell isHeader={false}>
                     <button
                       onClick={() => {
                         filterFormData(s);
-                      }}>
+                      }}
+                    >
                       <TrashIcon />
                     </button>
                   </TableCell>
                 </TableRow>
-              ))}
+              )}
             </tbody>
           </SelectTable>
           <div className="flex justify-start w-full py-4 my-2 space-x-2 border-t border-slate-300">
