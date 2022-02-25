@@ -19,7 +19,6 @@ import { each, find } from "lodash";
 function Slot3D() {
   const [sessions, setSessions] = useState([]);
   const [keywords, setKeywords] = useState([]);
-  console.log("KeyWords =>", keywords);
 
   const { Nums } = useSelector(state => state.management);
   const threeDNums = Nums.threeD;
@@ -64,11 +63,66 @@ function Slot3D() {
       betOnThreeDNumber: filteredArray
     });
   };
-  console.log(formData)
+  const RoundThreeDNumber = () => {
+    if (
+      formData.selectedNum.length === 3 &&
+      formData.sessionId &&
+      formData.customerNm &&
+      formData.amount > 0
+    ) {
+      const fNum = formData.selectedNum.split("")[0];
+      const sNum = formData.selectedNum.split("")[1];
+      const tNum = formData.selectedNum.split("")[2];
+      const numerArray = [
+        fNum + sNum + tNum,
+        fNum + tNum + sNum,
+        sNum + fNum + tNum,
+        sNum + tNum + fNum,
+        tNum + fNum + sNum,
+        tNum + fNum + sNum
+      ];
+      let filteredArray = [];
+      each(numerArray, num => {
+        if (filteredArray.find(n => n === num)) {
+        } else {
+          filteredArray.push(num);
+        }
+      });
+      if (filteredArray.length > 0) {
+        let betOnKeywordArray = [];
+        let totalAmount = formData.totalAmount;
+        each(filteredArray, f => {
+          const numObj = find(threeDNums, n => n.num === f);
+          if (numObj) {
+            betOnKeywordArray.push({
+              threeDNumerId: numObj.id,
+              amount: formData.amount
+            });
+          }
+        });
+        each(betOnKeywordArray,bet=>{
+          totalAmount+=parseInt(bet.amount)
+        })
+        setFormData({
+          ...formData,
+          keywords: [],
+          amount: 0,
+          totalAmount: totalAmount,
+          betOnThreeDNumber: formData.betOnThreeDNumber.concat(
+            betOnKeywordArray
+          )
+        });
+      }
+    } else {
+      addToast("သေချာစွာဖြည့်ပါ", { appearance: "info", autoDismiss: true });
+    }
+  };
   const onSumEvent = () => {
     if (
       (formData.selectedNum && formData.amount > 0 && formData.sessionId) ||
-      (formData.keywords.length > 0 && formData.amount > 0 && formData.sessionId)
+      (formData.keywords.length > 0 &&
+        formData.amount > 0 &&
+        formData.sessionId)
     ) {
       if (formData.selectedNum) {
         const selectedNumObj = find(
@@ -251,6 +305,17 @@ function Slot3D() {
               required={true}
               type="text"
             />
+            <div className="">
+              <UiInput
+                name="amount"
+                id="amount"
+                formData={formData}
+                setFromData={setFormData}
+                placeHolder="ငွေပမာဏ"
+                required={true}
+                type="number"
+              />
+            </div>
 
             <div className="grid grid-cols-2 gap-4">
               <div className="">
@@ -264,21 +329,18 @@ function Slot3D() {
                   type="text"
                 />
               </div>
-              <div className="">
-                <UiInput
-                  name="amount"
-                  id="amount"
-                  formData={formData}
-                  setFromData={setFormData}
-                  placeHolder="ငွေပမာဏ"
-                  required={true}
-                  type="number"
-                />
-              </div>
+              <UiButton
+                title="ပတ်လည်"
+                type="button"
+                actionButton={true}
+                NextFun={() => {
+                  RoundThreeDNumber();
+                }}
+              />
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="w-1/2 ">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="w-full ">
                 <UiSelect
                   name="keywords"
                   id="keywords"
@@ -291,6 +353,7 @@ function Slot3D() {
                 />
               </div>
               <UiButton
+                className="w-full"
                 type="button"
                 actionButton={true}
                 NextFun={() => {
