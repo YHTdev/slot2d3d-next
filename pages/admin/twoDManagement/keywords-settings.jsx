@@ -13,6 +13,7 @@ import SelectTable, {
 import { Instance } from '../../../Services'
 import { each, find } from 'lodash'
 import MyModal, { ModalBody, ModalTitle } from '../../../components/Modal'
+import UiTextAreaInput from '../../../components/forms/UiTextarea'
 
 const TwoDKeywords = () => {
   const [formInput, setFormInput] = useState({
@@ -182,14 +183,16 @@ const TwoDKeywords = () => {
           </div>
 
           <div className=''>
-            <UiInput
+            <UiTextAreaInput
               name='num'
+              rows={4}
               id='num'
               type='text'
               formData={formInput}
               setFromData={setFormInput}
               required={true}
               placeHolder='ဂဏန်းမျာ: e.g  12,23,34,45'
+              maxLength={100000}
             />
           </div>
 
