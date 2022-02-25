@@ -333,8 +333,9 @@ function Slot2D() {
                 />
               </div>
 
-              <div className="">
+              <div className="w-full">
                 <UiButton
+                  className='w-full'
                   title="ပတ်လည်"
                   actionButton={true}
                   NextFun={() => RoundFn()}
@@ -342,8 +343,8 @@ function Slot2D() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="w-1/2 ">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="w-full">
                 <UiSelect
                   name="keywords"
                   id="keywords"
@@ -356,6 +357,7 @@ function Slot2D() {
                 />
               </div>
               <UiButton
+                className='w-full'
                 type="button"
                 actionButton={true}
                 NextFun={() => {
