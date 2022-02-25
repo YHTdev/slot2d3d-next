@@ -36,7 +36,7 @@ function Slot2D() {
 
   const getSessions = useCallback(() => {
     Instance({
-      url: "/settings/sessions/get2dSessions",
+      url: `/settings/sessions/get2dSessions?status=1`,
       method: "GET"
     })
       .then(res => {
@@ -281,10 +281,15 @@ function Slot2D() {
 
   return (
     <ManagementLayout title="2D ထိုးရန်" routes={routes.twoDBetRoutes}>
+       
       <div className="flex flex-row items-center justify-between mb-8">
         {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
         {/* Left: Title */}
-        <div className="flex items-center content-center justify-end w-full" />
+        <div className="flex items-center content-center justify-start w-full">
+         {
+           sessions.length===0 &&  <span className="text-sm font-bold text-red-400">*ပွဲချိန်ရပ်နားချိန်ဖြစ်သည့်အတွက်ခဏစောင့်ပေးပါရန်....</span>
+         }
+        </div>
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-6">
@@ -415,6 +420,7 @@ function Slot2D() {
           </div>
           <div>
             <UiButton
+              disabled={sessions.length===0}
               title="အတည်ပြုမည်"
               actionButton={true}
               NextFun={() => SubmitForm()}

@@ -36,7 +36,7 @@ function Slot3D() {
 
   const getSessions = useCallback(() => {
     Instance({
-      url: "/settings/sessions/get3dSessions",
+      url: "/settings/sessions/get3dSessions?status=1",
       method: "GET"
     })
       .then(res => {
@@ -278,10 +278,15 @@ function Slot3D() {
   };
   return (
     <ManagementLayout title="3D ထိုးရန်" routes={routes.threeDBetRoutes}>
+      
       <div className="flex flex-row items-center justify-between mb-8">
         {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
         {/* Left: Title */}
-        <div className="flex items-center content-center justify-end w-full" />
+        <div className="flex items-center content-center justify-start w-full">
+         {
+           sessions.length===0 &&  <span className="text-sm font-bold text-red-400">*ပွဲချိန်ရပ်နားချိန်ဖြစ်သည့်အတွက်ခဏစောင့်ပေးပါရန်....</span>
+         }
+        </div>
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-6">
@@ -412,6 +417,7 @@ function Slot3D() {
           <div>
             <UiButton
               title="အတည်ပြုမည်"
+              disabled={sessions.length===0}
               actionButton={true}
               NextFun={() => SubmitForm()}
             />
