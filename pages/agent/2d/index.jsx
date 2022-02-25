@@ -63,6 +63,64 @@ function Slot2D() {
       betOnTwoDNumber: filteredArray
     });
   };
+
+  const RoundFn = () => {
+    if (
+      formData.selectedNum.length === 2 &&
+      formData.sessionId &&
+      formData.customerNm &&
+      formData.amount > 0
+    ) {
+      let betOnTwoDNumberArray = formData.betOnTwoDNumber;
+      const fNum = formData.selectedNum.split("")[0];
+      const sNum = formData.selectedNum.split("")[1];
+      const formatedfNum = fNum + sNum;
+      const formatedSNum = sNum + fNum;
+      
+      if (formatedfNum === formatedSNum) {
+       
+        const formatNumObj = find(twoDNums, num => num.num === formatedfNum);
+        if (formatNumObj) {
+          const pushObj = {
+            twoDNumerId: formatNumObj.id,
+            amount: formData.amount
+          };
+          betOnTwoDNumberArray.push(pushObj);
+        }
+      } else {
+        const formatFNumObj = find(twoDNums, num => num.num === formatedfNum);
+        const formatSNumObj = find(twoDNums, num => num.num === formatedSNum);
+        if (formatFNumObj) {
+          const pushObj = {
+            twoDNumerId: formatFNumObj.id,
+            amount: formData.amount
+          };
+          betOnTwoDNumberArray.push(pushObj);
+        }
+        if (formatSNumObj) {
+          const pushObj = {
+            twoDNumerId: formatSNumObj.id,
+            amount: formData.amount
+          };
+          betOnTwoDNumberArray.push(pushObj);
+        }
+      }
+      console.log(betOnTwoDNumberArray)
+      let totalAmount = formData.totalAmount;
+      each(betOnTwoDNumberArray, bet => {
+        totalAmount += parseInt(bet.amount);
+      });
+      setFormData({
+        ...formData,
+        betOnTwoDNumber: betOnTwoDNumberArray,
+        totalAmount: totalAmount,
+        amount: 0,
+        selectedNum: ""
+      });
+    } else {
+      addToast("သေချာအောင်ဖြည့်ပါ", { appearance: "info", autoDismiss: true });
+    }
+  };
   const onSumEvent = () => {
     if (
       (formData.selectedNum && formData.amount > 0 && formData.sessionId) ||
@@ -92,7 +150,7 @@ function Slot2D() {
               amount: formData.amount
             };
             betOnTwoDNumberArray.push(pushObj);
-            let totalAmount = 0;
+            let totalAmount = formData.totalAmount;
             each(betOnTwoDNumberArray, bet => {
               totalAmount += parseInt(bet.amount);
             });
@@ -129,7 +187,7 @@ function Slot2D() {
           ...formData,
           keywords: [],
           amount: 0,
-          totalAmount:totalAmount,
+          totalAmount: totalAmount,
           betOnTwoDNumber: formData.betOnTwoDNumber.concat(betOnKeywordArray)
         });
       }
@@ -220,7 +278,7 @@ function Slot2D() {
       });
     }
   };
-  console.log(formData);
+
   return (
     <ManagementLayout title="2D ထိုးရန်" routes={routes.twoDBetRoutes}>
       <div className="flex flex-row items-center justify-between mb-8">
@@ -251,6 +309,16 @@ function Slot2D() {
               type="text"
             />
 
+            <UiInput
+              name="amount"
+              id="amount"
+              formData={formData}
+              setFromData={setFormData}
+              placeHolder="ငွေပမာဏ"
+              required={true}
+              type="number"
+            />
+
             <div className="grid grid-cols-2 gap-4">
               <div className="">
                 <UiInput
@@ -261,17 +329,15 @@ function Slot2D() {
                   placeHolder="ဂဏန်းရိုက်ထည့်ပါ"
                   required={true}
                   type="text"
+                  maxLength={2}
                 />
               </div>
+
               <div className="">
-                <UiInput
-                  name="amount"
-                  id="amount"
-                  formData={formData}
-                  setFromData={setFormData}
-                  placeHolder="ငွေပမာဏ"
-                  required={true}
-                  type="number"
+                <UiButton
+                  title="ပတ်လည်"
+                  actionButton={true}
+                  NextFun={() => RoundFn()}
                 />
               </div>
             </div>
