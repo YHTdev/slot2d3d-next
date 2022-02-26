@@ -8,10 +8,7 @@ const LivePage = () => {
         <PageInnerWrapper>
           <div className="">
             <div className="iframe-container ">
-              <iframe
-                src="https://www.set.or.th/set/mainpage.do?language=en&amp;country=US"
-                frameBorder="0"
-              />
+              <iframe src="https://coin360.com/coin" frameBorder="0" />
             </div>
           </div>
         </PageInnerWrapper>
