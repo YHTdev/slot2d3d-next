@@ -7,7 +7,6 @@ const nextConfig = withPWA({
     dest: "public",
     swSrc: "service-worker.js",
     skipWaiting: true,
-    disable: process.env.NODE_ENV === "development",
   },
 });
 

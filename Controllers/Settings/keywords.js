@@ -39,7 +39,7 @@ export const create2DKeyword = async (req) => {
   const returnObj = ResponseObj;
   try {
     const { name, nums } = req.body;
-    const isExist = await prisma.keyword.findUnique({
+    const isExist = await prisma.keyword.findFirst({
       where: {
         name: name,
       },
@@ -76,6 +76,7 @@ export const create2DKeyword = async (req) => {
       returnObj.message = "ဖန်တီးပြီးသားဖြစ်သည်";
     }
   } catch (error) {
+    console.log(error);
     await prisma.$disconnect();
     returnObj.Error = error;
     returnObj.statusCode = 500;
@@ -204,7 +205,7 @@ export const create3DKeyword = async (req) => {
   const responseObj = ResponseObj;
   try {
     const { name, nums } = req.body;
-    const isExist = await prisma.keyword.findUnique({
+    const isExist = await prisma.keyword.findFirst({
       where: {
         name: name,
       },
