@@ -39,41 +39,32 @@ export const create2DKeyword = async (req) => {
   const returnObj = ResponseObj;
   try {
     const { name, nums } = req.body;
-    const isExist = await prisma.keyword.findFirst({
-      where: {
-        name: name,
-      },
-    });
-    if (!isExist) {
-      let twoDNumbers = [];
-      each(nums, (num) => {
-        twoDNumbers.push({
-          twoDNumerId: num,
-        });
-      });
 
-      const keyword = await prisma.keyword.create({
-        data: {
-          name: name,
-          twoDNumber: {
-            createMany: {
-              data: twoDNumbers,
-            },
+    let twoDNumbers = [];
+    each(nums, (num) => {
+      twoDNumbers.push({
+        twoDNumerId: num,
+      });
+    });
+
+    const keyword = await prisma.keyword.create({
+      data: {
+        name: name,
+        twoDNumber: {
+          createMany: {
+            data: twoDNumbers,
           },
         },
-      });
+      },
+    });
 
-      if (keyword) {
-        returnObj.statusCode = 201;
-        returnObj.Data = keyword;
-        returnObj.message = "ဖန်တီးမှု့အောင်မြင်ပါသည်";
-      } else {
-        returnObj.statusCode = 400;
-        returnObj.message = "ဖန်တီးမှု့မအောင်မြင်ပါ";
-      }
+    if (keyword) {
+      returnObj.statusCode = 201;
+      returnObj.Data = keyword;
+      returnObj.message = "ဖန်တီးမှု့အောင်မြင်ပါသည်";
     } else {
       returnObj.statusCode = 400;
-      returnObj.message = "ဖန်တီးပြီးသားဖြစ်သည်";
+      returnObj.message = "ဖန်တီးမှု့မအောင်မြင်ပါ";
     }
   } catch (error) {
     console.log(error);
@@ -205,41 +196,32 @@ export const create3DKeyword = async (req) => {
   const responseObj = ResponseObj;
   try {
     const { name, nums } = req.body;
-    const isExist = await prisma.keyword.findFirst({
-      where: {
-        name: name,
-      },
-    });
-    if (isExist) {
-      responseObj.statusCode = 400;
-      responseObj.message = "ရှိပြီးသားဖြစ်သည်";
-    } else {
-      let threeDNumbers = [];
-      each(nums, (num) => {
-        threeDNumbers.push({
-          threeDNumerId: num,
-        });
-      });
 
-      const keyword = await prisma.keyword.create({
-        data: {
-          name: name,
-          type: "ThreeD",
-          threeDNumber: {
-            createMany: {
-              data: threeDNumbers,
-            },
+    let threeDNumbers = [];
+    each(nums, (num) => {
+      threeDNumbers.push({
+        threeDNumerId: num,
+      });
+    });
+
+    const keyword = await prisma.keyword.create({
+      data: {
+        name: name,
+        type: "ThreeD",
+        threeDNumber: {
+          createMany: {
+            data: threeDNumbers,
           },
         },
-      });
-      if (keyword) {
-        responseObj.statusCode = 201;
-        responseObj.Data = keyword;
-        responseObj.message = "ဖန်တီးမှု့အောင်မြင်ပါသည်";
-      } else {
-        responseObj.statusCode = 400;
-        responseObj.message = "ဖန်တီးမှု့မအောင်မြင်ပါ";
-      }
+      },
+    });
+    if (keyword) {
+      responseObj.statusCode = 201;
+      responseObj.Data = keyword;
+      responseObj.message = "ဖန်တီးမှု့အောင်မြင်ပါသည်";
+    } else {
+      responseObj.statusCode = 400;
+      responseObj.message = "ဖန်တီးမှု့မအောင်မြင်ပါ";
     }
   } catch (error) {
     console.log(error);
