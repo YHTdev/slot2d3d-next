@@ -1,10 +1,10 @@
-import { DotsHorizontalIcon, TrashIcon, XIcon } from '@heroicons/react/outline'
+import { DotsHorizontalIcon, TrashIcon } from '@heroicons/react/outline'
 import { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useToasts } from 'react-toast-notifications'
 import UiInput from '../../../components/forms/UiInput'
 
-import UiMultiSelect from '../../../components/forms/UiMultiSelect'
+
 import ManagementLayout, {
   ManagementHeader
 } from '../../../components/layout/ManagementLayout'
@@ -18,6 +18,8 @@ import MyModal, { ModalBody, ModalTitle } from '../../../components/Modal'
 import UiTextAreaInput from '../../../components/forms/UiTextarea'
 
 const ThreeDKeywords = () => {
+
+  
   const [formInput, setFormInput] = useState({
     num: '',
     name: ''
