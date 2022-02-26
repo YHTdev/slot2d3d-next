@@ -8,10 +8,15 @@ const prisma = new PrismaClient();
 export const get2DSessions = async (req) => {
   const returnObj = ResponseObj;
   try {
+    const {status} = req.query
+    let query = {
+      type: "TwoDSession",
+    }
+    if(status){
+      query['status']=status==='1'?true:false
+    }
     const sessions = await prisma.session.findMany({
-      where: {
-        type: "TwoDSession",
-      },
+      where: query,
     });
     returnObj.statusCode = 200;
     returnObj.Data = sessions;
@@ -175,10 +180,15 @@ export const changeSessionStatus = async (req) => {
 export const get3DSessions = async (req) => {
   const returnObj = ResponseObj;
   try {
+    const {status} = req.query
+    let query = {
+      type: "TwoDSession",
+    }
+    if(status){
+      query['status']=status==='1'?true:false
+    }
     const sessions = await prisma.session.findMany({
-      where: {
-        type: "ThreeDSession",
-      },
+      where:query,
     });
     returnObj.statusCode = 200;
     returnObj.Data = sessions;
