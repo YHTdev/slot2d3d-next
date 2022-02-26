@@ -97,6 +97,7 @@ const ThreeDKeywords = () => {
               }
             })
             .catch(err => {
+              console.log(err)
               addToast('တစ်ခုခုမှားယွင်းနေပါသည်', {
                 appearance: 'warning',
                 autoDismiss: true

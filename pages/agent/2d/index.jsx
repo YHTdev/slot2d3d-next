@@ -341,7 +341,7 @@ function Slot2D() {
               <div className="w-full">
                 <UiButton
                   className='w-full'
-                  title="ပတ်လည်"
+                  title="R"
                   actionButton={true}
                   NextFun={() => RoundFn()}
                 />
