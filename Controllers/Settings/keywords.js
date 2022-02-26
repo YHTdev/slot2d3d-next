@@ -254,6 +254,7 @@ export const update3DKeyword = async (req) => {
       },
       data: {
         name: name,
+        type: "ThreeD",
         threeDNumber: {
           createMany: {
             skipDuplicates: true,
