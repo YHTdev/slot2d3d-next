@@ -331,11 +331,13 @@ function Slot3D() {
                   setFromData={setFormData}
                   placeHolder="ဂဏန်းရိုက်ထည့်ပါ"
                   required={true}
+                  maxLength={3}
                   type="text"
                 />
               </div>
               <UiButton
-                title="ပတ်လည်"
+                title="R"
+                
                 type="button"
                 actionButton={true}
                 NextFun={() => {
