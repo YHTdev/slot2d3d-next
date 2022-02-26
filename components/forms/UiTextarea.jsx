@@ -1,6 +1,6 @@
 import React from "react";
 
-function UiInput({
+function UiTextAreaInput({
   className,
   formData,
   setFromData,
@@ -10,16 +10,18 @@ function UiInput({
   disabled = false,
   required=false,
   type,
-  maxLength=100
+  maxLength=100,
+  rows=3
 }) {
   return (
-    <input
+    <textarea
       type={type}
       name={name}
       id={id}
       required={required}
       placeholder={placeHolder}
       disabled={disabled}
+      rows={rows}
       maxLength={maxLength}
       className={`${className} px-2 py-1 focus:outline-none rounded-sm border border-slate-400 hover:border-l-slate-900 w-full`}
       value={formData[name]}
@@ -30,4 +32,4 @@ function UiInput({
   );
 }
 
-export default UiInput;
+export default UiTextAreaInput;

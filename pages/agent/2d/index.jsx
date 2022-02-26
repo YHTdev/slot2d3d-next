@@ -36,7 +36,7 @@ function Slot2D() {
 
   const getSessions = useCallback(() => {
     Instance({
-      url: "/settings/sessions/get2dSessions",
+      url: `/settings/sessions/get2dSessions?status=1`,
       method: "GET"
     })
       .then(res => {
@@ -62,6 +62,64 @@ function Slot2D() {
       totalAmount: totalAmount,
       betOnTwoDNumber: filteredArray
     });
+  };
+
+  const RoundFn = () => {
+    if (
+      formData.selectedNum.length === 2 &&
+      formData.sessionId &&
+      formData.customerNm &&
+      formData.amount > 0
+    ) {
+      let betOnTwoDNumberArray = formData.betOnTwoDNumber;
+      const fNum = formData.selectedNum.split("")[0];
+      const sNum = formData.selectedNum.split("")[1];
+      const formatedfNum = fNum + sNum;
+      const formatedSNum = sNum + fNum;
+      
+      if (formatedfNum === formatedSNum) {
+       
+        const formatNumObj = find(twoDNums, num => num.num === formatedfNum);
+        if (formatNumObj) {
+          const pushObj = {
+            twoDNumerId: formatNumObj.id,
+            amount: formData.amount
+          };
+          betOnTwoDNumberArray.push(pushObj);
+        }
+      } else {
+        const formatFNumObj = find(twoDNums, num => num.num === formatedfNum);
+        const formatSNumObj = find(twoDNums, num => num.num === formatedSNum);
+        if (formatFNumObj) {
+          const pushObj = {
+            twoDNumerId: formatFNumObj.id,
+            amount: formData.amount
+          };
+          betOnTwoDNumberArray.push(pushObj);
+        }
+        if (formatSNumObj) {
+          const pushObj = {
+            twoDNumerId: formatSNumObj.id,
+            amount: formData.amount
+          };
+          betOnTwoDNumberArray.push(pushObj);
+        }
+      }
+      console.log(betOnTwoDNumberArray)
+      let totalAmount = formData.totalAmount;
+      each(betOnTwoDNumberArray, bet => {
+        totalAmount += parseInt(bet.amount);
+      });
+      setFormData({
+        ...formData,
+        betOnTwoDNumber: betOnTwoDNumberArray,
+        totalAmount: totalAmount,
+        amount: 0,
+        selectedNum: ""
+      });
+    } else {
+      addToast("သေချာအောင်ဖြည့်ပါ", { appearance: "info", autoDismiss: true });
+    }
   };
   const onSumEvent = () => {
     if (
@@ -92,7 +150,7 @@ function Slot2D() {
               amount: formData.amount
             };
             betOnTwoDNumberArray.push(pushObj);
-            let totalAmount = 0;
+            let totalAmount = formData.totalAmount;
             each(betOnTwoDNumberArray, bet => {
               totalAmount += parseInt(bet.amount);
             });
@@ -129,7 +187,7 @@ function Slot2D() {
           ...formData,
           keywords: [],
           amount: 0,
-          totalAmount:totalAmount,
+          totalAmount: totalAmount,
           betOnTwoDNumber: formData.betOnTwoDNumber.concat(betOnKeywordArray)
         });
       }
@@ -220,13 +278,18 @@ function Slot2D() {
       });
     }
   };
-  console.log(formData);
+
   return (
     <ManagementLayout title="2D ထိုးရန်" routes={routes.twoDBetRoutes}>
+       
       <div className="flex flex-row items-center justify-between mb-8">
         {/* <div className="mb-8 sm:flex sm:justify-between sm:items-center"> */}
         {/* Left: Title */}
-        <div className="flex items-center content-center justify-end w-full" />
+        <div className="flex items-center content-center justify-start w-full">
+         {
+           sessions.length===0 &&  <span className="text-sm font-bold text-red-400">*ပွဲချိန်ရပ်နားချိန်ဖြစ်သည့်အတွက်ခဏစောင့်ပေးပါရန်....</span>
+         }
+        </div>
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 md:col-span-6">
@@ -251,6 +314,16 @@ function Slot2D() {
               type="text"
             />
 
+            <UiInput
+              name="amount"
+              id="amount"
+              formData={formData}
+              setFromData={setFormData}
+              placeHolder="ငွေပမာဏ"
+              required={true}
+              type="number"
+            />
+
             <div className="grid grid-cols-2 gap-4">
               <div className="">
                 <UiInput
@@ -261,23 +334,22 @@ function Slot2D() {
                   placeHolder="ဂဏန်းရိုက်ထည့်ပါ"
                   required={true}
                   type="text"
+                  maxLength={2}
                 />
               </div>
-              <div className="">
-                <UiInput
-                  name="amount"
-                  id="amount"
-                  formData={formData}
-                  setFromData={setFormData}
-                  placeHolder="ငွေပမာဏ"
-                  required={true}
-                  type="number"
+
+              <div className="w-full">
+                <UiButton
+                  className='w-full'
+                  title="ပတ်လည်"
+                  actionButton={true}
+                  NextFun={() => RoundFn()}
                 />
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="w-1/2 ">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="w-full">
                 <UiSelect
                   name="keywords"
                   id="keywords"
@@ -290,6 +362,7 @@ function Slot2D() {
                 />
               </div>
               <UiButton
+                className='w-full'
                 type="button"
                 actionButton={true}
                 NextFun={() => {
@@ -347,6 +420,7 @@ function Slot2D() {
           </div>
           <div>
             <UiButton
+              disabled={sessions.length===0}
               title="အတည်ပြုမည်"
               actionButton={true}
               NextFun={() => SubmitForm()}
