@@ -77,7 +77,7 @@ const ThreeDKeywords = () => {
             method: 'POST',
             data: {
               name: formInput.name,
-              nums: filteredNUm
+              nums: formatNums
             }
           })
             .then(res => {
