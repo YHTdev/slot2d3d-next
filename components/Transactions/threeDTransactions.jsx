@@ -171,7 +171,14 @@ function ThreeDTransactions({users=[],sessions=[]}) {
                  </TableCell>
                  <TableCell>
                    <div className="text-left">
-                     <DotsHorizontalIcon className="w-4 h-4" />
+                   {t.betOnThreeDNumber &&
+                          t.betOnThreeDNumber.map((b, i) => (
+                            <span className='text-red-400' key={i}>
+                              {' '}
+                              {b.ThreeDNum && b.ThreeDNum.num}{' '}
+                              {i !== t.betOnThreeDNumber.length - 1 ? ',' : ''}
+                            </span>
+                          ))}
                    </div>
                  </TableCell>
                  <TableCell>
